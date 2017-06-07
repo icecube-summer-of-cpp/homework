@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++0x -O0 -g    CMakeFiles/exercise_1_10_3.dir/exercise_1_10_3.cpp.o  -o exercise_1_10_3 -rdynamic 
