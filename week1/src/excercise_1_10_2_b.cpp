@@ -1,14 +1,9 @@
+// Summer of C++ 
+// Homework Week 1 
+// Excercise 1.10.2 part 2 from "Discovering Modern C++: An Intensive Course for Scientists, Engineers, and Programmers (C++ In-Depth)" by Peter Gottschling
+// Solution by: Rene Reimann
+
 /*
- * 1. Write the following declarations:
- *      pointer to a character
- *      array of 10 integers
- *      pointer to an array of 10 integers
- *      pointer to an array of character strings
- *      pointer to pointer to a character
- *      interger constant
- *      pointer to an integer constant
- *      constant pointer to an integer
- *    Initialize all these objects.
  * 2. Make a small program that creates arrays on the stack (fixed-size 
  *    arrays) and arrays on the heap (using allocation). Use valgrind to
  *    check what happens when you do not delete them correctly.
