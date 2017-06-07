@@ -34,7 +34,7 @@ void define_simple_pointer(){
     // array of 10 integers
     int a1[10] = {1,2,3,4,5,6,7,8,9,0};
     std::cout << a1 << " " << *a1 << std::endl;
-    for (unsigned i=0; i<10; ++i){ std::cout << "   " << a1[i] << std::endl;}
+    for (auto& i : a1 ){ std::cout << "   " << i << std::endl;}
     
     // pointer to an array of 10 integers
     int * p2 = new int[10];                                             // can it be directly initialized?
