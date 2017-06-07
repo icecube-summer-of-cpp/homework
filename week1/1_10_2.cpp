@@ -51,5 +51,10 @@ int main() {
     int j = 43;
     int * const p_j = &j;
 
+
+    int stack_array[1000];
+    int *heap_array = new int[100];
+
+    // delete [] my_heap_array;
     return 0;
 }

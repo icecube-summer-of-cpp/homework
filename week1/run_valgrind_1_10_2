@@ -1,0 +1,2 @@
+g++ -std=c++11 1_10_2.cpp -o 1_10_2
+valgrind --leak-check=full --show-leak-kinds=all ./1_10_2
