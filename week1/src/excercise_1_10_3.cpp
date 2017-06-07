@@ -1,3 +1,8 @@
+// Summer of C++ 
+// Homework Week 1 
+// Excercise 1.10.3 from "Discovering Modern C++: An Intensive Course for Scientists, Engineers, and Programmers (C++ In-Depth)" by Peter Gottschling
+// Solution by: Rene Reimann
+
 /* The Matrix Market data format is used to store dense and sparse matrices in ASCII format.
  * The header contains some information about the type and the size of the matrix. For a sparse matrix, the data is stored in three columns. The fist column is the row number, the
  * second column the column number, and the third column the numerical value. When the value type of the matrix is complex, a fourth column is added for the imaginary part.
@@ -20,6 +25,7 @@
 #include <iostream>
 #include <fstream>
 
+// this function opens a file and reads the complete content and puts int in a char[]
 void read_file(char *fileName, char *&content){
  
     std::ifstream is (fileName);
@@ -48,6 +54,7 @@ void read_file(char *fileName, char *&content){
     }
 }
 
+// this function calls read_function and prints the content of the file
 void test_get_relevant_line_using_read_function(){
     char * content;
     char fileName[] = "SparsMatrix.txt";
@@ -56,6 +63,8 @@ void test_get_relevant_line_using_read_function(){
     
     std::cout << content << std::endl;
 }
+
+// this function opens a file goes through line by line and checks for the first line not starting with '%'
 void test_get_relevant_line(){
     
     std::string str;
@@ -75,29 +84,42 @@ void test_get_relevant_line(){
 
 }
 
+
 int main(){
+    // here we have our main solution
+
     //test_get_relevant_line_using_read_function();
     //test_get_relevant_line();
     
     int rows, cols, nonzeros;
     
-    // check if file exists
     const std::string fileName = "SparsMatrix.txt";    
     std::ifstream myFile (fileName);
     
-    if(myFile.is_open()){
+    if(myFile.good() && myFile.is_open()){
+        
         char first_char_of_line;
-        std::string rest_of_line;
+        std::string line;
+        
+        // check first char of line and jump to next line if starts with '%'
         while(myFile >> first_char_of_line && first_char_of_line == '%'){
-            std::getline(myFile, rest_of_line);
+            myFile.seekg(-1, myFile.cur); // jump back one char in stream so we get the full line
+            std::getline(myFile, line);
         }
+        myFile.seekg(-1, myFile.cur);
+        
+        // here we are at the beginning of in the fist line after the '%' header
+        // this line contains the numbers we are interestred in
         myFile >> rows >> cols >> nonzeros;
         myFile.close();
+        
+        // check that we got the right numbers by printing them
+        std::cout << "Rows: "<< rows << std::endl;
+        std::cout << "Cols: "<< cols << std::endl;
+        std::cout << "Non-Zeros: "<< nonzeros << std::endl;
+    }else{
+        std::cout << "Failed to open file." << std::endl;
     }
 
-    std::cout << "Rows: "<< rows << std::endl;
-    std::cout << "Cols: "<< cols << std::endl;
-    std::cout << "Non-Zeros: "<< nonzeros << std::endl;
-    
     return 0;
 }
