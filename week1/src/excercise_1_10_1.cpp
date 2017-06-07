@@ -1,3 +1,8 @@
+// Summer of C++ 
+// Homework Week 1 
+// Excercise 1.10.1 from "Discovering Modern C++: An Intensive Course for Scientists, Engineers, and Programmers (C++ In-Depth)" by Peter Gottschling
+// Solution by: Rene Reimann
+
 /*
  * Write a program that asks input from the keyboard and prints the 
  * result on the screen and writes it to a file. 
@@ -10,8 +15,7 @@
 
 int main(){
     
-
-    // Read in age
+    // declareation of variables
     int age = -1;
     bool age_acceptable = false;
 
@@ -34,16 +38,12 @@ int main(){
     // print to screen
     std::cout << "Your are " << age << " years old."<< std::endl;
 
-    // we may check if a print out was successful
-
     // print in file
     std::ofstream myfile("age.txt");
-    // we should check if file exists
-    // we should check if file open was successful
-    myfile << age << std::endl;
-    // we should check writing to file was successful
-    myfile.close();
-    // we should check that file is okay
+    if(myfile.is_open()){
+        myfile << age << std::endl;
+        myfile.close();
+    }
     
     return 0;
 }
