@@ -59,7 +59,7 @@ void test_get_relevant_line_using_read_function(){
 void test_get_relevant_line(){
     
     std::string str;
-    const std::string fileName = "SparsMatrix.txt";    
+    const std::string fileName = "../src/SparsMatrix.txt";    
     std::ifstream myFile (fileName);
     int rows, cols, nonzeros;
     if(myFile.is_open()){
@@ -81,6 +81,7 @@ int main(){
     
     int rows, cols, nonzeros;
     
+    // check if file exists
     const std::string fileName = "SparsMatrix.txt";    
     std::ifstream myFile (fileName);
     
