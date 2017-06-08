@@ -1,6 +1,6 @@
 /** 
  *  Summer of C++
- *  Week 1, Exercise 1.10.3
+ *  Week 1, Quiz
  *  @author: Federica Bradascio
  *
  * Read the header of a  Matrix Market file and print
