@@ -32,6 +32,6 @@ int main()
 
     std::cout << "Number of rows: " << nrow << ", "
               << "number of columns: " << ncol << ", "
-              << "number of non-zero entries" << nonzero
+              << "number of non-zero entries: " << nonzero
               << std::endl;
 }
