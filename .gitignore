@@ -1,0 +1,8 @@
+# OSX finder stuff
+.DS_Store
+
+# Build binaries
+**.bin
+
+# hw01 excldues
+hw01/age.txt
