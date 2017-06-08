@@ -15,9 +15,7 @@
 using namespace std;
 
 int main()
-{
-  /* Exercise 1.10.2 - Part 1 */
-  
+{ 
   // pointer to a character
   char val = 'c';
   char* ptr_char = &val;
