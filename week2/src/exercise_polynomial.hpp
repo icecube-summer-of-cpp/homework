@@ -33,6 +33,7 @@
 #include <vector>
 #include <initializer_list>
 #include <assert.h>
+#include <math.h>
 
 class polynomial {
     
@@ -75,6 +76,7 @@ class polynomial {
         polynomial operator-=(const polynomial& p2);
         polynomial operator*(const polynomial& p2);
         polynomial operator*=(const polynomial& p2);
+        double operator()(const double& x);
 };
 
 // outout function for ostream

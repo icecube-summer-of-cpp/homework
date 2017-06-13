@@ -117,6 +117,14 @@ polynomial polynomial::operator*=(const polynomial& p2){
     return (*this) * p2;
 };
 
+double polynomial::operator()(const double& x){
+    double sum = 0;
+    for (int i=0; i<=deg; i++){
+        sum += coef[i]*pow(x, i);
+    }
+    return sum;
+};
+
 std::ostream& operator <<(std::ostream& os, const polynomial& p){
     std::stringstream s("");
     s << "Polynome if size " << p.coef.size() << " " << p.deg << ": " ;
@@ -186,6 +194,8 @@ int main(int argc, char* argv[]){
     
     p5 *= p5;
     std::cout << p5 << std::endl;
+    
+    std::cout << p5(1.) << std::endl;
     
     return 0;
 }
