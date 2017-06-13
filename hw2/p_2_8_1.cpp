@@ -91,7 +91,7 @@ std::ostream& operator<<(std::ostream& os, const polynomial& p)
             }
         }
         if ((p.coeff[i]!=1 && p.coeff[i]!=-1) || i==0) {
-            if (p.coeff[i]>0 || i==0) {
+            if (p.coeff[i]>0 || i==start) {
                 os << p.coeff[i];
             }
             else {
@@ -117,7 +117,15 @@ inline polynomial operator+(const polynomial& p1, const polynomial& p2)
     std::vector<double> coefficients(size);
 
     for (int i=0; i<size; ++i) {
-        coefficients[i] = p1.coeff[i] + p2.coeff[i];
+        if (i>=p1.coeff.size()) {
+            coefficients[i] = p2.coeff[i];
+        }
+        else if (i>=p2.coeff.size()) {
+            coefficients[i] = p1.coeff[i];
+        }
+        else {
+            coefficients[i] = p1.coeff[i] + p2.coeff[i];
+        }
     }
 
     return polynomial(coefficients);
@@ -136,6 +144,18 @@ inline polynomial operator*(const polynomial& p1, const polynomial& p2)
     }
 
     return polynomial(coefficients);
+}
+
+// Function for unary - of polynomials
+inline polynomial operator-(const polynomial& p)
+{
+    return -1*p;
+}
+
+// Function for subtracting polynomials
+inline polynomial operator-(const polynomial& p1, const polynomial& p2)
+{
+    return p1 + -p2;
 }
 
 
@@ -162,4 +182,9 @@ int main()
     std::cout << "a + 2 = " << a+2 << std::endl;
     std::cout << "a * b = " << a*b << std::endl;
     std::cout << "a * -2 = " << a*-2 << std::endl;
+    std::cout << "-a = " << -a << std::endl;
+    std::cout << "a - b = " << a-b << std::endl;
+    std::cout << "-d = " << -d << std::endl;
+    std::cout << "b * -d = " << b*-d << std::endl;
+    std::cout << "a - b * -d = " << a-b*-d << std::endl;
 }
