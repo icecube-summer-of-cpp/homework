@@ -23,8 +23,10 @@ class Polynom {
     friend Polynom eval(Polynom const& pol, Polynom const& x);
     
 public:
+    Polynom(const Polynom& x)  = default;
     Polynom(std::vector<double> x) : coeff({x}) {};
     Polynom(std::initializer_list<double> x) : coeff({x}) {};
+    Polynom & operator=(Polynom && src);
     unsigned long order();
 };
 

@@ -30,10 +30,8 @@ std::ostream& operator<< (std::ostream& stream, const Polynom &rhs) {
 
 Polynom operator << (Polynom const &lhs, unsigned long shift){
   if(lhs.coeff.size() <= shift){
-    return Polynom({});
-  }else{
     Polynom tmp({});
-    for(unsigned long i =shift; i< lhs.coeff.size(); ++i){
+    for(unsigned long i=shift; i< lhs.coeff.size(); ++i){
       tmp.coeff.push_back(lhs.coeff[i]);
     }
     return tmp;
@@ -164,3 +162,8 @@ Polynom eval(Polynom const& pol, Polynom const& x){
 }
 
 
+Polynom & Polynom::operator=(Polynom && src){
+  this->coeff = src.coeff;
+  src.coeff.clear();
+  return *this;
+}
