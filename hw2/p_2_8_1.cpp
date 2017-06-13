@@ -48,10 +48,6 @@ class polynomial
 
     // Allow stream output to access private members
     friend std::ostream& operator<<(std::ostream& os, const polynomial& p);
-
-    // Allow aritmentic operations to access private members
-    friend polynomial operator+(const polynomial& p1, const polynomial& p2);
-    friend polynomial operator*(const polynomial& p1, const polynomial& p2);
     
     private:
         std::vector<double> coeff;
@@ -117,15 +113,7 @@ inline polynomial operator+(const polynomial& p1, const polynomial& p2)
     std::vector<double> coefficients(size);
 
     for (int i=0; i<size; ++i) {
-        if (i>=p1.coeff.size()) {
-            coefficients[i] = p2.coeff[i];
-        }
-        else if (i>=p2.coeff.size()) {
-            coefficients[i] = p1.coeff[i];
-        }
-        else {
-            coefficients[i] = p1.coeff[i] + p2.coeff[i];
-        }
+        coefficients[i] = p1[i] + p2[i];
     }
 
     return polynomial(coefficients);
@@ -137,9 +125,9 @@ inline polynomial operator*(const polynomial& p1, const polynomial& p2)
     int size = p1.degree()+p2.degree()+1;
     std::vector<double> coefficients(size);
 
-    for (int i=0; i<p1.coeff.size(); ++i) {
-        for (int j=0; j<p2.coeff.size(); ++j) {
-            coefficients[i+j] += p1.coeff[i]*p2.coeff[j];
+    for (int i=0; i<=p1.degree(); ++i) {
+        for (int j=0; j<=p2.degree(); ++j) {
+            coefficients[i+j] += p1[i]*p2[j];
         }
     }
 
@@ -168,7 +156,10 @@ int main()
     polynomial e = {{0,1,0,0,0}};
     polynomial z = 0;
     polynomial z2 = {{0,0}};
+    polynomial f = a*z;
+    polynomial g = a-b*-d;
     std::cout << "a = " << a << std::endl;
+    std::cout << "degree of a = " << a.degree() << std::endl;
     std::cout << "a[0] = " << a[0] << std::endl;
     std::cout << "a[1] = " << a[1] << std::endl;
     std::cout << "a[2] = " << a[2] << std::endl;
@@ -177,14 +168,19 @@ int main()
     std::cout << "d = " << d << std::endl;
     std::cout << "e = " << e << std::endl;
     std::cout << "z = " << z << std::endl;
+    std::cout << "degree of z = " << z.degree() << std::endl;
     std::cout << "z2 = " << z2 << std::endl;
+    std::cout << "degree of z2 = " << z2.degree() << std::endl;
     std::cout << "a + b = " << a+b << std::endl;
     std::cout << "a + 2 = " << a+2 << std::endl;
     std::cout << "a * b = " << a*b << std::endl;
     std::cout << "a * -2 = " << a*-2 << std::endl;
+    std::cout << "a * z = " << a*z << std::endl;
+    std::cout << "degree of a*z = " << f.degree() << std::endl;
     std::cout << "-a = " << -a << std::endl;
     std::cout << "a - b = " << a-b << std::endl;
     std::cout << "-d = " << -d << std::endl;
     std::cout << "b * -d = " << b*-d << std::endl;
     std::cout << "a - b * -d = " << a-b*-d << std::endl;
+    std::cout << "degree of a-b*-d = " << g.degree() << std::endl;
 }
