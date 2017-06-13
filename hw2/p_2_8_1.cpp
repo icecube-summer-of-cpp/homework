@@ -51,6 +51,7 @@ class polynomial
 
     // Allow aritmentic operations to access private members
     friend polynomial operator+(const polynomial& p1, const polynomial& p2);
+    friend polynomial operator*(const polynomial& p1, const polynomial& p2);
     
     private:
         std::vector<double> coeff;
@@ -116,7 +117,22 @@ inline polynomial operator+(const polynomial& p1, const polynomial& p2)
     std::vector<double> coefficients(size);
 
     for (int i=0; i<size; ++i) {
-        coefficients[i] = p1[i] + p2[i];
+        coefficients[i] = p1.coeff[i] + p2.coeff[i];
+    }
+
+    return polynomial(coefficients);
+}
+
+// Function for multiplying polynomials
+inline polynomial operator*(const polynomial& p1, const polynomial& p2)
+{
+    int size = p1.degree()+p2.degree()+1;
+    std::vector<double> coefficients(size);
+
+    for (int i=0; i<p1.coeff.size(); ++i) {
+        for (int j=0; j<p2.coeff.size(); ++j) {
+            coefficients[i+j] += p1.coeff[i]*p2.coeff[j];
+        }
     }
 
     return polynomial(coefficients);
@@ -144,4 +160,6 @@ int main()
     std::cout << "z2 = " << z2 << std::endl;
     std::cout << "a + b = " << a+b << std::endl;
     std::cout << "a + 2 = " << a+2 << std::endl;
+    std::cout << "a * b = " << a*b << std::endl;
+    std::cout << "a * -2 = " << a*-2 << std::endl;
 }
