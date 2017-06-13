@@ -53,8 +53,8 @@ class polynomial
         {
             coeff = src.coeff;
             src.coeff.clear();
-            std::cout << "Move assignment activated! Moved polynomial with "
-            << coeff.size() << " coefficients. Left source with "
+            std::cout << "Move assignment activated!\n  Moved polynomial with "
+            << coeff.size() << " coefficients.\n  Left source with "
             << src.coeff.size() << " coefficients." << std::endl;
             return *this;
         }
@@ -186,9 +186,7 @@ inline polynomial operator-(const polynomial& p1, const polynomial& p2)
 // Function for testing move assignment
 polynomial f(double c2, double c1, double c0)
 {
-    polynomial tmp({c0,c1,c2}),result;
-    result = tmp;
-    return result;
+    return polynomial({c0,c1,c2});
 }
 
 
@@ -230,6 +228,8 @@ int main()
     std::cout << "degree of a-b*-d = " << h.degree() << std::endl;
 
     std::cout << "\nTesting move assignment..." << std::endl;
-    polynomial result = f(2,1,0);
-    std::cout << result << std::endl;
+    polynomial r;
+    r = f(2,1,0);
+
+    std::cout << "r = " << r << std::endl;
 }
