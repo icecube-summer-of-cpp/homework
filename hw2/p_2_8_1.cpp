@@ -35,8 +35,22 @@ class polynomial
             return coeff.size()-1;
         }
 
+        // Bracket operator for easy access to coefficients
+        double operator[](int i) const
+        {
+            if (i<coeff.size()) {
+                return coeff[i];
+            }
+            else {
+                return 0;
+            }
+        }
+
     // Allow stream output to access private members
     friend std::ostream& operator<<(std::ostream& os, const polynomial& p);
+
+    // Allow aritmentic operations to access private members
+    friend polynomial operator+(const polynomial& p1, const polynomial& p2);
     
     private:
         std::vector<double> coeff;
@@ -68,10 +82,20 @@ std::ostream& operator<<(std::ostream& os, const polynomial& p)
             continue;
         }
         else if (i>start) {
-            os << " + ";
+            if (p.coeff[i]>0) {
+                os << " + ";
+            }
+            else {
+                os << " - ";
+            }
         }
-        if (p.coeff[i]!=1 || i==0) {
-            os << p.coeff[i];
+        if ((p.coeff[i]!=1 && p.coeff[i]!=-1) || i==0) {
+            if (p.coeff[i]>0 || i==0) {
+                os << p.coeff[i];
+            }
+            else {
+                os << -p.coeff[i];
+            }
         }
         if (i>0) {
             os << "x";
@@ -84,21 +108,40 @@ std::ostream& operator<<(std::ostream& os, const polynomial& p)
 };
 
 
+// Function for adding polynomials
+inline polynomial operator+(const polynomial& p1, const polynomial& p2)
+{
+    int size;
+    p1.degree()>=p2.degree() ? size=p1.degree()+1 : size=p2.degree()+1;
+    std::vector<double> coefficients(size);
+
+    for (int i=0; i<size; ++i) {
+        coefficients[i] = p1[i] + p2[i];
+    }
+
+    return polynomial(coefficients);
+}
+
 
 int main()
 {
-    polynomial a({1,2});
+    polynomial a({-1,2});
     polynomial b = {{2,3}};
     polynomial c = 2.5;
-    polynomial d = {{0,0,4,0,0,5,0,6}};
+    polynomial d = {{0,0,4,0,0,-5,0,6}};
     polynomial e = {{0,1,0,0,0}};
     polynomial z = 0;
     polynomial z2 = {{0,0}};
     std::cout << "a = " << a << std::endl;
+    std::cout << "a[0] = " << a[0] << std::endl;
+    std::cout << "a[1] = " << a[1] << std::endl;
+    std::cout << "a[2] = " << a[2] << std::endl;
     std::cout << "b = " << b << std::endl;
     std::cout << "c = " << c << std::endl;
     std::cout << "d = " << d << std::endl;
     std::cout << "e = " << e << std::endl;
     std::cout << "z = " << z << std::endl;
     std::cout << "z2 = " << z2 << std::endl;
+    std::cout << "a + b = " << a+b << std::endl;
+    std::cout << "a + 2 = " << a+2 << std::endl;
 }
