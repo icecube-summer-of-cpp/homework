@@ -27,7 +27,7 @@
 class polynomial
 {
     public:
-        // Default constructor
+        // Custom default constructor
         polynomial(std::vector<double> coefficients={0}) : coeff(coefficients)
         {
             // Catch if all elements are zero
@@ -39,15 +39,29 @@ class polynomial
         // Constructor when double is passed
         polynomial(double coefficient) : coeff({coefficient}) {}
 
-        // Destructor not necessary, vector of coefficients manages itself
-        // ~polynomial() {}
+        // Default copy constructor
+        polynomial(const polynomial&) = default;
 
-        // Function to return degree of polynomial
-        int degree() const
+        // Default move constructor
+        polynomial(polynomial&&) = default;
+
+        // Default copy assignment
+        polynomial& operator=(const polynomial&) = default;
+
+        // Custom move assignment
+        polynomial& operator=(polynomial&& src)
         {
-            return coeff.size()-1;
+            coeff = src.coeff;
+            src.coeff.clear();
+            std::cout << "Move assignment activated! Moved polynomial with "
+            << coeff.size() << " coefficients. Left source with "
+            << src.coeff.size() << " coefficients." << std::endl;
+            return *this;
         }
 
+        // Default destructor (vector of coefficients manages itself)
+        ~polynomial() = default;
+        
         // Bracket operator for easy access to coefficients
         double operator[](int i) const
         {
@@ -58,6 +72,13 @@ class polynomial
                 return 0;
             }
         }
+
+        // Function to return degree of polynomial
+        int degree() const
+        {
+            return coeff.size()-1;
+        }
+
 
     // Allow stream output to access private members
     friend std::ostream& operator<<(std::ostream& os, const polynomial& p);
@@ -160,6 +181,17 @@ inline polynomial operator-(const polynomial& p1, const polynomial& p2)
 }
 
 
+
+
+// Function for testing move assignment
+polynomial f(double c2, double c1, double c0)
+{
+    polynomial tmp({c0,c1,c2}),result;
+    result = tmp;
+    return result;
+}
+
+
 int main()
 {
     polynomial a({-1,2});
@@ -169,8 +201,8 @@ int main()
     polynomial e = {{0,1,0,0,0}};
     polynomial z = 0;
     polynomial z2 = {{0,0}};
-    polynomial f = a*z;
-    polynomial g = a-b*-d;
+    polynomial g = a*z;
+    polynomial h = a-b*-d;
     std::cout << "a = " << a << std::endl;
     std::cout << "degree of a = " << a.degree() << std::endl;
     std::cout << "a[0] = " << a[0] << std::endl;
@@ -189,11 +221,15 @@ int main()
     std::cout << "a * b = " << a*b << std::endl;
     std::cout << "a * -2 = " << a*-2 << std::endl;
     std::cout << "a * z = " << a*z << std::endl;
-    std::cout << "degree of a*z = " << f.degree() << std::endl;
+    std::cout << "degree of a*z = " << g.degree() << std::endl;
     std::cout << "-a = " << -a << std::endl;
     std::cout << "a - b = " << a-b << std::endl;
     std::cout << "-d = " << -d << std::endl;
     std::cout << "b * -d = " << b*-d << std::endl;
     std::cout << "a - b * -d = " << a-b*-d << std::endl;
-    std::cout << "degree of a-b*-d = " << g.degree() << std::endl;
+    std::cout << "degree of a-b*-d = " << h.degree() << std::endl;
+
+    std::cout << "\nTesting move assignment..." << std::endl;
+    polynomial result = f(2,1,0);
+    std::cout << result << std::endl;
 }
