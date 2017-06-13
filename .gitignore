@@ -1,0 +1,10 @@
+# git status will ignore the following files:
+
+# Misc hidden files
+.DS_Store
+
+# VSCode preferences
+.vscode/*
+
+# c++ executables in buil directories
+**/build/*
