@@ -1,0 +1,3 @@
+/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles/edit_cache.dir
+/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles/rebuild_cache.dir
+/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles/polynomial.dir
