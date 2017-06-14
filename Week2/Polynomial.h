@@ -20,9 +20,10 @@ class polynomial
     {
       copy(begin(values),end(values),begin(v));
     }
+    polynomial(polynomial& x): my_degree(x.my_degree),v(x.v) {}
+
     polynomial() : my_degree(0),v(0) {};
     
-    polynomial(const polynomial& x): v{x.v} {}
     
     /*
     polynomial(polynomial&& p): my_degree(p.my_degree),v(p.v)
@@ -31,29 +32,34 @@ class polynomial
       (p.v).clear() ;
     }
     */ 
-    
+   
+   /* 
     polynomial& operator=(polynomial&& themove)
     {
       assert(my_degree == 0 || my_degree == themove.my_degree);
       swap(v,themove.v);
       return *this;
     }
-    
+    */
     
     ~polynomial() { v.clear() ;}
 
     int degree() const {return my_degree;}
     vector<double> getvector() const {return v;}
+    void set(int i,double value){v[i] = value;}
 
     const double& operator[](int i) const {
+      cout << (i<my_degree) << endl;
       assert((i>=0) && (i<my_degree) && (v.size()==my_degree));
       return v[i];
     }
   
-    /*polynomial operator=(const polynomial &that)
+    polynomial operator=(const polynomial &that)
     {
-      return polynomial(that.getvector() );
-    }*/
+      my_degree = that.my_degree;
+      v = that.v;
+      return *this;
+    }
     
     friend int const& degree(const polynomial& p){return p.my_degree;};
     friend ostream& operator<<(ostream& ,const polynomial&);

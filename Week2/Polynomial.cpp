@@ -20,31 +20,58 @@ ostream& operator<<(ostream& os,const polynomial& p)
 
 polynomial operator+(polynomial& p1,polynomial& p2)
 {
-  vector<double> sum(max(p1.degree(),p1.degree()));
-  for(int i=0;i<min(p1.degree(),p2.degree());i++)
-  {
-    sum[i] = p1[i] + p2[i];
+  if (p1.degree()<=p2.degree()){
+    polynomial maxpol(p1);
+    polynomial minpol(p2);
+
+    for(int i=0;i<minpol.degree();i++)
+    {
+        maxpol.set(i,p1[i] + p2[i]);
+    }
+    return maxpol;
   }
-  return polynomial(sum);   
+  else{
+    polynomial maxpol(p2);
+    polynomial minpol(p1);
+
+    for(int i=0;i<minpol.degree();i++)
+    {
+        maxpol.set(i,p1[i] + p2[i]);
+    }
+    return maxpol;
+  }
 }
 
 polynomial operator-(polynomial& p1,polynomial& p2)
 {
-  vector<double> sum(max(p1.degree(),p1.degree()));
-  for(int i=0;i<min(p1.degree(),p2.degree());i++)
-  {
-    sum[i] = p1[i] - p2[i];
+  if (p1.degree()<=p2.degree()){
+    polynomial maxpol(p1);
+    polynomial minpol(p2);
+
+    for(int i=0;i<minpol.degree();i++)
+    {
+        maxpol.set(i,p1[i] - p2[i]);
+    }
+    return maxpol;
   }
-  return polynomial(sum);   
+  else{
+    polynomial maxpol(p2);
+    polynomial minpol(p1);
+
+    for(int i=0;i<minpol.degree();i++)
+    {
+        maxpol.set(i,p1[i] - p2[i]);
+    }
+    return maxpol;
+  }
 }
+
 
 int main(){
   vector<double> v = {1.,3,5.,0,-4};
   polynomial p1(v);
 
   cout << p1 << endl;
-
-  cout << p4 << endl;
 
 
   cout << degree(p1) << endl;
@@ -53,11 +80,10 @@ int main(){
 
   cout << p1 << endl;
 
-  cout << p4 << endl;
+  polynomial p2({5.,-9.});
+  cout << p2 << endl;
 
-
-  polynomial p5({5.,-9.});
-  cout << p5 << endl;
+  polynomial p3 = p1+p2;
 
   return 0;
 }
