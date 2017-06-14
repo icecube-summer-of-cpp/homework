@@ -1,5 +1,6 @@
 #include "Polynomial.h"
 
+
 ostream& operator<<(ostream& os,const polynomial& p)
 {
   os << "Polynomial is: ";
@@ -18,9 +19,9 @@ ostream& operator<<(ostream& os,const polynomial& p)
 
 }
 
-polynomial operator+(polynomial& p1,polynomial& p2)
+polynomial operator+(const polynomial& p1,const polynomial& p2)
 {
-  if (p1.degree()<=p2.degree()){
+  if (p1.degree()>=p2.degree()){
     polynomial maxpol(p1);
     polynomial minpol(p2);
 
@@ -42,9 +43,9 @@ polynomial operator+(polynomial& p1,polynomial& p2)
   }
 }
 
-polynomial operator-(polynomial& p1,polynomial& p2)
+polynomial operator-(const polynomial& p1,const polynomial& p2)
 {
-  if (p1.degree()<=p2.degree()){
+  if (p1.degree()>=p2.degree()){
     polynomial maxpol(p1);
     polynomial minpol(p2);
 
@@ -64,6 +65,11 @@ polynomial operator-(polynomial& p1,polynomial& p2)
     }
     return maxpol;
   }
+}
+    
+polynomial f(double c2, double c1, double c0){
+  polynomial temp({c0,c1,c2});
+  return temp;
 }
 
 
@@ -80,10 +86,18 @@ int main(){
 
   cout << p1 << endl;
 
-  polynomial p2({5.,-9.});
+  polynomial p2({5.,0,-9.});
   cout << p2 << endl;
 
   polynomial p3 = p1+p2;
+  cout << p3 << endl;
+  
+  polynomial p4;
+  p4= f(99.,88,77);
+  cout << p4 << endl;
+
+  polynomial p5;
+  cout << p5 << endl;
 
   return 0;
 }
