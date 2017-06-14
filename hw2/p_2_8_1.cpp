@@ -21,186 +21,27 @@
  * length of the initializer list minus one afterward.
  */
 
-#include <vector>
-#include <iostream>
-
-class polynomial
-{
-    public:
-        // Custom default constructor
-        polynomial(std::vector<double> coefficients={0}) : coeff(coefficients)
-        {
-            // Catch if all elements are zero
-            if (this->first_nonzero()<0) {
-                coeff = {0};
-            }
-        }
-
-        // Constructor when double is passed
-        polynomial(double coefficient) : coeff({coefficient}) {}
-
-        // Default copy constructor
-        polynomial(const polynomial&) = default;
-
-        // Default move constructor
-        polynomial(polynomial&&) = default;
-
-        // Default copy assignment
-        polynomial& operator=(const polynomial&) = default;
-
-        // Custom move assignment
-        polynomial& operator=(polynomial&& src)
-        {
-            coeff = src.coeff;
-            src.coeff.clear();
-            std::cout << "Move assignment activated!\n  Moved polynomial with "
-            << coeff.size() << " coefficients.\n  Left source with "
-            << src.coeff.size() << " coefficients." << std::endl;
-            return *this;
-        }
-
-        // Default destructor (vector of coefficients manages itself)
-        ~polynomial() = default;
-        
-        // Bracket operator for easy access to coefficients
-        double operator[](int i) const
-        {
-            if (i<coeff.size()) {
-                return coeff[i];
-            }
-            else {
-                return 0;
-            }
-        }
-
-        // Function to return degree of polynomial
-        int degree() const
-        {
-            return coeff.size()-1;
-        }
-
-
-    // Allow stream output to access private members
-    friend std::ostream& operator<<(std::ostream& os, const polynomial& p);
-    
-    private:
-        std::vector<double> coeff;
-
-        int first_nonzero() const
-        {
-            for (int i=0; i<coeff.size(); ++i) {
-                if (coeff[i]!=0) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-};
-
-
-// Stream output function for polynomial
-std::ostream& operator<<(std::ostream& os, const polynomial& p)
-{
-    // Quick output for 0th degree polynomial
-    if (p.degree()==0) {
-        return os << p.coeff[0];
-    }
-
-    // Longer output for longer polynomials
-    int start = p.first_nonzero();
-    for (int i=start; i<p.coeff.size(); ++i) {
-        if (p.coeff[i]==0) {
-            continue;
-        }
-        else if (i>start) {
-            if (p.coeff[i]>0) {
-                os << " + ";
-            }
-            else {
-                os << " - ";
-            }
-        }
-        if ((p.coeff[i]!=1 && p.coeff[i]!=-1) || i==0) {
-            if (p.coeff[i]>0 || i==start) {
-                os << p.coeff[i];
-            }
-            else {
-                os << -p.coeff[i];
-            }
-        }
-        if (i>0) {
-            os << "x";
-        }
-        if (i>1) {
-            os << "^" << i;
-        }
-    }
-    return os;
-};
-
-
-// Function for adding polynomials
-inline polynomial operator+(const polynomial& p1, const polynomial& p2)
-{
-    int size;
-    p1.degree()>=p2.degree() ? size=p1.degree()+1 : size=p2.degree()+1;
-    std::vector<double> coefficients(size);
-
-    for (int i=0; i<size; ++i) {
-        coefficients[i] = p1[i] + p2[i];
-    }
-
-    return polynomial(coefficients);
-}
-
-// Function for multiplying polynomials
-inline polynomial operator*(const polynomial& p1, const polynomial& p2)
-{
-    int size = p1.degree()+p2.degree()+1;
-    std::vector<double> coefficients(size);
-
-    for (int i=0; i<=p1.degree(); ++i) {
-        for (int j=0; j<=p2.degree(); ++j) {
-            coefficients[i+j] += p1[i]*p2[j];
-        }
-    }
-
-    return polynomial(coefficients);
-}
-
-// Function for unary - of polynomials
-inline polynomial operator-(const polynomial& p)
-{
-    return -1*p;
-}
-
-// Function for subtracting polynomials
-inline polynomial operator-(const polynomial& p1, const polynomial& p2)
-{
-    return p1 + -p2;
-}
-
-
+#include "polynomial.hpp"
 
 
 // Function for testing move assignment
-polynomial f(double c2, double c1, double c0)
+Polynomial f(double c2, double c1, double c0)
 {
-    return polynomial({c0,c1,c2});
+    return Polynomial({c0,c1,c2});
 }
 
 
 int main()
 {
-    polynomial a({-1,2});
-    polynomial b = {{2,3}};
-    polynomial c = 2.5;
-    polynomial d = {{0,0,4,0,0,-5,0,6}};
-    polynomial e = {{0,1,0,0,0}};
-    polynomial z = 0;
-    polynomial z2 = {{0,0}};
-    polynomial g = a*z;
-    polynomial h = a-b*-d;
+    Polynomial a({-1,2});
+    Polynomial b = {{2,3}};
+    Polynomial c = 2.5;
+    Polynomial d = {{0,0,4,0,0,-5,0,6}};
+    Polynomial e = {{0,1,0,0,0}};
+    Polynomial z = 0;
+    Polynomial z2 = {{0,0}};
+    Polynomial g = a*z;
+    Polynomial h = a-b*-d;
     std::cout << "a = " << a << std::endl;
     std::cout << "degree of a = " << a.degree() << std::endl;
     std::cout << "a[0] = " << a[0] << std::endl;
@@ -228,7 +69,7 @@ int main()
     std::cout << "degree of a-b*-d = " << h.degree() << std::endl;
 
     std::cout << "\nTesting move assignment..." << std::endl;
-    polynomial r;
+    Polynomial r;
     r = f(2,1,0);
 
     std::cout << "r = " << r << std::endl;
