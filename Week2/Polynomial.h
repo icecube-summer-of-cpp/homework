@@ -49,7 +49,6 @@ class polynomial
     void set(int i,double value){v[i] = value;}
 
     const double& operator[](int i) const {
-      cout << (i<my_degree) << endl;
       assert((i>=0) && (i<my_degree) && (v.size()==my_degree));
       return v[i];
     }
