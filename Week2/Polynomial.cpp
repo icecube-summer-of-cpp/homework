@@ -3,7 +3,6 @@
 polynomial::polynomial(vector<double> that) : my_degree(that.size()), v(that.size())
 {
   for (int i=0;i<my_degree;i++){v[i] = that[i];}
-  cout << "Size of the polynomial: " << that.size() << endl;
 }
 
 polynomial::polynomial(initializer_list<double> values) : my_degree(values.size()),v(values.size())
@@ -33,11 +32,11 @@ ostream& operator<<(ostream& os,const polynomial& p)
   os << p[0];
   for(int i=1;i<degree(p);i++){
     if (p[i]<0){
-      os << p[i] << "*x^" << i;
+      os << " - " << abs(p[i]) << "*x^" << i;
     }
     else if(p[i] !=0)
     {
-      os << "+" << p[i] << "*x^" << i;
+      os << " + " << p[i] << "*x^" << i;
     }
   }
   os << endl;
@@ -92,6 +91,41 @@ polynomial operator-(const polynomial& p1,const polynomial& p2)
     return maxpol;
   }
 }
+
+polynomial operator*(const polynomial& p,const double c)
+{
+  polynomial temp = polynomial(p);
+  for(int i=0;i<p.degree();i++)
+  {
+    temp.set(i,p[i]*c);
+  }  
+  return temp;
+}
+
+polynomial operator*(const polynomial& p1, const polynomial& p2)
+{
+  polynomial result(vector<double>(p1.degree()+p2.degree(),0.));
+  for(int i1=0;i1<p1.degree();i1++)
+  {
+    for(int i2=0;i2<p2.degree();i2++)
+    {
+      result.set(i1+i2,result[i1+i2]+(p1[i1]*p2[i2]));
+    }
+  }
+  return result;
+}
+
+polynomial operator/(const polynomial& p,const double c)
+{
+  polynomial temp = polynomial(p);
+  for(int i=0;i<p.degree();i++)
+  {
+    temp.set(i,p[i]/c);
+  }  
+  return temp;
+}
+
+
     
 polynomial f(double c2, double c1, double c0){
   polynomial temp({c0,c1,c2});

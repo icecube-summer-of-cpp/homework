@@ -42,7 +42,11 @@ class polynomial
     friend ostream& operator<<(ostream& ,const polynomial&);
     friend polynomial operator+(const polynomial&, const polynomial&);
     friend polynomial operator-(const polynomial&, const polynomial&);
-    //if I have time I'll add the * and / operators
+    friend polynomial operator*(const polynomial&, const double c);
+    friend polynomial operator*(const polynomial&, const polynomial&);
+    friend polynomial operator/(const polynomial&, const double c);
+    //no time for this one
+    //friend polynomial operator/(const polynomial&, const polynomial&);
 
   private:
     int            my_degree;
