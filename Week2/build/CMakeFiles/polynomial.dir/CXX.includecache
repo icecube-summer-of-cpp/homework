@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ward/IceCube/CppTutorial/homework/Week2/Polynomial.cpp
+Polynomial.h
+/home/ward/IceCube/CppTutorial/homework/Week2/Polynomial.h
+
+/home/ward/IceCube/CppTutorial/homework/Week2/Polynomial.h
+algorithm
+-
+vector
+-
+iostream
+-
+cassert
+-
+initializer_list
+-
+algorithm
+-
+
