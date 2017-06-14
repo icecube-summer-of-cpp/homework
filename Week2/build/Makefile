@@ -123,32 +123,32 @@ polynomial/fast:
 	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/build
 .PHONY : polynomial/fast
 
-Polynomial.o: Polynomial.cpp.o
+code.o: code.cpp.o
 
-.PHONY : Polynomial.o
+.PHONY : code.o
 
 # target to build an object file
-Polynomial.cpp.o:
-	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/Polynomial.cpp.o
-.PHONY : Polynomial.cpp.o
+code.cpp.o:
+	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/code.cpp.o
+.PHONY : code.cpp.o
 
-Polynomial.i: Polynomial.cpp.i
+code.i: code.cpp.i
 
-.PHONY : Polynomial.i
+.PHONY : code.i
 
 # target to preprocess a source file
-Polynomial.cpp.i:
-	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/Polynomial.cpp.i
-.PHONY : Polynomial.cpp.i
+code.cpp.i:
+	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/code.cpp.i
+.PHONY : code.cpp.i
 
-Polynomial.s: Polynomial.cpp.s
+code.s: code.cpp.s
 
-.PHONY : Polynomial.s
+.PHONY : code.s
 
 # target to generate assembly for a file
-Polynomial.cpp.s:
-	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/Polynomial.cpp.s
-.PHONY : Polynomial.cpp.s
+code.cpp.s:
+	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/code.cpp.s
+.PHONY : code.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... polynomial"
-	@echo "... Polynomial.o"
-	@echo "... Polynomial.i"
-	@echo "... Polynomial.s"
+	@echo "... code.o"
+	@echo "... code.i"
+	@echo "... code.s"
 .PHONY : help
 
 

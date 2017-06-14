@@ -1,5 +1,31 @@
 #include "Polynomial.h"
 
+polynomial::polynomial(vector<double> that) : my_degree(that.size()), v(that.size())
+{
+  for (int i=0;i<my_degree;i++){v[i] = that[i];}
+  cout << "Size of the polynomial: " << that.size() << endl;
+}
+
+polynomial::polynomial(initializer_list<double> values) : my_degree(values.size()),v(values.size())
+{
+  copy(begin(values),end(values),begin(v));
+}
+    
+polynomial::polynomial(polynomial&& p): my_degree(p.my_degree),v(p.v)
+{
+  p.my_degree = 1;
+  (p.v).clear() ;
+}
+ 
+
+polynomial& polynomial::operator=(polynomial&& p)
+{
+  cout << "Using the move assignment" << endl;
+  assert(my_degree == 1 || my_degree == p.my_degree);
+  swap(my_degree,p.my_degree);
+  swap(v,p.v);
+  return *this;
+}
 
 ostream& operator<<(ostream& os,const polynomial& p)
 {
@@ -72,32 +98,3 @@ polynomial f(double c2, double c1, double c0){
   return temp;
 }
 
-
-int main(){
-  vector<double> v = {1.,3,5.,0,-4};
-  polynomial p1(v);
-
-  cout << p1 << endl;
-
-
-  cout << degree(p1) << endl;
-  cout << p1.degree() << endl;
-  cout << p1[0] << endl;
-
-  cout << p1 << endl;
-
-  polynomial p2({5.,0,-9.});
-  cout << p2 << endl;
-
-  polynomial p3 = p1+p2;
-  cout << p3 << endl;
-  
-  polynomial p4;
-  p4= f(99.,88,77);
-  cout << p4 << endl;
-
-  polynomial p5;
-  cout << p5 << endl;
-
-  return 0;
-}

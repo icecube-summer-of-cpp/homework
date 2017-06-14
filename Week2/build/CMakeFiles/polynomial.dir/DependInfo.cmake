@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ward/IceCube/CppTutorial/homework/Week2/Polynomial.cpp" "/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles/polynomial.dir/Polynomial.cpp.o"
+  "/home/ward/IceCube/CppTutorial/homework/Week2/code.cpp" "/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles/polynomial.dir/code.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

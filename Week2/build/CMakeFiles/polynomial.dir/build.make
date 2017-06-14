@@ -57,38 +57,38 @@ include CMakeFiles/polynomial.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/polynomial.dir/flags.make
 
-CMakeFiles/polynomial.dir/Polynomial.cpp.o: CMakeFiles/polynomial.dir/flags.make
-CMakeFiles/polynomial.dir/Polynomial.cpp.o: ../Polynomial.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/polynomial.dir/Polynomial.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/polynomial.dir/Polynomial.cpp.o -c /home/ward/IceCube/CppTutorial/homework/Week2/Polynomial.cpp
+CMakeFiles/polynomial.dir/code.cpp.o: CMakeFiles/polynomial.dir/flags.make
+CMakeFiles/polynomial.dir/code.cpp.o: ../code.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/polynomial.dir/code.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/polynomial.dir/code.cpp.o -c /home/ward/IceCube/CppTutorial/homework/Week2/code.cpp
 
-CMakeFiles/polynomial.dir/Polynomial.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/polynomial.dir/Polynomial.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ward/IceCube/CppTutorial/homework/Week2/Polynomial.cpp > CMakeFiles/polynomial.dir/Polynomial.cpp.i
+CMakeFiles/polynomial.dir/code.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/polynomial.dir/code.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ward/IceCube/CppTutorial/homework/Week2/code.cpp > CMakeFiles/polynomial.dir/code.cpp.i
 
-CMakeFiles/polynomial.dir/Polynomial.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/polynomial.dir/Polynomial.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ward/IceCube/CppTutorial/homework/Week2/Polynomial.cpp -o CMakeFiles/polynomial.dir/Polynomial.cpp.s
+CMakeFiles/polynomial.dir/code.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/polynomial.dir/code.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ward/IceCube/CppTutorial/homework/Week2/code.cpp -o CMakeFiles/polynomial.dir/code.cpp.s
 
-CMakeFiles/polynomial.dir/Polynomial.cpp.o.requires:
+CMakeFiles/polynomial.dir/code.cpp.o.requires:
 
-.PHONY : CMakeFiles/polynomial.dir/Polynomial.cpp.o.requires
+.PHONY : CMakeFiles/polynomial.dir/code.cpp.o.requires
 
-CMakeFiles/polynomial.dir/Polynomial.cpp.o.provides: CMakeFiles/polynomial.dir/Polynomial.cpp.o.requires
-	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/Polynomial.cpp.o.provides.build
-.PHONY : CMakeFiles/polynomial.dir/Polynomial.cpp.o.provides
+CMakeFiles/polynomial.dir/code.cpp.o.provides: CMakeFiles/polynomial.dir/code.cpp.o.requires
+	$(MAKE) -f CMakeFiles/polynomial.dir/build.make CMakeFiles/polynomial.dir/code.cpp.o.provides.build
+.PHONY : CMakeFiles/polynomial.dir/code.cpp.o.provides
 
-CMakeFiles/polynomial.dir/Polynomial.cpp.o.provides.build: CMakeFiles/polynomial.dir/Polynomial.cpp.o
+CMakeFiles/polynomial.dir/code.cpp.o.provides.build: CMakeFiles/polynomial.dir/code.cpp.o
 
 
 # Object files for target polynomial
 polynomial_OBJECTS = \
-"CMakeFiles/polynomial.dir/Polynomial.cpp.o"
+"CMakeFiles/polynomial.dir/code.cpp.o"
 
 # External object files for target polynomial
 polynomial_EXTERNAL_OBJECTS =
 
-polynomial: CMakeFiles/polynomial.dir/Polynomial.cpp.o
+polynomial: CMakeFiles/polynomial.dir/code.cpp.o
 polynomial: CMakeFiles/polynomial.dir/build.make
 polynomial: CMakeFiles/polynomial.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ward/IceCube/CppTutorial/homework/Week2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable polynomial"
@@ -99,7 +99,7 @@ CMakeFiles/polynomial.dir/build: polynomial
 
 .PHONY : CMakeFiles/polynomial.dir/build
 
-CMakeFiles/polynomial.dir/requires: CMakeFiles/polynomial.dir/Polynomial.cpp.o.requires
+CMakeFiles/polynomial.dir/requires: CMakeFiles/polynomial.dir/code.cpp.o.requires
 
 .PHONY : CMakeFiles/polynomial.dir/requires
 

@@ -4,7 +4,7 @@ set (CMAKE_CXX_STANDARD 11)
 
 project(polynomial)
 
-set(SOURCE_FILES Polynomial.cpp)
+set(SOURCE_FILES code.cpp)
 
-add_executable(polynomial Polynomial.cpp Polynomial.h)
+add_executable(polynomial code.cpp Polynomial.h)
 
