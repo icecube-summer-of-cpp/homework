@@ -1,3 +1,0 @@
-/home/ward/IceCube/CppTutorial/homework/Quiz/build/CMakeFiles/rebuild_cache.dir
-/home/ward/IceCube/CppTutorial/homework/Quiz/build/CMakeFiles/edit_cache.dir
-/home/ward/IceCube/CppTutorial/homework/Quiz/build/CMakeFiles/solution.dir
