@@ -9,6 +9,7 @@ using namespace std;
 
 int input_order(void);
 unique_ptr<double []> input_coeff(int order);
+polynomials f(double c2, double c1, double c0);
 
 struct not_valid_int_val{};
 struct not_valid_coeff_val{};
@@ -21,16 +22,17 @@ int main(void){
 	string output_name = "Result";
 	ofstream result;
 
-	order = input_order(); 
 
+	// order = input_order(); 
 	// Set polynomials order
-	polynomials poly = polynomials(order);
-	coeff_value = input_coeff(order);
+	// polynomials poly = polynomials(order);
+	// coeff_value = input_coeff(order);
+	// poly.coeff_set(coeff_value.get());
+	// poly.write(output_name.c_str());	
 
-	poly.coeff_set(coeff_value.get());
-
-	// print from x = 0 to x = 10
-	poly.write(output_name);	
+	
+	polynomials poly2 = f(2, 3, 4);
+	poly2.write(output_name);
 	
 }
 
@@ -73,4 +75,16 @@ unique_ptr<double []> input_coeff(int order){
 		exit(1);
 	}
 	return coeff;
+}
+
+polynomials f(double c2, double c1, double c0){
+	polynomials poly = polynomials(2);
+	unique_ptr<double []> coeff_value{new double [3]};
+
+	coeff_value[0] = c0;
+	coeff_value[1] = c1;
+	coeff_value[2] = c2;
+
+	poly.coeff_set(coeff_value.get());
+	return poly;
 }

@@ -2,6 +2,7 @@
 #include <math.h>
 #include <memory>
 #include <string>
+#include <assert.h>
 // #include <stream>
 // #define SEE_CALCULATION
 using namespace std;
@@ -11,6 +12,22 @@ class polynomials{
 		polynomials(unsigned degree) : deg{degree}, coeff{new double[deg + 1]}{
 			std::cout << deg << std::endl;
 		}
+
+		polynomials(const polynomials& p) : deg(p.deg), coeff{new double[deg + 1]}{
+
+		}
+
+		polynomials& operator=(const polynomials& src){
+			if(this == &src)
+				return *this;
+			
+			assert(deg == src.deg);
+			for(int i = 0; i <= deg; i++)
+				coeff[i] = src.coeff[i];
+			
+			return *this;
+		}
+
 
 		~polynomials(){
 			delete[] coeff;
@@ -51,6 +68,7 @@ class polynomials{
 			for(int i = 0; i < 10; i++){
 				result << i << "\t" << x_input(i) << endl;
 			}
+			result.close();
 		}
 
 	private:
