@@ -70,10 +70,14 @@ int Polynomial::last_nonzero() const
 Polynomial& Polynomial::operator=(Polynomial&& src)
 {
     coeff = src.coeff;
+    deg = src.deg;
     src.coeff.clear();
+    src.deg = 0;
     std::cout << "Move assignment activated!\n  Moved polynomial with "
     << coeff.size() << " coefficients.\n  Left source with "
     << src.coeff.size() << " coefficients." << std::endl;
+    std::cout << "  This: " << coeff << std::endl;
+    std::cout << "  Src:  " << src.coeff << std::endl;
     return *this;
 }
         
