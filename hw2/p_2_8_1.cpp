@@ -42,6 +42,7 @@ int main()
     Polynomial z2 = {{0,0}};
     Polynomial g = a*z;
     Polynomial h = a-b*-d;
+    Polynomial i(2,{0,1,2});
     std::cout << "a = " << a << std::endl;
     std::cout << "degree of a = " << a.degree() << std::endl;
     std::cout << "a[0] = " << a[0] << std::endl;
@@ -51,6 +52,7 @@ int main()
     std::cout << "c = " << c << std::endl;
     std::cout << "d = " << d << std::endl;
     std::cout << "e = " << e << std::endl;
+    std::cout << "degree of e = " << e.degree() << std::endl;
     std::cout << "z = " << z << std::endl;
     std::cout << "degree of z = " << z.degree() << std::endl;
     std::cout << "z2 = " << z2 << std::endl;
@@ -73,4 +75,7 @@ int main()
     r = f(2,1,0);
 
     std::cout << "r = " << r << std::endl;
+
+    std::cout << "i = " << i << std::endl;
+    std::cout << "degree of i = " << i.degree() << std::endl;
 }

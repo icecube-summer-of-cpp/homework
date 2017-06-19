@@ -11,22 +11,49 @@
 // Polynomial custom default constructor
 Polynomial::Polynomial(std::vector<double> coefficients) : coeff(coefficients)
 {
+    // Set degree
+    deg = this->last_nonzero();
+
     // Catch if all elements are zero
     if (this->first_nonzero()<0) {
         coeff = {0};
+        deg = 0;
+    }
+}
+
+// Constructor when int and vector are passed
+Polynomial::Polynomial(int degree, std::vector<double> coefficients)
+{
+    if (degree==coefficients.size()-1 && coefficients[degree+1]!=0) {
+        deg = degree;
+        coeff = coefficients;
+    }
+    else {
+        throw badCoefficients(degree,coefficients.size());
     }
 }
 
 // Function to return degree of polynomial
 int Polynomial::degree() const
 {
-    return coeff.size()-1;
+    return deg;
 }
 
 // Function to get index of first non-zero coefficient
 int Polynomial::first_nonzero() const
 {
     for (int i=0; i<coeff.size(); ++i) {
+        if (coeff[i]!=0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Function to get index of last non-zero coefficient
+int Polynomial::last_nonzero() const
+{
+    for (int i=coeff.size()-1; i>=0; --i) {
         if (coeff[i]!=0) {
             return i;
         }
@@ -53,7 +80,7 @@ Polynomial& Polynomial::operator=(Polynomial&& src)
 // Bracket operator for easy access to coefficients
 double Polynomial::operator[](int i) const
 {
-    if (i<coeff.size()) {
+    if (i<=deg) {
         return coeff[i];
     }
     else {
@@ -65,13 +92,13 @@ double Polynomial::operator[](int i) const
 std::ostream& operator<<(std::ostream& os, const Polynomial& p)
 {
     // Quick output for 0th degree polynomial
-    if (p.degree()==0) {
+    if (p.deg==0) {
         return os << p.coeff[0];
     }
 
     // Longer output for longer polynomials
     int start = p.first_nonzero();
-    for (int i=start; i<p.coeff.size(); ++i) {
+    for (int i=start; i<=p.deg; ++i) {
         if (p.coeff[i]==0) {
             continue;
         }
@@ -105,7 +132,7 @@ std::ostream& operator<<(std::ostream& os, const Polynomial& p)
 Polynomial operator+(const Polynomial& p1, const Polynomial& p2)
 {
     int size;
-    p1.degree()>=p2.degree() ? size=p1.degree()+1 : size=p2.degree()+1;
+    p1.deg>=p2.deg ? size=p1.deg+1 : size=p2.deg+1;
     std::vector<double> coefficients(size);
 
     for (int i=0; i<size; ++i) {
@@ -118,11 +145,11 @@ Polynomial operator+(const Polynomial& p1, const Polynomial& p2)
 // Function for multiplying polynomials
 Polynomial operator*(const Polynomial& p1, const Polynomial& p2)
 {
-    int size = p1.degree()+p2.degree()+1;
+    int size = p1.deg+p2.deg+1;
     std::vector<double> coefficients(size);
 
-    for (int i=0; i<=p1.degree(); ++i) {
-        for (int j=0; j<=p2.degree(); ++j) {
+    for (int i=0; i<=p1.deg; ++i) {
+        for (int j=0; j<=p2.deg; ++j) {
             coefficients[i+j] += p1[i]*p2[j];
         }
     }
