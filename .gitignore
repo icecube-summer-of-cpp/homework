@@ -1,5 +1,5 @@
 *.txt
 *.o
 Makefile
-CMakeFiles/*
+*/CMakeFiles/*
 *.cmake
