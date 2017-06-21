@@ -1,4 +1,5 @@
 #include <cassert>
+#include <cmath>
 #include <initializer_list>
 #include <iostream>
 #include <vector>
@@ -31,6 +32,20 @@ struct polynomial
         return *this;
     }
 
+    double operator()(const std::vector<double>& x)
+    {
+        assert(x.size() == degree());
+
+        double y = coeffs.back();
+
+        for (int i = 0, n = degree(); i < n; ++i)
+        {
+            y += coeffs[i] * std::pow(x[i], n - i);
+        }
+
+        return y;
+    }
+
     inline unsigned int degree() const
     {
         return coeffs.size() - 1;
@@ -61,11 +76,13 @@ int main()
     polynomial p1(2);
     p1 = parabola(6., 5., 4.);
 
-    std::cout << "Polynomial of degree " << p1.degree()
+    std::cout << "Polynomial p1 of degree " << p1.degree()
               << " with coefficients: " << p1 << std::endl;
 
     polynomial p2 = {3., 2., 1.};
 
-    std::cout << "Polynomial of degree " << p2.degree()
+    std::cout << "Polynomial p2 of degree " << p2.degree()
               << " with coefficients: " << p2 << std::endl;
+
+    std::cout << "p2(1., 1.) = " << p2({1., 1.}) << std::endl;
 }
