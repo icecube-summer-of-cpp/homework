@@ -7,6 +7,8 @@
 #define __UNIQUEID_HEADER_INCLUDED__
 
 #include <iostream>
+#include <unistd.h>
+// #include <sys/types.h>
 
 class unique_id
 {
@@ -32,6 +34,9 @@ class unique_id
         // Getter for object_id
         unsigned int oid() const;
 
+        // Getter for process_id
+        int pid() const;
+
         // Comparison
         bool operator==(const unique_id& other) const;
 
@@ -42,6 +47,7 @@ class unique_id
     private:
         static unsigned int counter; // Increments for each object created
         const unsigned int object_id; // Set to counter value when object is instantiated
+        const int process_id = ::getpid(); // Set process id automatically
         
 };
 
