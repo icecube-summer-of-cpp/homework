@@ -6,17 +6,19 @@
 #include <vector>
 #include <assert.h>
 #include <cmath>
+#include <zconf.h>
 
 class unique_id{
     // The class should compare equal to copies of itself,
     // but not to objects created at the same time,
     // on the same machine, in different processes.
+    __pid_t proc_id;
     std::shared_ptr<char> _internal_id_object;
     //using a shared_ptr so we do not have to care about freeing our id object
     //also, this reduces all the operators to the default
 public:
     ~unique_id() = default;
-    unique_id(){_internal_id_object = std::make_shared<char>('1');}
+    unique_id(): _internal_id_object(std::make_shared<char>('1')), proc_id{getpid()}{}
     
     //move assing
     unique_id& operator=(unique_id&& src) = default;
@@ -35,11 +37,11 @@ public:
     //this is a cheap and precise way to do a unique_id
     //as long as we only compare on ONE machine
     bool operator==(const unique_id& rhs) const {
-      return this->_internal_id_object.get() ==  rhs._internal_id_object.get();
+      return this->_internal_id_object.get() ==  rhs._internal_id_object.get() && this->proc_id == rhs.proc_id;
     };
     
     bool operator!=(const unique_id& rhs) const {
-      return this->_internal_id_object.get() !=  rhs._internal_id_object.get();
+      return this->_internal_id_object.get() !=  rhs._internal_id_object.get() || this->proc_id != rhs.proc_id;
     }
 };
 
