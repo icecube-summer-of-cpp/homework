@@ -6,6 +6,10 @@
 #include <cmath>
 
 
+// Test version, not working. See fixes in quiz.cpp.
+// But the comments here might still be useful.
+
+
 class unique_id {
 public:
     // Rule of Six: create all or none of:

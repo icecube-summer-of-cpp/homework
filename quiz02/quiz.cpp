@@ -7,80 +7,46 @@
 #include <ctime>
 
 
-class unique_id {
+class unique_id{
 public:
-    // Rule of Six: create all or none of:
-    // Constr., Destr., CopyConstr., MoveConstr., MoveAssign., CopyAssign.
-    // Standard constructor
-    unique_id(){
-        std::cout << "__standard constructored__" << std::endl;
-        // Construct UUID using N random ints in [0, 9],  seeded with rnd + pid
-        // Don't know if that is OK...
-        const int uuid_len = 48;
-        uuid.resize(uuid_len);
-
-        // Setup the rnd gen
-        const int pid = getpid();
-        std::random_device rd;
-        std::mt19937 mt_gen(rd() + pid);
+    unique_id() {
+        std::random_device rnd;
+        std::mt19937 mt_gen(rnd() + getpid());
         std::uniform_int_distribution<> rand_int(0, 9);
 
-        // Fill with random ints
-        for (int i = 0; i < uuid_len; ++i) {
-            uuid[i] = rand_int(mt_gen);
+        for (int i = 0; i < uuid_len; ++i)
+        {
+            uuid.push_back(rand_int(mt_gen));
         }
-    };
+    }
 
-    // Set destructor to default
+    unique_id(const unique_id& copy_id) {
+        for (int i = 0; i < uuid_len; ++i) { uuid.push_back(copy_id.id()[i]); }
+    }
+
+    unique_id& operator=(const unique_id& copy_id) {
+        for (int i = 0; i < uuid_len; ++i) { uuid.push_back(copy_id.id()[i]); }
+        return *this;
+    }
+
     ~unique_id() = default;
+    unique_id(unique_id&& move_id) = delete;
+    unique_id& operator=(const unique_id&& move_id) = delete;
 
-    // Copy Constructor
-    unique_id(unique_id& copy_id){
-        std::cout << "__copy constructored__" << std::endl;
-        uuid = copy_id.id();
-    }
+    const std::vector<unsigned>& id() const { return uuid; }
 
-    // Move constructor -> How to do without setter?
-    unique_id(unique_id&& move_id){
-        std::cout << "__move constructored (wrongly)__" << std::endl;
-        uuid = move_id.id();
-        // This is not correct, equivalent to copy...
-        // How to let the move_id vanish?
-    }
-
-    // Copy assignment
-    unique_id& operator=(unique_id& copy_id){
-        std::cout << "__copy assignored__" << std::endl;
-        uuid = copy_id.id();
-        return *this;
-    }
-
-    // Move assignment
-    unique_id& operator=(unique_id&& move_id){
-        // Same as in move constructor
-        std::cout << "__move assignored__" << std::endl;
-        uuid = move_id.id();
-        return *this;
-    }
-
-    // Comparator == overload
-    bool operator==(unique_id& other_id){
+    bool operator==(const unique_id& other_id) const {
         return (uuid == other_id.id());
     }
 
-    // Getter, no setter
-    std::vector<int>& id(){
-        return uuid;
-    }
-
 private:
-    std::vector<int> uuid;
+    std::vector<unsigned> uuid;
+    const unsigned uuid_len = 48;
 };
 
-
 // Outstream << overload
-std::ostream& operator<<(std::ostream& os, unique_id& id){
-    std::vector<int> uuid = id.id();
+std::ostream& operator<<(std::ostream& os, const unique_id& id){
+    std::vector<unsigned> uuid = id.id();
     int uuid_len = uuid.size();
     for (int i = 0; i < uuid_len; ++i) {
         os << uuid[i];
@@ -92,22 +58,19 @@ std::ostream& operator<<(std::ostream& os, unique_id& id){
 }
 
 
-class particle {
+class particle{
 public:
-    // I should get a unique identifier with the default constructor
-    // of unique_id without having to do anything, so no need to include
-    // it in the initialization list
     particle(): energy_(NAN) {};
+    ~particle() = default;
 
-    // No setter for ID, just a getter.
-    unique_id id() const { return id_; }
+    const unique_id& id() const { return id_; }
 
     void set_energy(float energy){ energy_ = energy; }
-    float get_energy() const { return energy_; } //fixed typo
+    float get_energy() const { return energy_; }
 
     bool operator==(const particle& rhs) const {
       return (energy_ == rhs.get_energy()) && (id_ == rhs.id());
-    }; // Neglect issues with float comparisons
+    };
 
     bool operator!=(const particle& rhs) const {
       return !(*this == rhs);
@@ -118,20 +81,57 @@ private:
     float energy_;
 };
 
+
 int main(){
-  particle p1;
-  particle p2;
+    particle p1;
+    particle p2;
 
-  p1.set_energy(1000); //fixed errors
-  p2.set_energy(1000);
+    p1.set_energy(1000);
+    p2.set_energy(1000);
 
-  // // p1 and p2 are not the same particle even if their properties are identical.
-  // assert(p1 != p2);
+    // p1 and p2 are not the same particle even if their properties are identical.
+    assert(p1 != p2);
 
-  // unique_id test_id(p1.id()); // need to be able to copy them and compare later
+    unique_id test_id(p1.id()); // need to be able to copy them and compare later
 
-  // std::vector<particle> particle_list = {p1, p2};
+    std::vector<particle> particle_list = {p1, p2};
 
-  // // i should be able to put them in containers and compare as expected
-  // assert( test_id == particle_list.front().id() );
+    // i should be able to put them in containers and compare as expected
+    assert( test_id == particle_list.front().id() );
+
+
+    unique_id id1;
+    unique_id id2;
+
+    std::cout << "Create id1 and id2, should be different:" << std::endl;
+    std::cout << "  id1 is: " << id1 << std::endl;
+    std::cout << "  id2 is: " << id2 << std::endl << std::endl;
+
+    std::cout << "Compare id1 to id2, should still be different: "
+            << ((id1 == id2) ? "IDs are same" : "IDs are different")
+            << std::endl << std::endl;
+
+    // Test copy constructor
+    unique_id copy_id1(id1);
+    std::cout << "Compare id1 to copy of itself: "
+              << ((copy_id1 == id1) ? "IDs are same" : "IDs are different")
+              << std::endl << std::endl;
+
+    std::cout << "Show particle IDs, should be different:" << std::endl;
+    std::cout << "  P1 id is: " << p1.id() << std::endl;
+    std::cout << "  P2 id is: " << p2.id() << std::endl << std::endl;
+
+    std::cout << "Compare P1 to P2 directly via ids, should be different: "
+              << ((p1 == p2) ? "Particles differ" : "Particles are the same")
+              << std::endl << std::endl;
+
+    std::cout << "Anti-Compare P1 to P2 directly via ids, should be different: "
+              << ((p1 != p2) ? "p1 != p2 is True" : "p1 != p2 is False")
+              << std::endl << std::endl;
+
+    unique_id test_id2(p1.id());
+    std::cout << "Put P1 to P2 in vector and compare front to stored id of P1: "
+              << ((test_id2 == particle_list.front().id()) ?
+                  "P1 copied to front" : "P1 not in front")
+              << std::endl << std::endl;
 }
