@@ -50,7 +50,7 @@ class Poly{
       coeff = p.get_coeff();
       std::cout << "__Copy constructored__" << std::endl;
     }
-    // Move declared as default (does the same as above without the printing)
+    // Copy declared as default (does the same as above without the printing)
     // Poly(Poly& p) = default;
 
     // Move constructor: Move data over to this poly and leave other one empty
