@@ -24,26 +24,24 @@
 
 #include <unistd.h>     // for pid
 #include <chrono>       // for time
-// #include <limits.h>    // for hostname
 
 class unique_id {
     
     private:
         static unsigned count_;
+        static int process_;
+        static std::chrono::_V2::system_clock::time_point time_;
         
         std::chrono::_V2::system_clock::time_point id_t_;
         int id_of_process_;
         int id_;
-        // char id_hostname_[HOST_NAME_MAX];
     
     public:
         // default constructor
-        unique_id(): id_(++count_), id_t_(std::chrono::system_clock::now()), id_of_process_(::getpid()) { };
-        // gethostname(id_hostname_, HOST_NAME_MAX);
+        unique_id(): id_(++count_), id_t_(time_), id_of_process_(process_) { };
         
         // copy constructor
-        unique_id(const unique_id& rhs) = default;    
-        //unique_id(const unique_id& rhs): id_(rhs.id_), id_t_(rhs.id_t_), id_of_process_(rhs.id_of_process_){};    
+        unique_id(const unique_id& rhs) = default;
         
         // move constructor
         unique_id(unique_id&& src) = default;
