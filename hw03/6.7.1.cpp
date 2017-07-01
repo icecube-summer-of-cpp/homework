@@ -26,23 +26,32 @@ private:
 };
 
 
-class student : public person
+class student : public virtual person
 {
 public:
+    // Public constructor when setting the object directly
     student(const std::string& name, const std::string& passed) :
         person(name), passed(passed) {}
 
     virtual void all_info() const override {
-        std::cout << "[student] My name is " << get_name() << std::endl;
-        std::cout << "  I passed the following grades: " << passed << std::endl;
+        person::all_info();
+        my_info();
     }
+
+protected:
+    // Inheritance constructor setted from subclasses
+    student(const std::string& passed) : passed(passed) {};
+
+    virtual void my_info() const {
+        std::cout << "  I passed the following grades: " << passed << std::endl;
+    };
 
 private:
     std::string passed;
 };
 
 
-class mathematician : public person
+class mathematician : public virtual person
 {
 public:
     mathematician(const std::string& name, const std::string& proved) :
@@ -50,6 +59,13 @@ public:
 
     virtual void all_info() const override {
         person::all_info();
+        my_info();
+    };
+
+protected:
+    mathematician(const std::string& proved) : proved(proved) {};
+
+    virtual void my_info() const {
         std::cout << "  I proved: " << proved << std::endl;
     };
 
@@ -64,12 +80,12 @@ public:
     math_student(const std::string& name,
                  const std::string& passed,
                  const std::string& proved) :
-                 student(name, passed), mathematician(name, proved) {};
+                 person(name), student(passed), mathematician(proved) {};
 
-                 virtual void all_info() const override {
-                    student::all_info();
-                    mathematician::all_info();
-                 };
+     virtual void all_info() const override {
+        student::all_info();
+        mathematician::my_info();
+     };
 };
 
 
