@@ -42,7 +42,7 @@ protected:
     // Inheritance constructor setted from subclasses
     student(const std::string& passed) : passed(passed) {};
 
-    virtual void my_info() const {
+    void my_info() const {
         std::cout << "  I passed the following grades: " << passed << std::endl;
     };
 
@@ -65,7 +65,7 @@ public:
 protected:
     mathematician(const std::string& proved) : proved(proved) {};
 
-    virtual void my_info() const {
+    void my_info() const {
         std::cout << "  I proved: " << proved << std::endl;
     };
 
@@ -82,7 +82,7 @@ public:
                  const std::string& proved) :
                  person(name), student(passed), mathematician(proved) {};
 
-     virtual void all_info() const override {
+     void all_info() const override {
         student::all_info();
         mathematician::my_info();
      };
