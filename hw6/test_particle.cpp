@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "vectors.hpp"
 #include "particle.hpp"
 
@@ -65,7 +66,7 @@ int main()
     print_info(electron);
 
     Particle proton("proton");
-    CartesianVector momentum(0,0,-2e8);
+    CartesianVector momentum(0,0,1e-18);
     proton.set_momentum(momentum);
     print_info(proton);
     std::cout << "  Rest mass: " <<
