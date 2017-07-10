@@ -13,7 +13,7 @@ void print_info(const Particle& p)
     std::cout << "  Distance:  " << mag(p.position()) << " m" << std::endl;
     std::cout << "  Momentum:  " << p.momentum() << " kg m/s" << std::endl;
     std::cout << "  Energy:    " << p.energy() << " J" << std::endl;
-    std::cout << "  Direction: " << p.direction() << std::endl;
+    std::cout << "  Direction: " << p.direction() << std::endl << std::endl;
 }
 
 int main()
@@ -58,12 +58,14 @@ int main()
     Particle electron("electron");
     print_info(electron);
 
-    electron.set_position(10,10,10);
-    print_info(electron);
+    Particle electron2(electron.name());
+    electron2.set_position(10,10,10);
+    print_info(electron2);
 
+    Particle electron3(electron.type());
     UnitVector vec(1,1,0);
-    electron.set_position(vec);
-    print_info(electron);
+    electron3.set_position(vec);
+    print_info(electron3);
 
     Particle proton("proton");
     CartesianVector momentum(0,0,1e-18);

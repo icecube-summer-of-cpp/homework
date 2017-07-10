@@ -26,12 +26,14 @@ const double qe = 1.60217662e-19;
 class Particle
 {
     public:
-        // Constructor
-        Particle(const std::string& type);
+        // Constructors
+        explicit Particle(const std::string& type);
+        explicit Particle(const int typeint);
 
         // Getter functions
         const UniqueID id() const {return id_;}
-        const std::string name() const {return type_;}
+        const std::string name() const {return kind_;}
+        const int type() const {return typeint_;}
         const double restmass() const {return restmass_;}
         const double charge() const {return charge_;}
         const CartesianVector position() const {return position_;}
@@ -48,12 +50,16 @@ class Particle
 
     private:
         const UniqueID id_;
-        std::string type_;
+        std::string kind_;
         int typeint_;
         double restmass_;
         double charge_;
         CartesianVector position_;
         FourVector fourmomentum_;
+
+        void set_invariants();
+        void set_default_pos();
+        void set_default_mom();
 };
 
 

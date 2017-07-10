@@ -10,15 +10,41 @@
 
 #include "particle.hpp"
 
-// Particle constructor
+
+// Particle default setters
+void Particle::set_invariants()
+{
+    kind_ = gettype(typeint_);
+    restmass_ = getmass(typeint_);
+    charge_ = getcharge(typeint_);
+}
+
+void Particle::set_default_pos()
+{
+    position_ = CartesianVector(0,0,0);
+}
+
+void Particle::set_default_mom()
+{
+    fourmomentum_ = FourVector(restmass_*c_0, 0,0,0);
+}
+
+
+// Particle constructors
 Particle::Particle(const std::string& type)
 {
     typeint_ = gettypeint(type);
-    type_ = gettype(typeint_);
-    restmass_ = getmass(typeint_);
-    charge_ = getcharge(typeint_);
-    position_ = CartesianVector(0,0,0);
-    fourmomentum_ = FourVector(restmass_ * c_0, 0,0,0);
+    set_invariants();
+    set_default_pos();
+    set_default_mom();
+}
+
+Particle::Particle(const int typeint)
+{
+    typeint_ = typeint;
+    set_invariants();
+    set_default_pos();
+    set_default_mom();
 }
 
 
