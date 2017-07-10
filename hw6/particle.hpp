@@ -46,6 +46,9 @@ class Particle
         void set_position(const double x, const double y, const double z);
         void set_momentum(const FourVector& mom);
         void set_momentum(const CartesianVector& mom);
+        void set_momentum(const double en, const UnitVector& dir);
+        void set_energy(const double en);
+        void set_direction(const UnitVector& dir);
 
 
     private:

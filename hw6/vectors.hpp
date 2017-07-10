@@ -41,7 +41,7 @@ class CartesianVector
         // Constructors
         CartesianVector(double x=0, double y=0, double z=0)
         : x_(x), y_(y), z_(z) {};
-        CartesianVector(UnitVector& v)
+        CartesianVector(const UnitVector& v)
         : x_(v.x()), y_(v.y()), z_(v.z()) {};
 
         // Getter functions

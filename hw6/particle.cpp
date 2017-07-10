@@ -54,11 +54,11 @@ const double Particle::energy() const
     return fourmomentum_[0]*c_0;
 }
 
-
 const UnitVector Particle::direction() const
 {
     return UnitVector(fourmomentum_.x(),fourmomentum_.y(),fourmomentum_.z());
 }
+
 
 
 // Particle setter functions
@@ -85,6 +85,25 @@ void Particle::set_momentum(const CartesianVector& mom)
     fourmomentum_ = FourVector(0,mom.x(),mom.y(),mom.z());
     double p2 = -1*dot(fourmomentum_,fourmomentum_);
     fourmomentum_[0] = sqrt(restmass_*restmass_ * c_0*c_0 + p2);
+}
+
+void Particle::set_momentum(const double en, const UnitVector& dir)
+{
+    double pmag = sqrt(en*en / (c_0*c_0) - restmass_*restmass_ * c_0*c_0);
+    CartesianVector mom = pmag * dir;
+    set_momentum(mom);
+}
+
+void Particle::set_energy(const double en)
+{
+    UnitVector dir = direction();
+    set_momentum(en, dir);
+}
+
+void Particle::set_direction(const UnitVector& dir)
+{
+    double en = energy();
+    set_momentum(en, dir);
 }
 
 
