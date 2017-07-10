@@ -37,7 +37,7 @@ bool UniqueID::operator==(const UniqueID& other) const
 // Stream output function for UniqueID
 std::ostream& operator<<(std::ostream& os, const UniqueID& id)
 {
-    return os << id.process_id << "(" << id.object_id << "/" << id.counter << ")";
+    return os << id.process_id << "-" << id.object_id;
 }
 
 
