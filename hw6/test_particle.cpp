@@ -96,9 +96,5 @@ int main()
     proton.set_kinetic(0);
     print_info(proton);
 
-    std::cout << "Try to set proton energy to 0" << std::endl;
-    proton.set_energy(0);
-    print_info(proton);
-
     return 0;
 }

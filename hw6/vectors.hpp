@@ -13,7 +13,7 @@
 #ifndef __VECTORS_HPP_INCLUDED__
 #define __VECTORS_HPP_INCLUDED__
 
-#include <math.h>
+#include <cmath>
 #include <iostream>
 
 

@@ -95,9 +95,14 @@ void Particle::set_momentum(const CartesianVector& mom)
 
 void Particle::set_momentum(const double en, const UnitVector& dir)
 {
-    assert(en*en/c_0/c_0 - restmass_*restmass_*c_0*c_0 >= 0);
+    if (en*en < restmass_*restmass_*pow(c_0,4))
+    {
+        std::ostringstream oss;
+        oss << "Energy (" << en << ") is less than the particle's rest energy"
+        throw std::invalid_argument(oss.str());
+    }
+    assert(en*en/(c_0*c_0) - restmass_*restmass_*c_0*c_0 >= 0);
     double pmag = sqrt(en*en / (c_0*c_0) - restmass_*restmass_ * c_0*c_0);
-    // TODO: Add error if pmag is nan
     CartesianVector mom = pmag * dir;
     set_momentum(mom);
 }
@@ -516,7 +521,11 @@ int gettypeint(const std::string& type)
     else if (type.compare("omega-bbb")==0
           || type.compare("omegabbb-")==0
           || type.compare("omega_mbbb")==0)     {retval = ParticleTypes::omega_mbb;}
-    // TODO: Add error in else statement
+    // Catch bad input
+    else
+    {
+        throw std::invalid_argument("'"+type+"' is not a recognized particle type");
+    }
 
     return static_cast<int>(retval);
 }
@@ -696,7 +705,10 @@ std::string gettype(const int typeint)
         case ParticleTypes::omega30cbb      : return "omega30cbb";
         case ParticleTypes::omega_mbbb      : return "omega-bbb";
     }
-    // TODO: add error
+    // Catch bad input
+    std::ostringstream oss;
+    oss << typeint << " does not correlate to a known particle type";
+    throw std::invalid_argument(oss.str());
 }
 
 double getmass(const int typeint)
@@ -875,7 +887,13 @@ double getmass(const int typeint)
         case ParticleTypes::omega30cbb      : mevmass = -1; break;
         case ParticleTypes::omega_mbbb      : mevmass = -1; break;
     }
-    // TODO: add error if mass is negative
+    // Catch bad input
+    if (mevmass<0)
+    {
+        std::ostringstream oss;
+        oss << typeint << " does not correlate to a known particle type";
+        throw std::invalid_argument(oss.str());
+    }
 
     // Convert to kg
     return mevmass * 1.7826619e-30;
@@ -1057,8 +1075,14 @@ double getcharge(const int typeint)
         case ParticleTypes::omega30cbb      : chargefactor = 0; break;
         case ParticleTypes::omega_mbbb      : chargefactor = -1; break;
     }
-    // TODO: add error if chargefactor is 1000
-
+    // Catch bad input
+    if (chargefactor==1000)
+    {
+        std::ostringstream oss;
+        oss << typeint << " does not correlate to a known particle type";
+        throw std::invalid_argument(oss.str());
+    }
+    
     // Convert to coulombs
     return chargefactor * qe;
 }

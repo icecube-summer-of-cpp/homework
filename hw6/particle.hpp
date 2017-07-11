@@ -15,7 +15,8 @@
 
 #include <string>
 #include <iostream>
-#include <math.h>
+#include <sstream>
+#include <cmath>
 #include "uniqueid.hpp"
 #include "vectors.hpp"
 

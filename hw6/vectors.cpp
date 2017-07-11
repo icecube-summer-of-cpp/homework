@@ -29,7 +29,7 @@ const double& UnitVector::operator[](int i) const
     if      (i==0) {return x_;}
     else if (i==1) {return y_;}
     else if (i==2) {return z_;}
-    // TODO: Add error in else statement
+    else {throw std::out_of_range("UnitVector only has 3 components");}
 }
 
 
@@ -58,7 +58,7 @@ double& CartesianVector::operator[](int i)
     if      (i==0) {return x_;}
     else if (i==1) {return y_;}
     else if (i==2) {return z_;}
-    // TODO: Add error in else statement
+    else {throw std::out_of_range("CartesianVector only has 3 components");}
 }
 
 const double& CartesianVector::operator[](int i) const
@@ -66,7 +66,7 @@ const double& CartesianVector::operator[](int i) const
     if      (i==0) {return x_;}
     else if (i==1) {return y_;}
     else if (i==2) {return z_;}
-    // TODO: Add error in else statement
+    else {throw std::out_of_range("CartesianVector only has 3 components");}
 }
 
 
@@ -129,7 +129,7 @@ double& FourVector::operator[](int i)
     else if (i==1) {return x_;}
     else if (i==2) {return y_;}
     else if (i==3) {return z_;}
-    // TODO: Add error in else statement
+    else {throw std::out_of_range("FourVector only has 4 components");}
 }
 
 const double& FourVector::operator[](int i) const
@@ -138,7 +138,7 @@ const double& FourVector::operator[](int i) const
     else if (i==1) {return x_;}
     else if (i==2) {return y_;}
     else if (i==3) {return z_;}
-    // TODO: Add error in else statement
+    else {throw std::out_of_range("FourVector only has 4 components");}
 }
 
 
