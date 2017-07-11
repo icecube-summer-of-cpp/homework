@@ -56,18 +56,22 @@ int main()
 
 
     std::cout << "\n========== Testing Particles ==========" << std::endl;
+    std::cout << "Build default electron" << std::endl;
     Particle electron("electron");
     print_info(electron);
 
+    std::cout << "Build new electron based on first's name and set position with integers" << std::endl;
     Particle electron2(electron.name());
     electron2.set_position(10,10,10);
     print_info(electron2);
 
+    std::cout << "Build new electron based on first's type and set position with UnitVector" << std::endl;
     Particle electron3(electron.type());
     UnitVector vec(1,1,0);
     electron3.set_position(vec);
     print_info(electron3);
 
+    std::cout << "Build proton and set momentum with CartesianVector" << std::endl;
     Particle proton("proton");
     CartesianVector momentum(0,0,1e-18);
     proton.set_momentum(momentum);
@@ -75,19 +79,24 @@ int main()
     std::cout << "  Rest mass: " <<
     sqrt(dot(proton.momentum(),proton.momentum())/c_0/c_0) << " kg" << std::endl << std::endl;
 
+    std::cout << "Reset proton momentum to 0 and set energy to 1GeV" << std::endl;
     proton.set_momentum(CartesianVector(0,0,0));
     proton.set_energy(1.6e-10);
     print_info(proton);
 
+    std::cout << "Set proton direction to x-direction" << std::endl;
     proton.set_direction(UnitVector(1,0,0));
     print_info(proton);
 
+    std::cout << "Set proton energy to mc^2" << std::endl;
     proton.set_energy(proton.restmass()*c_0*c_0);
     print_info(proton);
 
+    std::cout << "Set proton KE to 0" << std::endl;
     proton.set_kinetic(0);
     print_info(proton);
 
+    std::cout << "Try to set proton energy to 0" << std::endl;
     proton.set_energy(0);
     print_info(proton);
 
