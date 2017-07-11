@@ -98,7 +98,7 @@ void Particle::set_momentum(const double en, const UnitVector& dir)
     if (en*en < restmass_*restmass_*pow(c_0,4))
     {
         std::ostringstream oss;
-        oss << "Energy (" << en << ") is less than the particle's rest energy"
+        oss << "Energy (" << en << ") is less than the particle's rest energy";
         throw std::invalid_argument(oss.str());
     }
     assert(en*en/(c_0*c_0) - restmass_*restmass_*c_0*c_0 >= 0);
