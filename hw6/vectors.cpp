@@ -8,7 +8,8 @@
  * Written by Ben Hokanson-Fasig for IceCube's Summer of C++ 2017
  */
 
-
+// #define NDEBUG
+#include <cassert>
 #include "vectors.hpp"
 
 
@@ -36,7 +37,7 @@ const double& UnitVector::operator[](int i) const
 void UnitVector::normalize()
 {
     double len = mag(*this);
-    if (len==0) {
+    if (len==0 || isnan(len)) {
         x_ = 0;
         y_ = 0;
         z_ = 1;
@@ -46,6 +47,7 @@ void UnitVector::normalize()
         y_ /= len;
         z_ /= len;
     }
+    assert(mag(*this)>.9999999999 && mag(*this)<1.0000000001);
 }
 
 
@@ -214,6 +216,7 @@ std::ostream& operator<<(std::ostream& os, const FourVector& v)
 // Vector magnitude functions
 double mag(const CartesianVector& v)
 {
+    assert(dot(v,v)>=0 || isnan(dot(v,v)));
     return sqrt(dot(v,v));
 }
 

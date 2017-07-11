@@ -8,6 +8,8 @@
  */
 
 
+// #define NDEBUG
+#include <cassert>
 #include "particle.hpp"
 
 
@@ -79,21 +81,21 @@ void Particle::set_position(const double x, const double y, const double z)
 
 void Particle::set_momentum(const FourVector& mom)
 {
-    if (dot(mom,mom)*c_0*c_0 == restmass_*restmass_) {
-        fourmomentum_ = mom;
-    }
-    // TODO: Add error in else statement
+    // Ignore first component and simply set based on the 3-momentum
+    set_momentum(CartesianVector(mom.x(),mom.y(),mom.z()));
 }
 
 void Particle::set_momentum(const CartesianVector& mom)
 {
     fourmomentum_ = FourVector(0,mom.x(),mom.y(),mom.z());
     double p2 = -1*dot(fourmomentum_,fourmomentum_);
+    assert(restmass_*restmass_*c_0*c_0 + p2 >= 0);
     fourmomentum_[0] = sqrt(restmass_*restmass_ * c_0*c_0 + p2);
 }
 
 void Particle::set_momentum(const double en, const UnitVector& dir)
 {
+    assert(en*en/c_0/c_0 - restmass_*restmass_*c_0*c_0 >= 0);
     double pmag = sqrt(en*en / (c_0*c_0) - restmass_*restmass_ * c_0*c_0);
     // TODO: Add error if pmag is nan
     CartesianVector mom = pmag * dir;
