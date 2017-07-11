@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ward/IceCube/CppTutorial/homework/Week6/position.cpp
+position.h
+/home/ward/IceCube/CppTutorial/homework/Week6/position.h
+
+/home/ward/IceCube/CppTutorial/homework/Week6/position.h
+cmath
+-
+

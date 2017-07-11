@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ward/IceCube/CppTutorial/homework/Week6/direction.h
+cmath
+-
+
+/home/ward/IceCube/CppTutorial/homework/Week6/particle.cpp
+particle.h
+/home/ward/IceCube/CppTutorial/homework/Week6/particle.h
+
+/home/ward/IceCube/CppTutorial/homework/Week6/particle.h
+vector
+-
+cassert
+-
+cmath
+-
+cstdint
+-
+unistd.h
+-
+atomic
+-
+chrono
+-
+iostream
+-
+position.h
+/home/ward/IceCube/CppTutorial/homework/Week6/position.h
+direction.h
+/home/ward/IceCube/CppTutorial/homework/Week6/direction.h
+
+/home/ward/IceCube/CppTutorial/homework/Week6/position.h
+cmath
+-
+
