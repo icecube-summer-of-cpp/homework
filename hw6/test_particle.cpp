@@ -13,6 +13,7 @@ void print_info(const Particle& p)
     std::cout << "  Distance:  " << mag(p.position()) << " m" << std::endl;
     std::cout << "  Momentum:  " << p.momentum() << " kg m/s" << std::endl;
     std::cout << "  Energy:    " << p.energy() << " J" << std::endl;
+    std::cout << "  Kinetic:   " << p.kinetic() << " J" << std::endl;
     std::cout << "  Direction: " << p.direction() << std::endl << std::endl;
 }
 
@@ -72,7 +73,23 @@ int main()
     proton.set_momentum(momentum);
     print_info(proton);
     std::cout << "  Rest mass: " <<
-    sqrt(dot(proton.momentum(),proton.momentum())/c_0/c_0) << " kg" << std::endl;
+    sqrt(dot(proton.momentum(),proton.momentum())/c_0/c_0) << " kg" << std::endl << std::endl;
+
+    proton.set_momentum(CartesianVector(0,0,0));
+    proton.set_energy(1.6e-10);
+    print_info(proton);
+
+    proton.set_direction(UnitVector(1,0,0));
+    print_info(proton);
+
+    proton.set_energy(proton.restmass()*c_0*c_0);
+    print_info(proton);
+
+    proton.set_kinetic(0);
+    print_info(proton);
+
+    proton.set_energy(0);
+    print_info(proton);
 
     return 0;
 }

@@ -40,6 +40,7 @@ class Particle
         const FourVector momentum() const {return fourmomentum_;}
         const UnitVector direction() const;
         const double energy() const;
+        const double kinetic() const;
 
         // Setter functions
         void set_position(const CartesianVector& pos);
@@ -47,8 +48,9 @@ class Particle
         void set_momentum(const FourVector& mom);
         void set_momentum(const CartesianVector& mom);
         void set_momentum(const double en, const UnitVector& dir);
-        void set_energy(const double en);
         void set_direction(const UnitVector& dir);
+        void set_energy(const double en);
+        void set_kinetic(const double ke);
 
 
     private:

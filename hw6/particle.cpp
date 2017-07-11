@@ -49,14 +49,19 @@ Particle::Particle(const int typeint)
 
 
 // Particle getter functions
+const UnitVector Particle::direction() const
+{
+    return UnitVector(fourmomentum_.x(),fourmomentum_.y(),fourmomentum_.z());
+}
+
 const double Particle::energy() const
 {
     return fourmomentum_[0]*c_0;
 }
 
-const UnitVector Particle::direction() const
+const double Particle::kinetic() const
 {
-    return UnitVector(fourmomentum_.x(),fourmomentum_.y(),fourmomentum_.z());
+    return energy() - restmass_*c_0*c_0;
 }
 
 
@@ -90,8 +95,15 @@ void Particle::set_momentum(const CartesianVector& mom)
 void Particle::set_momentum(const double en, const UnitVector& dir)
 {
     double pmag = sqrt(en*en / (c_0*c_0) - restmass_*restmass_ * c_0*c_0);
+    // TODO: Add error if pmag is nan
     CartesianVector mom = pmag * dir;
     set_momentum(mom);
+}
+
+void Particle::set_direction(const UnitVector& dir)
+{
+    double en = energy();
+    set_momentum(en, dir);
 }
 
 void Particle::set_energy(const double en)
@@ -100,9 +112,10 @@ void Particle::set_energy(const double en)
     set_momentum(en, dir);
 }
 
-void Particle::set_direction(const UnitVector& dir)
+void Particle::set_kinetic(const double ke)
 {
-    double en = energy();
+    UnitVector dir = direction();
+    double en = ke + restmass_*c_0*c_0;
     set_momentum(en, dir);
 }
 
