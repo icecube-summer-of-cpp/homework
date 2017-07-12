@@ -22,6 +22,23 @@ UnitVector::UnitVector(double x, double y, double z)
     normalize();
 }
 
+UnitVector::UnitVector(const CartesianVector& v)
+{
+    if (mag(v)==1)
+    {
+        x_ = v.x();
+        y_ = v.y();
+        z_ = v.z();
+    }
+    else
+    {
+        std::ostringstream oss;
+        oss << "Vector " << v << " cannot be converted to UnitVector. "
+        << "(has a length of " << mag(v) << ")";
+        throw std::invalid_argument(oss.str());
+    }
+}
+
 
 // Unit vector bracket overload
 const double& UnitVector::operator[](int i) const
@@ -38,9 +55,10 @@ void UnitVector::normalize()
 {
     double len = mag(*this);
     if (len==0 || isnan(len)) {
-        x_ = 0;
-        y_ = 0;
-        z_ = 1;
+        std::ostringstream oss;
+        oss << "Vector components (" << x_ << "," << y_ << "," << z_ << ")"
+        <<" unable to be normalized to length 1";
+        throw std::domain_error(oss.str());
     }
     else {
         x_ /= len;

@@ -15,13 +15,18 @@
 
 #include <cmath>
 #include <iostream>
+#include <sstream>
+
+// Forward-declare CartesianVector
+class CartesianVector;
 
 
 class UnitVector
 {
     public:
         // Constructors
-        UnitVector(double x=1, double y=0, double z=0);
+        UnitVector(const double x=1, const double y=0, const double z=0);
+        UnitVector(const CartesianVector& v);
 
         // Getter functions
         const double x() const {return x_;}
@@ -39,7 +44,7 @@ class CartesianVector
 {
     public:
         // Constructors
-        CartesianVector(double x=0, double y=0, double z=0)
+        CartesianVector(const double x=0, const double y=0, const double z=0)
         : x_(x), y_(y), z_(z) {};
         CartesianVector(const UnitVector& v)
         : x_(v.x()), y_(v.y()), z_(v.z()) {};
