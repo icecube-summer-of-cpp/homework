@@ -33,8 +33,7 @@ int main()
     std::cout << "========== Testing Events ==========" << std::endl;
     Particle electron("electron");
     electron.set_position(CartesianVector(0,0,10));
-    electron.set_energy(1.6e-10);
-    electron.set_direction(UnitVector(0,0,-1));
+    electron.set_momentum(1.6e-10, UnitVector(0,0,-1));
     print_info(electron);
 
     Event event("Cascade", electron);

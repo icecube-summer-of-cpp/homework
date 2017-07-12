@@ -38,7 +38,7 @@ class Particle
         const double charge() const {return charge_;}
         const CartesianVector position() const {return position_;}
         const FourVector momentum() const {return fourmomentum_;}
-        const UnitVector direction() const;
+        const CartesianVector direction() const;
         const double energy() const;
         const double kinetic() const;
 

@@ -50,9 +50,17 @@ Particle::Particle(const int typeint)
 
 
 // Particle getter functions
-const UnitVector Particle::direction() const
+const CartesianVector Particle::direction() const
 {
-    return UnitVector(fourmomentum_.x(),fourmomentum_.y(),fourmomentum_.z());
+    try
+    {
+        return UnitVector(fourmomentum_.x(),fourmomentum_.y(),fourmomentum_.z());
+    }
+    catch (std::domain_error& e)
+    {
+        // No viable direction
+        return CartesianVector(0,0,0);
+    }
 }
 
 const double Particle::energy() const
@@ -113,21 +121,31 @@ void Particle::set_direction(const UnitVector& dir)
     // To avoid unexpected results, throw an error
     if (fourmomentum_.x()==0 && fourmomentum_.y()==0 && fourmomentum_.z()==0) {
         std::ostringstream oss;
-        oss << "Particle direction cannot be set when it has zero momentum";
-        throw std::invalid_argument(oss.str());
+        oss << "Particle direction cannot be set when it has zero momentum. "
+        << "Try using set_momentum(energy, direction) instead";
+        throw std::domain_error(oss.str());
     }
     set_momentum(en, dir);
 }
 
 void Particle::set_energy(const double en)
 {
-    UnitVector dir = direction();
+    CartesianVector dir = direction();
+    // If there is no momentum, the direction is meaningless
+    // And with no direction, energy alone cannot be set
+    // To avoid unexpected results, throw an error
+    if (fourmomentum_.x()==0 && fourmomentum_.y()==0 && fourmomentum_.z()==0) {
+        std::ostringstream oss;
+        oss << "Particle energy cannot be set when it has no direction. "
+        << "Try using set_momentum(energy, direction) instead";
+        throw std::domain_error(oss.str());
+    }
     set_momentum(en, dir);
 }
 
 void Particle::set_kinetic(const double ke)
 {
-    UnitVector dir = direction();
+    CartesianVector dir = direction();
     double en = ke + restmass_*c_0*c_0;
     set_momentum(en, dir);
 }

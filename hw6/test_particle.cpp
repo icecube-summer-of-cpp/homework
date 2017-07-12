@@ -79,8 +79,8 @@ int main()
     std::cout << "  Rest mass: " <<
     sqrt(dot(proton.momentum(),proton.momentum())/c_0/c_0) << " kg" << std::endl << std::endl;
 
-    std::cout << "Reset proton momentum to 0 and set energy to 1GeV" << std::endl;
-    proton.set_momentum(CartesianVector(0,0,0));
+    std::cout << "Reset proton direction downward and set energy to 1GeV" << std::endl;
+    proton.set_direction(CartesianVector(0,0,-1));
     proton.set_energy(1.6e-10);
     print_info(proton);
 
