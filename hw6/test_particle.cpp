@@ -1,5 +1,5 @@
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include "vectors.hpp"
 #include "particle.hpp"
 

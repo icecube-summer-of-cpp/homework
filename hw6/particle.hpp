@@ -1,6 +1,5 @@
 /* Module for particles including:
- *   Inheritable particle class
- *   Classes/structs for position, direction, velocity, 4-momentum, etc.
+ *   Particle class
  *   Functions for interacting with particle class
  * Note that, for better or worse, all values are in SI (mks)
  *
