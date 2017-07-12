@@ -109,6 +109,13 @@ void Particle::set_momentum(const double en, const UnitVector& dir)
 void Particle::set_direction(const UnitVector& dir)
 {
     double en = energy();
+    // If there is no momentum, the direction is meaningless
+    // To avoid unexpected results, throw an error
+    if (fourmomentum_.x()==0 && fourmomentum_.y()==0 && fourmomentum_.z()==0) {
+        std::ostringstream oss;
+        oss << "Particle direction cannot be set when it has zero momentum";
+        throw std::invalid_argument(oss.str());
+    }
     set_momentum(en, dir);
 }
 
