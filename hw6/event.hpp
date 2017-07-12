@@ -25,9 +25,11 @@ class Event
         Event(const std::string& type, const Particle& particle)
         : type_(type), particle_(particle) {};
 
-        // Getter functionsattributes
+        // Getter functions
         const Particle particle() const {return particle_;}
         const std::string type() const {return type_;}
+
+        // Getter functions of particle attributes
         const CartesianVector vertex() const {return particle_.position();}
         const FourVector momentum() const {return particle_.momentum();}
         const UnitVector direction() const {return particle_.direction();}
