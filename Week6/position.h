@@ -2,6 +2,9 @@
 #define POSITION_H
 
 #include <cmath>
+#include <iostream>
+
+using namespace std;
 
 class position{
   public:
@@ -35,6 +38,8 @@ class position{
     position operator+(const position&);
     position operator-(const position&);
 
+    friend ostream& operator<<(ostream& ,const position&);
+    
   private:
     double x_;
     double y_;

@@ -2,6 +2,9 @@
 #define DIRECTION_H
 
 #include <cmath>
+#include <iostream>
+
+using namespace std;
 
 class direction{
   public:
@@ -29,6 +32,8 @@ class direction{
     direction operator+(const direction&);
     direction operator-(const direction&);
 
+    friend ostream& operator<<(ostream& ,const direction&);
+    
   private:
     double zen_;
     double azi_;

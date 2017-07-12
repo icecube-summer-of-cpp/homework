@@ -11,3 +11,9 @@ direction direction::operator-(const direction& d){
   azi_ += d.GetAzi();
   return *this;
 }
+
+ostream& operator<<(ostream& os, const direction& d)
+{
+  os << "zenith: " << d.GetZen() << ", azimuth: " << d.GetAzi() << endl;
+  return os;
+}

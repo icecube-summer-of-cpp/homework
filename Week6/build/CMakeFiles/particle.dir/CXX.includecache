@@ -9,6 +9,8 @@
 /home/ward/IceCube/CppTutorial/homework/Week6/direction.h
 cmath
 -
+iostream
+-
 
 /home/ward/IceCube/CppTutorial/homework/Week6/particle.cpp
 particle.h
@@ -38,5 +40,7 @@ direction.h
 
 /home/ward/IceCube/CppTutorial/homework/Week6/position.h
 cmath
+-
+iostream
 -
 

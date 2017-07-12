@@ -8,6 +8,12 @@ unique_id particle::id() const { return id_; }
 void particle::set_energy(float energy){ energy_ = energy; }
 float particle::get_energy() const { return energy_; }
     
+void particle::set_position(double x, double y, double z){ pos_ = position(x,y,z); }
+position particle::get_position() const { return pos_; }
+
+void particle::set_direction(double zen, double azi){ dir_ = direction(zen,azi); }
+direction particle::get_direction() const { return dir_; }
+
 bool particle::operator==(const particle& rhs) const {
   return (energy_ == rhs.get_energy()) && (id_ == rhs.id());
 }; // neglect issues with float comparisons
@@ -16,20 +22,17 @@ bool particle::operator!=(const particle& rhs) const {
   return !(*this == rhs);
 }
 
-//class sim_particle: public particle{
-//  public:
-//    sim_particle(ParticleShape shape, ParticleType type):
-//
-//  private:
-//
-//};
-//
-//class reco_particle: public particle{
-//  public:
-//
-//  private:
-//
-//};
+sim_particle::sim_particle(ParticleShape shape): energy_(NAN), pos_(), dir_(), time_(NAN), length_(NAN), speed_(NAN), shape_(shape) {};
+
+sim_particle::sim_particle(const position pos, const direction dir, ParticleShape shape, ParticleType type=unknown): NOTFINISHEDTHISPART 
+
+
+class reco_particle: public particle{
+  public:
+
+  private:
+
+};
 
 
 int main(){
@@ -38,7 +41,12 @@ int main(){
   
   p1.set_energy(1000);
   p2.set_energy(1000);
-  
+ 
+  p1.set_position(1,2,3);
+  cout << p1.get_position() << endl;
+  p1.set_direction(0,180);
+  cout << p1.get_direction() << endl;
+
   // p1 and p2 are not the same particle even if their properties are different.
   assert(p1 != p2);
   
