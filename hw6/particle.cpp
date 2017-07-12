@@ -521,6 +521,141 @@ int gettypeint(const std::string& type)
     else if (type.compare("omega-bbb")==0
           || type.compare("omegabbb-")==0
           || type.compare("omega_mbbb")==0)     {retval = ParticleTypes::omega_mbb;}
+
+    // Nuclei
+    else if (type.compare("h1n")==0
+          || type.compare("h1nuc")==0)          {retval = ParticleTypes::h1n;}
+    else if (type.compare("h2n")==0
+          || type.compare("h2nuc")==0)          {retval = ParticleTypes::h2n;}
+    else if (type.compare("h3n")==0
+          || type.compare("h3nuc")==0)          {retval = ParticleTypes::h3n;}
+    else if (type.compare("he3n")==0
+          || type.compare("he3nuc")==0)         {retval = ParticleTypes::he3n;}
+    else if (type.compare("he4n")==0
+          || type.compare("he4nuc")==0)         {retval = ParticleTypes::he4n;}
+    else if (type.compare("li6n")==0
+          || type.compare("li6nuc")==0)         {retval = ParticleTypes::li6n;}
+    else if (type.compare("li7n")==0
+          || type.compare("li7nuc")==0)         {retval = ParticleTypes::li7n;}
+    else if (type.compare("be9n")==0
+          || type.compare("be9nuc")==0)         {retval = ParticleTypes::be9n;}
+    else if (type.compare("b10n")==0
+          || type.compare("b10nuc")==0)         {retval = ParticleTypes::b10n;}
+    else if (type.compare("b11n")==0
+          || type.compare("b11nuc")==0)         {retval = ParticleTypes::b11n;}
+    else if (type.compare("c12n")==0
+          || type.compare("c12nuc")==0)         {retval = ParticleTypes::c12n;}
+    else if (type.compare("c13n")==0
+          || type.compare("c13nuc")==0)         {retval = ParticleTypes::c13n;}
+    else if (type.compare("c14n")==0
+          || type.compare("c14nuc")==0)         {retval = ParticleTypes::c14n;}
+    else if (type.compare("n14n")==0
+          || type.compare("n14nuc")==0)         {retval = ParticleTypes::n14n;}
+    else if (type.compare("n15n")==0
+          || type.compare("n15nuc")==0)         {retval = ParticleTypes::n15n;}
+    else if (type.compare("o16n")==0
+          || type.compare("o16nuc")==0)         {retval = ParticleTypes::o16n;}
+    else if (type.compare("o17n")==0
+          || type.compare("o17nuc")==0)         {retval = ParticleTypes::o17n;}
+    else if (type.compare("o18n")==0
+          || type.compare("o18nuc")==0)         {retval = ParticleTypes::o18n;}
+    else if (type.compare("f19n")==0
+          || type.compare("f19nuc")==0)         {retval = ParticleTypes::f19n;}
+    else if (type.compare("ne20n")==0
+          || type.compare("ne20nuc")==0)        {retval = ParticleTypes::ne20n;}
+    else if (type.compare("ne21n")==0
+          || type.compare("ne21nuc")==0)        {retval = ParticleTypes::ne21n;}
+    else if (type.compare("ne22n")==0
+          || type.compare("ne22nuc")==0)        {retval = ParticleTypes::ne22n;}
+    else if (type.compare("na23n")==0
+          || type.compare("na23nuc")==0)        {retval = ParticleTypes::na23n;}
+    else if (type.compare("mg24n")==0
+          || type.compare("mg24nuc")==0)        {retval = ParticleTypes::mg24n;}
+    else if (type.compare("mg25n")==0
+          || type.compare("mg25nuc")==0)        {retval = ParticleTypes::mg25n;}
+    else if (type.compare("mg26n")==0
+          || type.compare("mg26nuc")==0)        {retval = ParticleTypes::mg26n;}
+    else if (type.compare("al27n")==0
+          || type.compare("al27nuc")==0)        {retval = ParticleTypes::al27n;}
+    else if (type.compare("si28n")==0
+          || type.compare("si28nuc")==0)        {retval = ParticleTypes::si28n;}
+    else if (type.compare("si29n")==0
+          || type.compare("si29nuc")==0)        {retval = ParticleTypes::si29n;}
+    else if (type.compare("si30n")==0
+          || type.compare("si30nuc")==0)        {retval = ParticleTypes::si30n;}
+    else if (type.compare("p31n")==0
+          || type.compare("p31nuc")==0)         {retval = ParticleTypes::p31n;}
+    else if (type.compare("s32n")==0
+          || type.compare("s32nuc")==0)         {retval = ParticleTypes::s32n;}
+    else if (type.compare("s33n")==0
+          || type.compare("s33nuc")==0)         {retval = ParticleTypes::s33n;}
+    else if (type.compare("s34n")==0
+          || type.compare("s34nuc")==0)         {retval = ParticleTypes::s34n;}
+    else if (type.compare("s36n")==0
+          || type.compare("s36nuc")==0)         {retval = ParticleTypes::s36n;}
+    else if (type.compare("cl35n")==0
+          || type.compare("cl35nuc")==0)        {retval = ParticleTypes::cl35n;}
+    else if (type.compare("cl37n")==0
+          || type.compare("cl37nuc")==0)        {retval = ParticleTypes::cl37n;}
+    else if (type.compare("ar36n")==0
+          || type.compare("ar36nuc")==0)        {retval = ParticleTypes::ar36n;}
+    else if (type.compare("ar38n")==0
+          || type.compare("ar38nuc")==0)        {retval = ParticleTypes::ar38n;}
+    else if (type.compare("ar40n")==0
+          || type.compare("ar40nuc")==0)        {retval = ParticleTypes::ar40n;}
+    else if (type.compare("k39n")==0
+          || type.compare("k39nuc")==0)         {retval = ParticleTypes::k39n;}
+    else if (type.compare("k40n")==0
+          || type.compare("k40nuc")==0)         {retval = ParticleTypes::k40n;}
+    else if (type.compare("k41n")==0
+          || type.compare("k41nuc")==0)         {retval = ParticleTypes::k41n;}
+    else if (type.compare("ca40n")==0
+          || type.compare("ca40nuc")==0)        {retval = ParticleTypes::ca40n;}
+    else if (type.compare("ca42n")==0
+          || type.compare("ca42nuc")==0)        {retval = ParticleTypes::ca42n;}
+    else if (type.compare("ca43n")==0
+          || type.compare("ca43nuc")==0)        {retval = ParticleTypes::ca43n;}
+    else if (type.compare("ca44n")==0
+          || type.compare("ca44nuc")==0)        {retval = ParticleTypes::ca44n;}
+    else if (type.compare("ca46n")==0
+          || type.compare("ca46nuc")==0)        {retval = ParticleTypes::ca46n;}
+    else if (type.compare("ca48n")==0
+          || type.compare("ca48nuc")==0)        {retval = ParticleTypes::ca48n;}
+    else if (type.compare("sc45n")==0
+          || type.compare("sc45nuc")==0)        {retval = ParticleTypes::sc45n;}
+    else if (type.compare("ti46n")==0
+          || type.compare("ti46nuc")==0)        {retval = ParticleTypes::ti46n;}
+    else if (type.compare("ti47n")==0
+          || type.compare("ti47nuc")==0)        {retval = ParticleTypes::ti47n;}
+    else if (type.compare("ti48n")==0
+          || type.compare("ti48nuc")==0)        {retval = ParticleTypes::ti48n;}
+    else if (type.compare("ti49n")==0
+          || type.compare("ti49nuc")==0)        {retval = ParticleTypes::ti49n;}
+    else if (type.compare("ti50n")==0
+          || type.compare("ti50nuc")==0)        {retval = ParticleTypes::ti50n;}
+    else if (type.compare("v50n")==0
+          || type.compare("v50nuc")==0)         {retval = ParticleTypes::v50n;}
+    else if (type.compare("v51n")==0
+          || type.compare("v51nuc")==0)         {retval = ParticleTypes::v51n;}
+    else if (type.compare("cr50n")==0
+          || type.compare("cr50nuc")==0)        {retval = ParticleTypes::cr50n;}
+    else if (type.compare("cr52n")==0
+          || type.compare("cr52nuc")==0)        {retval = ParticleTypes::cr52n;}
+    else if (type.compare("cr53n")==0
+          || type.compare("cr53nuc")==0)        {retval = ParticleTypes::cr53n;}
+    else if (type.compare("cr54n")==0
+          || type.compare("cr54nuc")==0)        {retval = ParticleTypes::cr54n;}
+    else if (type.compare("mn55n")==0
+          || type.compare("mn55nuc")==0)        {retval = ParticleTypes::mn55n;}
+    else if (type.compare("fe54n")==0
+          || type.compare("fe54nuc")==0)        {retval = ParticleTypes::fe54n;}
+    else if (type.compare("fe56n")==0
+          || type.compare("fe56nuc")==0)        {retval = ParticleTypes::fe56n;}
+    else if (type.compare("fe57n")==0
+          || type.compare("fe57nuc")==0)        {retval = ParticleTypes::fe57n;}
+    else if (type.compare("fe58n")==0
+          || type.compare("fe58nuc")==0)        {retval = ParticleTypes::fe58n;}
+
     // Catch bad input
     else
     {
@@ -704,6 +839,74 @@ std::string gettype(const int typeint)
         case ParticleTypes::omega3_pccb     : return "omega+ccb";
         case ParticleTypes::omega30cbb      : return "omega30cbb";
         case ParticleTypes::omega_mbbb      : return "omega-bbb";
+
+        // Nuclei
+        case ParticleTypes::h1n     : return "h1nuc";
+        case ParticleTypes::h2n     : return "h2nuc";
+        case ParticleTypes::h3n     : return "h3nuc";
+        case ParticleTypes::he3n    : return "he3nuc";
+        case ParticleTypes::he4n    : return "he4nuc";
+        case ParticleTypes::li6n    : return "li6nuc";
+        case ParticleTypes::li7n    : return "li7nuc";
+        case ParticleTypes::be9n    : return "be9nuc";
+        case ParticleTypes::b10n    : return "b10nuc";
+        case ParticleTypes::b11n    : return "b11nuc";
+        case ParticleTypes::c12n    : return "c12nuc";
+        case ParticleTypes::c13n    : return "c13nuc";
+        case ParticleTypes::c14n    : return "c14nuc";
+        case ParticleTypes::n14n    : return "n14nuc";
+        case ParticleTypes::n15n    : return "n15nuc";
+        case ParticleTypes::o16n    : return "o16nuc";
+        case ParticleTypes::o17n    : return "o17nuc";
+        case ParticleTypes::o18n    : return "o18nuc";
+        case ParticleTypes::f19n    : return "f19nuc";
+        case ParticleTypes::ne20n   : return "ne20nuc";
+        case ParticleTypes::ne21n   : return "ne21nuc";
+        case ParticleTypes::ne22n   : return "ne22nuc";
+        case ParticleTypes::na23n   : return "na23nuc";
+        case ParticleTypes::mg24n   : return "mg24nuc";
+        case ParticleTypes::mg25n   : return "mg25nuc";
+        case ParticleTypes::mg26n   : return "mg26nuc";
+        case ParticleTypes::al27n   : return "al27nuc";
+        case ParticleTypes::si28n   : return "si28nuc";
+        case ParticleTypes::si29n   : return "si29nuc";
+        case ParticleTypes::si30n   : return "si30nuc";
+        case ParticleTypes::p31n    : return "p31nuc";
+        case ParticleTypes::s32n    : return "s32nuc";
+        case ParticleTypes::s33n    : return "s33nuc";
+        case ParticleTypes::s34n    : return "s34nuc";
+        case ParticleTypes::s36n    : return "s36nuc";
+        case ParticleTypes::cl35n   : return "cl35nuc";
+        case ParticleTypes::cl37n   : return "cl37nuc";
+        case ParticleTypes::ar36n   : return "ar36nuc";
+        case ParticleTypes::ar38n   : return "ar38nuc";
+        case ParticleTypes::ar40n   : return "ar40nuc";
+        case ParticleTypes::k39n    : return "k39nuc";
+        case ParticleTypes::k40n    : return "k40nuc";
+        case ParticleTypes::k41n    : return "k41nuc";
+        case ParticleTypes::ca40n   : return "ca40nuc";
+        case ParticleTypes::ca42n   : return "ca42nuc";
+        case ParticleTypes::ca43n   : return "ca43nuc";
+        case ParticleTypes::ca44n   : return "ca44nuc";
+        case ParticleTypes::ca46n   : return "ca46nuc";
+        case ParticleTypes::ca48n   : return "ca48nuc";
+        case ParticleTypes::sc45n   : return "sc45nuc";
+        case ParticleTypes::ti46n   : return "ti46nuc";
+        case ParticleTypes::ti47n   : return "ti47nuc";
+        case ParticleTypes::ti48n   : return "ti48nuc";
+        case ParticleTypes::ti49n   : return "ti49nuc";
+        case ParticleTypes::ti50n   : return "ti50nuc";
+        case ParticleTypes::v50n    : return "v50nuc";
+        case ParticleTypes::v51n    : return "v51nuc";
+        case ParticleTypes::cr50n   : return "cr50nuc";
+        case ParticleTypes::cr52n   : return "cr52nuc";
+        case ParticleTypes::cr53n   : return "cr53nuc";
+        case ParticleTypes::cr54n   : return "cr54nuc";
+        case ParticleTypes::mn55n   : return "mn55nuc";
+        case ParticleTypes::fe54n   : return "fe54nuc";
+        case ParticleTypes::fe56n   : return "fe56nuc";
+        case ParticleTypes::fe57n   : return "fe57nuc";
+        case ParticleTypes::fe58n   : return "fe58nuc";
     }
     // Catch bad input
     std::ostringstream oss;
@@ -714,6 +917,7 @@ std::string gettype(const int typeint)
 double getmass(const int typeint)
 {
     double mevmass = -1;
+    double amumass = -1;
     switch(static_cast<ParticleTypes>(typeint))
     {
         // Bosons
@@ -886,17 +1090,86 @@ double getmass(const int typeint)
         case ParticleTypes::omega3_pccb     : mevmass = -1; break;
         case ParticleTypes::omega30cbb      : mevmass = -1; break;
         case ParticleTypes::omega_mbbb      : mevmass = -1; break;
+
+        // Nuclei
+        case ParticleTypes::h1n     : amumass = 1.007825; break;
+        case ParticleTypes::h2n     : amumass = 2.014102; break;
+        case ParticleTypes::h3n     : amumass = 3.016049; break;
+        case ParticleTypes::he3n    : amumass = 3.016029; break;
+        case ParticleTypes::he4n    : amumass = 4.002603; break;
+        case ParticleTypes::li6n    : amumass = 6.015122; break;
+        case ParticleTypes::li7n    : amumass = 7.016004; break;
+        case ParticleTypes::be9n    : amumass = 9.012182; break;
+        case ParticleTypes::b10n    : amumass = 10.012937; break;
+        case ParticleTypes::b11n    : amumass = 11.009305; break;
+        case ParticleTypes::c12n    : amumass = 12.0; break;
+        case ParticleTypes::c13n    : amumass = 13.003355; break;
+        case ParticleTypes::c14n    : amumass = 14.003242; break;
+        case ParticleTypes::n14n    : amumass = 14.003074; break;
+        case ParticleTypes::n15n    : amumass = 15.000109; break;
+        case ParticleTypes::o16n    : amumass = 15.994915; break;
+        case ParticleTypes::o17n    : amumass = 16.999132; break;
+        case ParticleTypes::o18n    : amumass = 17.999160; break;
+        case ParticleTypes::f19n    : amumass = 18.998403; break;
+        case ParticleTypes::ne20n   : amumass = 19.992440; break;
+        case ParticleTypes::ne21n   : amumass = 20.993847; break;
+        case ParticleTypes::ne22n   : amumass = 21.991386; break;
+        case ParticleTypes::na23n   : amumass = 22.989770; break;
+        case ParticleTypes::mg24n   : amumass = 23.985042; break;
+        case ParticleTypes::mg25n   : amumass = 24.985837; break;
+        case ParticleTypes::mg26n   : amumass = 25.982593; break;
+        case ParticleTypes::al27n   : amumass = 26.981538; break;
+        case ParticleTypes::si28n   : amumass = 27.976927; break;
+        case ParticleTypes::si29n   : amumass = 28.976495; break;
+        case ParticleTypes::si30n   : amumass = 29.973770; break;
+        case ParticleTypes::p31n    : amumass = 30.973762; break;
+        case ParticleTypes::s32n    : amumass = 31.972071; break;
+        case ParticleTypes::s33n    : amumass = 32.971458; break;
+        case ParticleTypes::s34n    : amumass = 33.967867; break;
+        case ParticleTypes::s36n    : amumass = 35.967081; break;
+        case ParticleTypes::cl35n   : amumass = 34.968853; break;
+        case ParticleTypes::cl37n   : amumass = 36.965903; break;
+        case ParticleTypes::ar36n   : amumass = 35.967546; break;
+        case ParticleTypes::ar38n   : amumass = 37.962732; break;
+        case ParticleTypes::ar40n   : amumass = 39.962383; break;
+        case ParticleTypes::k39n    : amumass = 38.963707; break;
+        case ParticleTypes::k40n    : amumass = 39.963999; break;
+        case ParticleTypes::k41n    : amumass = 40.961826; break;
+        case ParticleTypes::ca40n   : amumass = 39.962591; break;
+        case ParticleTypes::ca42n   : amumass = 41.958618; break;
+        case ParticleTypes::ca43n   : amumass = 42.958767; break;
+        case ParticleTypes::ca44n   : amumass = 43.955481; break;
+        case ParticleTypes::ca46n   : amumass = 45.953693; break;
+        case ParticleTypes::ca48n   : amumass = 47.952534; break;
+        case ParticleTypes::sc45n   : amumass = 44.955910; break;
+        case ParticleTypes::ti46n   : amumass = 45.952629; break;
+        case ParticleTypes::ti47n   : amumass = 46.951764; break;
+        case ParticleTypes::ti48n   : amumass = 47.947947; break;
+        case ParticleTypes::ti49n   : amumass = 48.947871; break;
+        case ParticleTypes::ti50n   : amumass = 49.944792; break;
+        case ParticleTypes::v50n    : amumass = 49.947163; break;
+        case ParticleTypes::v51n    : amumass = 50.943964; break;
+        case ParticleTypes::cr50n   : amumass = 49.946050; break;
+        case ParticleTypes::cr52n   : amumass = 51.940512; break;
+        case ParticleTypes::cr53n   : amumass = 52.940654; break;
+        case ParticleTypes::cr54n   : amumass = 53.938885; break;
+        case ParticleTypes::mn55n   : amumass = 54.938050; break;
+        case ParticleTypes::fe54n   : amumass = 53.939615; break;
+        case ParticleTypes::fe56n   : amumass = 55.934942; break;
+        case ParticleTypes::fe57n   : amumass = 56.935399; break;
+        case ParticleTypes::fe58n   : amumass = 57.933280; break;
     }
+
+    // Convert to kg
+    if      (mevmass>0) {return mevmass * 1.7826619e-30;}
+    else if (amumass>0) {return amumass * 1.660539e-27;}
     // Catch bad input
-    if (mevmass<0)
+    else
     {
         std::ostringstream oss;
         oss << typeint << " does not correlate to a known particle type";
         throw std::invalid_argument(oss.str());
     }
-
-    // Convert to kg
-    return mevmass * 1.7826619e-30;
 }
 
 double getcharge(const int typeint)
@@ -1074,15 +1347,83 @@ double getcharge(const int typeint)
         case ParticleTypes::omega3_pccb     : chargefactor = 1; break;
         case ParticleTypes::omega30cbb      : chargefactor = 0; break;
         case ParticleTypes::omega_mbbb      : chargefactor = -1; break;
+
+        // Nuclei
+        case ParticleTypes::h1n     : chargefactor = 1; break;
+        case ParticleTypes::h2n     : chargefactor = 1; break;
+        case ParticleTypes::h3n     : chargefactor = 1; break;
+        case ParticleTypes::he3n    : chargefactor = 2; break;
+        case ParticleTypes::he4n    : chargefactor = 2; break;
+        case ParticleTypes::li6n    : chargefactor = 3; break;
+        case ParticleTypes::li7n    : chargefactor = 3; break;
+        case ParticleTypes::be9n    : chargefactor = 4; break;
+        case ParticleTypes::b10n    : chargefactor = 5; break;
+        case ParticleTypes::b11n    : chargefactor = 5; break;
+        case ParticleTypes::c12n    : chargefactor = 6; break;
+        case ParticleTypes::c13n    : chargefactor = 6; break;
+        case ParticleTypes::c14n    : chargefactor = 6; break;
+        case ParticleTypes::n14n    : chargefactor = 7; break;
+        case ParticleTypes::n15n    : chargefactor = 7; break;
+        case ParticleTypes::o16n    : chargefactor = 8; break;
+        case ParticleTypes::o17n    : chargefactor = 8; break;
+        case ParticleTypes::o18n    : chargefactor = 8; break;
+        case ParticleTypes::f19n    : chargefactor = 9; break;
+        case ParticleTypes::ne20n   : chargefactor = 10; break;
+        case ParticleTypes::ne21n   : chargefactor = 10; break;
+        case ParticleTypes::ne22n   : chargefactor = 10; break;
+        case ParticleTypes::na23n   : chargefactor = 11; break;
+        case ParticleTypes::mg24n   : chargefactor = 12; break;
+        case ParticleTypes::mg25n   : chargefactor = 12; break;
+        case ParticleTypes::mg26n   : chargefactor = 12; break;
+        case ParticleTypes::al27n   : chargefactor = 13; break;
+        case ParticleTypes::si28n   : chargefactor = 14; break;
+        case ParticleTypes::si29n   : chargefactor = 14; break;
+        case ParticleTypes::si30n   : chargefactor = 14; break;
+        case ParticleTypes::p31n    : chargefactor = 15; break;
+        case ParticleTypes::s32n    : chargefactor = 16; break;
+        case ParticleTypes::s33n    : chargefactor = 16; break;
+        case ParticleTypes::s34n    : chargefactor = 16; break;
+        case ParticleTypes::s36n    : chargefactor = 16; break;
+        case ParticleTypes::cl35n   : chargefactor = 17; break;
+        case ParticleTypes::cl37n   : chargefactor = 17; break;
+        case ParticleTypes::ar36n   : chargefactor = 18; break;
+        case ParticleTypes::ar38n   : chargefactor = 18; break;
+        case ParticleTypes::ar40n   : chargefactor = 18; break;
+        case ParticleTypes::k39n    : chargefactor = 19; break;
+        case ParticleTypes::k40n    : chargefactor = 19; break;
+        case ParticleTypes::k41n    : chargefactor = 19; break;
+        case ParticleTypes::ca40n   : chargefactor = 20; break;
+        case ParticleTypes::ca42n   : chargefactor = 20; break;
+        case ParticleTypes::ca43n   : chargefactor = 20; break;
+        case ParticleTypes::ca44n   : chargefactor = 20; break;
+        case ParticleTypes::ca46n   : chargefactor = 20; break;
+        case ParticleTypes::ca48n   : chargefactor = 20; break;
+        case ParticleTypes::sc45n   : chargefactor = 21; break;
+        case ParticleTypes::ti46n   : chargefactor = 22; break;
+        case ParticleTypes::ti47n   : chargefactor = 22; break;
+        case ParticleTypes::ti48n   : chargefactor = 22; break;
+        case ParticleTypes::ti49n   : chargefactor = 22; break;
+        case ParticleTypes::ti50n   : chargefactor = 22; break;
+        case ParticleTypes::v50n    : chargefactor = 23; break;
+        case ParticleTypes::v51n    : chargefactor = 23; break;
+        case ParticleTypes::cr50n   : chargefactor = 24; break;
+        case ParticleTypes::cr52n   : chargefactor = 24; break;
+        case ParticleTypes::cr53n   : chargefactor = 24; break;
+        case ParticleTypes::cr54n   : chargefactor = 24; break;
+        case ParticleTypes::mn55n   : chargefactor = 25; break;
+        case ParticleTypes::fe54n   : chargefactor = 26; break;
+        case ParticleTypes::fe56n   : chargefactor = 26; break;
+        case ParticleTypes::fe57n   : chargefactor = 26; break;
+        case ParticleTypes::fe58n   : chargefactor = 26; break;
     }
+
+    // Convert to coulombs
+    if (chargefactor!=1000) {return chargefactor * qe;}
     // Catch bad input
-    if (chargefactor==1000)
+    else
     {
         std::ostringstream oss;
         oss << typeint << " does not correlate to a known particle type";
         throw std::invalid_argument(oss.str());
     }
-    
-    // Convert to coulombs
-    return chargefactor * qe;
 }

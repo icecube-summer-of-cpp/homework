@@ -81,19 +81,21 @@ double getcharge(const int typeint);
 
 enum class ParticleTypes
 {
-    /* Numbers given with four digits. Ex: 0001
-     * First digit:
-     *   0 = elementary
-     *   1 = composite
-     *   2 = nucleus
-     *   3 = atom
-     *   4 = molecule
-     * Second digit:
-     *   00 = boson
-     *   01 = lepton
-     *   02 = quark
-     *   12 = meson
-     *   13 = baryon
+    /* Numbers given with five digits. Ex: 10101
+     * Patterns:
+     *   Elementary particle - 00xxx
+     *     Bosons - 000xx
+     *     Leptons - 001xx
+     *     Quarks - 002xx
+     *   Composite particle - 01xxx
+     *     Mesons - 012xx
+     *     Baryons - 013xx
+     *   Atomic Nuclei - 1xxxx
+     *     Digits 2 & 3 give atomic number Z
+     *     Digits 4 & 5 give number of nucleons N
+     *   Atoms - 2xxxx
+     *     Digits 2 & 3 give atomic number Z
+     *   Molecules - 3xxxx
      */
     
     // Bosons
@@ -260,6 +262,73 @@ enum class ParticleTypes
     omega3_pccb = 1382,
     omega30cbb  = 1383,
     omega_mbbb  = 1384,
+    // Nuclei
+    h1n     = 10101,
+    h2n     = 10102,
+    h3n     = 10103,
+    he3n    = 10203,
+    he4n    = 10204,
+    li6n    = 10306,
+    li7n    = 10307,
+    be9n    = 10409,
+    b10n    = 10510,
+    b11n    = 10511,
+    c12n    = 10612,
+    c13n    = 10613,
+    c14n    = 10614,
+    n14n    = 10714,
+    n15n    = 10715,
+    o16n    = 10816,
+    o17n    = 10817,
+    o18n    = 10818,
+    f19n    = 10919,
+    ne20n   = 11020,
+    ne21n   = 11021,
+    ne22n   = 11022,
+    na23n   = 11123,
+    mg24n   = 11224,
+    mg25n   = 11225,
+    mg26n   = 11226,
+    al27n   = 11327,
+    si28n   = 11428,
+    si29n   = 11429,
+    si30n   = 11430,
+    p31n    = 11531,
+    s32n    = 11632,
+    s33n    = 11633,
+    s34n    = 11634,
+    s36n    = 11636,
+    cl35n   = 11735,
+    cl37n   = 11737,
+    ar36n   = 11836,
+    ar38n   = 11838,
+    ar40n   = 11840,
+    k39n    = 11939,
+    k40n    = 11940,
+    k41n    = 11941,
+    ca40n   = 12040,
+    ca42n   = 12042,
+    ca43n   = 12043,
+    ca44n   = 12044,
+    ca46n   = 12046,
+    ca48n   = 12048,
+    sc45n   = 12145,
+    ti46n   = 12246,
+    ti47n   = 12247,
+    ti48n   = 12248,
+    ti49n   = 12249,
+    ti50n   = 12250,
+    v50n    = 12350,
+    v51n    = 12351,
+    cr50n   = 12450,
+    cr52n   = 12452,
+    cr53n   = 12453,
+    cr54n   = 12454,
+    mn55n   = 12555,
+    fe54n   = 12654,
+    fe56n   = 12656,
+    fe57n   = 12657,
+    fe58n   = 12658,
 };
 
 #endif
