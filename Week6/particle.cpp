@@ -1,5 +1,8 @@
 #include "particle.h"
 
+//****************************//
+//         Base class         //
+//****************************//
 particle::particle(): energy_(NAN), pos_(), dir_(), time_(NAN), length_(NAN), speed_(NAN) {};
     
     // no setter for ID.  just a getter.
@@ -22,18 +25,19 @@ bool particle::operator!=(const particle& rhs) const {
   return !(*this == rhs);
 }
 
+//****************************//
+//          sim class         //
+//****************************//
 sim_particle::sim_particle(ParticleShape shape): energy_(NAN), pos_(), dir_(), time_(NAN), length_(NAN), speed_(NAN), shape_(shape) {};
 
-sim_particle::sim_particle(const position pos, const direction dir, ParticleShape shape, ParticleType type=unknown): NOTFINISHEDTHISPART 
+sim_particle::sim_particle(const float energy,const position pos,const direction dir, const float time, const float length, const float speed, ParticleShape shape, ParticleType type): 
 
+//****************************//
+//         reco class         //
+//****************************//
+reco_particle::reco_particle(FitStatus status): energy_(NAN), pos_(), dir_(), time_(NAN), length_(NAN), speed_(NAN), status_(status) {};
 
-class reco_particle: public particle{
-  public:
-
-  private:
-
-};
-
+reco_particle::reco_particle(const float energyconst position pos, const direction dir, FitStatus status, ParticleType type)
 
 int main(){
   particle p1;

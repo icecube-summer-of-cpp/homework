@@ -60,6 +60,9 @@ const uint64_t unique_id::global_pid_ = static_cast<uint64_t>(getpid());
 const uint64_t unique_id::global_time_ = std::chrono::system_clock::now().time_since_epoch().count();
 std::atomic<uint64_t> unique_id::global_cnt_(0);
 
+//****************************//
+//         Base class         //
+//****************************//
 class particle{
   public:
     enum ParticleType { // NB: These match the PDG codes. Keep it that way!
@@ -258,6 +261,9 @@ class particle{
     float speed_;
 };
 
+//****************************//
+//          sim class         //
+//****************************//
 class sim_particle: public particle{
   public:
     enum ParticleShape { 
@@ -273,13 +279,16 @@ class sim_particle: public particle{
     Dark = 90
   };
     sim_particle(ParticleShape shape);
-    sim_particle(const position pos, const direction dir, ParticleShape shape, ParticleType type=unknown);
+    sim_particle(const float energy, const position pos, const direction dir, const float time, const float length, const float speed, ParticleShape shape, ParticleType type=unknown);
 
   private:
     ParticleShape shape_;
 
 };
 
+//****************************//
+//         Reco class         //
+//****************************//
 class reco_particle: public particle{
   public:
     enum FitStatus {
@@ -291,11 +300,12 @@ class reco_particle: public particle{
     InsufficientQuality = 50
   };
     reco_particle(FitStatus status);
-    reco_particle(const position pos, const direction dir, FitStatus status, ParticleType type=unknown);
+    reco_particle(const float energy, const position pos, const direction dir, const float time, const float length, const float speed, FitStatus status, ParticleType type=unknown);
 
   private:
     FitStatus status_;
 
 };
+
 
 #endif
