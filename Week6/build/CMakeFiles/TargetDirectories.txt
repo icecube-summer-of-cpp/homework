@@ -1,0 +1,5 @@
+/home/ward/IceCube/CppTutorial/homework/Week6/build/CMakeFiles/direction.dir
+/home/ward/IceCube/CppTutorial/homework/Week6/build/CMakeFiles/position.dir
+/home/ward/IceCube/CppTutorial/homework/Week6/build/CMakeFiles/edit_cache.dir
+/home/ward/IceCube/CppTutorial/homework/Week6/build/CMakeFiles/particle.dir
+/home/ward/IceCube/CppTutorial/homework/Week6/build/CMakeFiles/rebuild_cache.dir

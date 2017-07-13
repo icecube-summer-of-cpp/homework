@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/oop.dir/oop.cpp.o  -o oop -rdynamic 
