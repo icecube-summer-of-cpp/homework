@@ -7,24 +7,20 @@ The unique_id class will likely come in handy as well.
 Class design
 ------------
 
-constructor, assignment, move, destructor, comparison, getter, setters, tests, comments, printing, functionallity
-
-FOUR_VECTOR
-
-
-                    PARTICLE                    DIRECTION               POSITION                    UNIQUE_ID
-                    --------                    ---------               --------                    ---------
-                    + direction                 + zenith                + x, y, z                   + process (PID)
-                    + position                  + azimuth               + relative to               + host (IP/hostname/MAC)
-                    
-                    + unique_id                 - setter                * distance to (position)    + time  ns since epoch
-                    + energy                    - getter                                            + id    incremental number
-                    + momentum                  - getter other formats
-                    + mass                      - setter other formats
-                    + type                      * addition
-                    + charge                    * substraction
-                    + quantum numbers
-                
+                    PARTICLE                    FOUR_VECTOR          UNIQUE_ID
+                    --------                    -----------          ---------
+                    + direction                 + x0, x1, x2, x3     + id    incremental number
+                    + position                  - setter             + process (PID)
+                    + unique_id                 - getter             + time  ns since epoch
+                    + energy                    - +=                 * ==
+                    + momentum                  - -=                 * !=
+                    + mass                      - *=                 * <<
+                    + type                      * <<
+                    + charge                    * +
+                    + quantum numbers		    * -
+						                        * *
+                                                * ==
+                                                * !=
             
     SIM_PARTICLE            RECO_PARTICLE
     ------------            -------------
