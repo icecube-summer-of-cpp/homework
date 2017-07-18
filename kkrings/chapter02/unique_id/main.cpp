@@ -7,21 +7,19 @@
 
 int main()
 {
-    particle p1(1000.);
+    particle p1;
+    std::cout << "Particle p1: id = " << p1.id() << std::endl;
 
-    std::cout << "Particle p1: energy = " << p1.energy
-              << ", id = " << p1.id()
-              << std::endl;
-
-    particle p2(1000.);
-
-    std::cout << "Particle p2: energy = " << p2.energy
-              << ", id = " << p2.id()
-              << std::endl;
+    particle p2(particle_type::numu);
+    std::cout << "Particle p2: id = " << p2.id() << std::endl;
 
     assert(p1 != p2);
 
-    unique_id testid(p1.id());
+    unique_id test_id(p1.id());
     std::vector<particle> particles = {p1, p2};
-    assert(testid == particles.front().id());
+
+    assert(test_id == particles.front().id());
+
+    particle p3(particle_type::photon);
+    std::cout << "Particle p3: id = " << p3.id() << std::endl;
 }

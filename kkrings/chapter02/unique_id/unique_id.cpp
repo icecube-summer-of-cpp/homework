@@ -1,4 +1,5 @@
 #include <unistd.h>
+
 #include "unique_id.hpp"
 
 unsigned int unique_id::generated_ = 0;
