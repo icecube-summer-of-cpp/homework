@@ -59,6 +59,48 @@ std::ostream& operator <<(std::ostream& os, const four_vector& vect){
     return os << s.str() ;
 }
 
+// comparison
+bool operator==(const four_vector& lhs, const four_vector& rhs) { 
+    return (lhs.coef_ == rhs.coef_); 
+};
+
+bool operator!=(const four_vector& lhs, const four_vector& rhs) {
+    return !(lhs == rhs);
+};
+
+// functionality
+four_vector operator+(const four_vector& lhs, const four_vector& rhs){
+    four_vector temp;
+    for(int index=0; index<4; index++){
+        temp[index] = lhs[index] + rhs[index];
+    }
+    return temp;
+};
+
+four_vector operator-(const four_vector& lhs, const four_vector& rhs){
+    return lhs + (-1.*rhs);
+}
+
+four_vector operator*(const four_vector& vect, const double scalar){
+    four_vector temp;
+    for(int index=0; index<4; index++){
+        temp[index] = vect[index] * scalar;
+    }
+    return temp;
+}
+
+four_vector operator*(const double scalar, const four_vector& vect){
+    return vect*scalar;
+};
+
+float       operator*(const four_vector& lhs, const four_vector& rhs){
+    float sum = lhs[0] * rhs[0];
+    for(int index=1; index<4; index++){
+        sum -= lhs[index] * rhs[index];
+    }
+    return sum;
+}
+
 TEST(FourVectorTest, Constructors) {
   four_vector a;
   four_vector b{0,1,2,3};
@@ -145,46 +187,4 @@ TEST(FourVectorTest, ScalarProd) {
   four_vector x{0,1,2,3};
   EXPECT_FALSE(x*x >0);
   EXPECT_TRUE(x*x == -14);
-}
-
-// comparison
-bool operator==(const four_vector& lhs, const four_vector& rhs) { 
-    return (lhs.coef_ == rhs.coef_); 
-};
-
-bool operator!=(const four_vector& lhs, const four_vector& rhs) {
-    return !(lhs == rhs);
-};
-
-// functionality
-four_vector operator+(const four_vector& lhs, const four_vector& rhs){
-    four_vector temp;
-    for(int index=0; index<4; index++){
-        temp[index] = lhs[index] + rhs[index];
-    }
-    return temp;
-};
-
-four_vector operator-(const four_vector& lhs, const four_vector& rhs){
-    return lhs + (-1.*rhs);
-}
-
-four_vector operator*(const four_vector& vect, const double scalar){
-    four_vector temp;
-    for(int index=0; index<4; index++){
-        temp[index] = vect[index] * scalar;
-    }
-    return temp;
-}
-
-four_vector operator*(const double scalar, const four_vector& vect){
-    return vect*scalar;
-};
-
-float       operator*(const four_vector& lhs, const four_vector& rhs){
-    float sum = lhs[0] * rhs[0];
-    for(int index=1; index<4; index++){
-        sum -= lhs[index] * rhs[index];
-    }
-    return sum;
 }
