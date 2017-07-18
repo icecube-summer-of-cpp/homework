@@ -20,6 +20,7 @@
 #include <sstream>
 #include <assert.h>
 #include <cmath>
+#include "gtest/gtest.h"
 
 class four_vector {
     public:

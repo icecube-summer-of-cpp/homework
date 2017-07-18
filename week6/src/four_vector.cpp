@@ -59,6 +59,94 @@ std::ostream& operator <<(std::ostream& os, const four_vector& vect){
     return os << s.str() ;
 }
 
+TEST(FourVectorTest, Constructors) {
+  four_vector a;
+  four_vector b{0,1,2,3};
+  four_vector c = {0,1,2,3};
+  four_vector d(b);
+  four_vector e(0, 1, 2, 3);
+  EXPECT_NE(a, a);
+  EXPECT_EQ(b, b);
+  EXPECT_EQ(c, c);
+  EXPECT_EQ(d, d);
+  EXPECT_EQ(e, e);
+  EXPECT_NE(a, b);
+  EXPECT_EQ(c, b);
+  EXPECT_EQ(d, b);
+  EXPECT_EQ(e, b);
+}
+
+TEST(FourVectorTest, AssignmentsGetterSetter) {
+  four_vector a;
+  four_vector b{0,1,2,3};
+  four_vector c;
+  c = b;
+  a[0] = 0;
+  a[1] = 1;
+  a[2] = 2;
+  a[3] = 3;
+  EXPECT_EQ(a, b);
+  EXPECT_EQ(b, b);
+  EXPECT_EQ(c, b);
+  EXPECT_EQ(b[0], 0.);
+  EXPECT_EQ(b[1], 1.);
+  EXPECT_EQ(b[2], 2.);
+  EXPECT_EQ(b[3], 3.);
+}
+
+TEST(FourVectorTest, Printing) {
+    std::string a = "(0, 1, 2, 3)";
+    four_vector b{0,1,2,3};
+    std::stringstream stream("");
+    stream << b;
+    EXPECT_EQ(a, stream.str());
+}
+
+TEST(FourVectorTest, Addition) {
+    four_vector a= {0, 0, 0, 0};
+    four_vector b= {0, 1, 2, 3};
+    four_vector c;
+    four_vector d= {0, 2, 4, 6};
+    a += {0, 1, 2, 3};
+    EXPECT_EQ(a, b);
+    c = b + b;
+    EXPECT_EQ(c, d);
+}
+
+TEST(FourVectorTest, Substraction) {
+    four_vector a= {0, 0, 0, 0};
+    four_vector b= {0, 1, 2, 3};
+    four_vector c;
+    four_vector d= {0, 2, 4, 6};
+    c = a;
+    a -= b;
+    EXPECT_EQ(a, -1*b);
+    a += b;
+    EXPECT_EQ(a, c);
+    c = b + b;
+    EXPECT_EQ(c, 2*b);
+    c = b - b;
+    EXPECT_EQ(c, a);
+}
+
+TEST(FourVectorTest, ScalarMultiplication) {
+    four_vector a= {0, 0, 0, 0};
+    four_vector b= {0, 1, 2, 3};
+    four_vector c = b;
+    
+    c *= -1;
+
+    EXPECT_EQ(a-b, c);
+    EXPECT_EQ(b+b+b, 3*b);
+    EXPECT_EQ(a, 0*b);
+}
+
+TEST(FourVectorTest, ScalarProd) {
+  four_vector x{0,1,2,3};
+  EXPECT_FALSE(x*x >0);
+  EXPECT_TRUE(x*x == -14);
+}
+
 // comparison
 bool operator==(const four_vector& lhs, const four_vector& rhs) { 
     return (lhs.coef_ == rhs.coef_); 
