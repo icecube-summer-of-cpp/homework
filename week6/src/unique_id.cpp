@@ -33,9 +33,6 @@ TEST(UniqueIdTest, construct) {
   unique_id id1;
   unique_id id2;
   unique_id id3(id2);
-  std::cout << id1 << std::endl;
-  std::cout << id2 << std::endl;
-  std::cout << id3 << std::endl;
   EXPECT_EQ(id1, id1);
   EXPECT_EQ(id2, id2);
   EXPECT_EQ(id3, id3);
