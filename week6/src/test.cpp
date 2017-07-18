@@ -78,10 +78,10 @@ TEST(FourVectorTest, Substraction) {
     four_vector b= {0, 1, 2, 3};
     four_vector c;
     four_vector d= {0, 2, 4, 6};
-    a -= b;
     c = a;
+    a -= b;
     EXPECT_EQ(a, -1*b);
-    b += a;
+    a += b;
     EXPECT_EQ(a, c);
     c = b + b;
     EXPECT_EQ(c, 2*b);
@@ -90,6 +90,15 @@ TEST(FourVectorTest, Substraction) {
 }
 
 TEST(FourVectorTest, ScalarMultiplication) {
+    four_vector a= {0, 0, 0, 0};
+    four_vector b= {0, 1, 2, 3};
+    four_vector c = b;
+    
+    c *= -1;
+
+    EXPECT_EQ(a-b, c);
+    EXPECT_EQ(b+b+b, 3*b);
+    EXPECT_EQ(a, 0*b);
 }
 
 TEST(FourVectorTest, ScalarProd) {
@@ -100,37 +109,6 @@ TEST(FourVectorTest, ScalarProd) {
 
 int main (int argc, char **argv) 
 {
-    
-    std::cout << "Test-Four Vector" << std::endl;
-    
-    four_vector x;
-    four_vector y{0, 1, 2, 3};
-    four_vector z = {0, 2, 4, 6};
-    std::cout << z << std::endl;
-    
-    x = y + z;
-    std::cout << x << std::endl;
-    std::cout << y << std::endl;
-    x += y;
-    
-    std::cout << x << std::endl;
-    
-    x *= 2;
-    
-    std::cout << x << std::endl;
-    
-    std::cout << 2*x << std::endl;
-    
-    std::cout << 2*x - y << std::endl;
-    
-    std::cout << x*x << std::endl;
-    
-    x = z;
-    std::cout << x << std::endl;
-    
-    y = {5,4,3,2};
-    std::cout << y << std::endl;
-    
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
     
