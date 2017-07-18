@@ -43,7 +43,7 @@ endif()
 ##
 ## My part
 ##
-add_executable(test test.cpp particle.hpp particle.cpp unique_id.hpp unique_id.cpp four_vector.hpp four_vector.cpp)
+add_executable(test test.cpp particle.hpp particle.cpp unique_id.hpp unique_id.cpp four_vector.hpp four_vector.cpp particle_properties.hpp particle_properties.cpp)
 # Now simply link against gtest or gtest_main as needed. Eg
 target_link_libraries(test gtest_main)
 add_test(NAME test_test COMMAND test)
