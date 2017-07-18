@@ -4,6 +4,6 @@
 #include <iostream>
 #include <fstream>
 
-void print_matrix_header(std::ofstream file);
+void print_matrix_header(std::ifstream& file);
 
 #endif
