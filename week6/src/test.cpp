@@ -19,12 +19,4 @@ int main (int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
-    
-    /*
-    particle p1;
-    particle p2;
-    p1.set_energy(1000);
-    p2.set_energy(1000);
-    assert(p1 != p2);
-    */
 }
