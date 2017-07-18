@@ -20,33 +20,32 @@
 class particle{
     public:
         // constructors
-        particle(): quantum_numb_(particle_type::undefined) {};
-        particle(particle_type p_type): quantum_numb_(p_type) {};
+        particle();
+        particle(particle_type);
+        particle(particle_type, four_vector, four_vector);
         particle(const particle&) = default;
         particle(particle&&) = default;
-        //particle(std::initializer_list<float> values);
        
         // assignments
         particle& operator=(const particle&) = default;
         particle& operator=(particle&&) = default;
-        //particle& operator=(std::initializer_list<float> values);
         
         // destructor
         ~particle() = default;   
 
         // comparisons
-        bool operator==(const particle& rhs) const { return (id_ == rhs.id()); }; // (energy_ == rhs.get_energy()) && 
-        bool operator!=(const particle& rhs) const { return !(*this == rhs); };
+        bool operator==(const particle&) const;
+        bool operator!=(const particle&) const;
        
         // getter and setter
-        unique_id id() const { return id_; }
-        //void set_energy(float energy){ energy_ = energy; }
-        //float get_energy() const { return energy_; }
+        unique_id id() const;
+        void set_energy(float energy);
+        float get_energy() const;
    
         // functionallity
         
     private:
-        particle_type quantum_numb_; // mass, type, charge
+        particle_type quantum_numb_;
         four_vector time_space_;
         four_vector energy_momentum_;
         unique_id id_;
