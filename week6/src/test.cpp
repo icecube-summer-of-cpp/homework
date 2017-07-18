@@ -15,8 +15,6 @@
 #include "four_vector.hpp"
 #include "gtest/gtest.h"
 
-
-
 int main (int argc, char **argv) 
 {
     ::testing::InitGoogleTest(&argc, argv);
@@ -27,8 +25,6 @@ int main (int argc, char **argv)
     particle p2;
     p1.set_energy(1000);
     p2.set_energy(1000);
-    // p1 and p2 are not the same particle even if their properties are different.
     assert(p1 != p2);
-    std::vector<particle> particle_list = {p1, p2};
     */
 }

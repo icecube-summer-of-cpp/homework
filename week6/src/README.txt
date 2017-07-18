@@ -9,18 +9,14 @@ Class design
 
                     PARTICLE                    FOUR_VECTOR          UNIQUE_ID
                     --------                    -----------          ---------
-                    + direction                 + x0, x1, x2, x3     + id    incremental number
-                    + position                  - setter             + process (PID)
-                    + unique_id                 - getter             + time  ns since epoch
-                    + energy                    - +=                 * ==
-                    + momentum                  - -=                 * !=
-                    + mass                      - *=                 * <<
-                    + type                      * <<
-                    + charge                    * +
-                    + quantum numbers		    * -
-						                        * *
-                                                * ==
-                                                * !=
+                    + time / position           + x0, x1, x2, x3     + id    incremental number
+                    + energy / momentum         - setter / getter    + process (PID)
+                    + unique_id                 - ostream            + time  ns since epoch
+                    + type                      - comparison         * comparison
+                    - mass                      - addition           * ostream
+                    - charge                    - substraction
+                                                * scalar multip.
+                                                * scalar prod.
             
     SIM_PARTICLE            RECO_PARTICLE
     ------------            -------------
