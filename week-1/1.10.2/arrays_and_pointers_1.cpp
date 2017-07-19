@@ -15,6 +15,27 @@ int main()
     int b[] = {0,1,2,3,4,5,6,7,8,9};
     std::vector<int> b_modern = {0,1,2,3,4,5,6,7,8,9};
     
+    // easy way to iterate over arrays and vectors:
+    for (auto i : b_modern) std::cout << i << std::endl; // copying the value
+    for (auto& i : b_modern) // copying the reference
+    {
+        i = i*10;
+    }
+    // when to do this?
+    // - when I want to change a value
+    // - when it's a container instead of an int
+    // - when it's some class that has containers
+    // - in general, passing by value is faster! (CPU prefetches continuous memory)
+    for (auto i : b_modern) std::cout << i << std::endl;
+    
+    for (auto i : b) std::cout << i << std::endl; // copying the value
+    for (auto& i : b) // copying the reference
+    {
+        i = i-10;
+    }
+    for (auto i : b) std::cout << i << std::endl;
+
+    
     // c) pointer to an array of 10 integers
     int* c = new int[10]{0,1,2,3,4,5,6,7,8,9}; // I don't understand this (!)
     auto c_modern = std::make_unique<std::vector<int>>(std::vector<int>{0,1,2,3,4,5,6,7,8,9});
