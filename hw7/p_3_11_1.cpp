@@ -1,3 +1,10 @@
+/* Ben Hokanson-Fasig
+ * Discovering Modern C++ - Exercise 3.11.1
+ * Write a generic function to_string that takes an argument of an arbitrary
+ * type (as const&) and generates a string by piping it to a std::stringstream
+ * and returning the resulting string.
+ */
+ 
 #include <iostream>
 #include <sstream>
 #include <string>
