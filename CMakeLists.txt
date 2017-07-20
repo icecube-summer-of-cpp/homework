@@ -9,5 +9,7 @@ add_subdirectory(./homework/2017-07-17)
 add_subdirectory(./quizes/1)
 add_subdirectory(./quizes/2)
 add_subdirectory(./quizes/3)
+add_subdirectory(./quizes/4)
 add_executable(foo test.cpp)
 add_executable(6.7.2 6.7.2.cpp)
+

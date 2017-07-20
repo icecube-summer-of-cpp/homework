@@ -53,14 +53,85 @@ public:
     };
 };
 
+//from book
+class bit_proxy{
+    unsigned char& byte;
+    unsigned char mask;
+public:
+    bit_proxy(unsigned char& byte, unsigned short p) : byte(byte), mask(1 << p){};
+    operator bool() const {return byte & mask;};
+    bit_proxy& operator=(bool b){
+      if(b){
+        byte|= mask;
+      }else{
+        byte&= ~mask;
+      }
+      return *this;
+    }
+    
+};
+
+//add partial implementation for bool types
+template <unsigned N>
+class fixedsizestack<bool, N>{
+    unsigned char data[N/2+1];
+    unsigned pos;
+public:
+    fixedsizestack() = default;
+    ~fixedsizestack() = default;
+    bool top(){
+      unsigned char& tmp = data[pos / 8];
+      return bit_proxy(tmp, pos % 8);
+    };
+    void pop(){
+      if (pos == 0){
+        throw Empty();
+      }
+      pos--;
+      assert(pos >= 0);
+    };
+    
+    void push(const bit_proxy& newval){
+      this->push(newval);
+    };
+    
+    void push(const bool& newval){
+      if (pos == N){
+        throw Full();
+      }
+      ++pos;
+      bit_proxy(data[pos / 8], pos % 8) = newval;
+      assert(pos <= N);
+    };
+    
+    
+    void clear(){
+      pos = 0;
+      //no need to call destructors on bools
+    };
+    unsigned size(){
+      return pos;
+    };
+    
+    bool full(){
+      return pos == N;
+    };
+    bool empty(){
+      return pos == 0;
+    };
+};
+
+
+
+
 
 int main(){
   const unsigned N = {100};
-  auto stack = fixedsizestack<int, N>();
+  auto stack = fixedsizestack<bool, N>();
   for(int i = 1; i <=N; i++){
-    stack.push(i);
+    stack.push(false);
   }
-  assert(stack.top() == N);
+  assert(!stack.top());
   assert(stack.size() == N);
   assert(stack.full());
   stack.clear();
@@ -80,12 +151,13 @@ int main(){
   try
   {
     for(int i = 1; i <=N+1; i++){
-      stack.push(i);
+      stack.push(true);
     }
   }
   catch(Full&){
     exceptionThrown = true;
   }
+  assert(stack.top());
   assert(exceptionThrown);
   return 0;
 }
