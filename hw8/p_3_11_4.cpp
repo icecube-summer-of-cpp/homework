@@ -94,7 +94,6 @@ class vector
             iterator_entry* next;
         };
 
-
         class iterator
         {
             public:
@@ -154,32 +153,37 @@ class vector
                 iterator_entry* entry;
         };
 
+        struct iterator_list
+        {
+            iterator_list() : first(0), last(0) {}
+            ~iterator_list()
+            {
+                while (first)
+                {
+                    iterator_entry *tmp= first->next;
+                    delete first;
+                    first= tmp;
+                }
+            }
+            void append(const T& x)
+            {
+                last= (first ? last->next : first)= new iterator_entry(x);
+            }
+            iterator begin() { return iterator(first); }
+            iterator end() { return iterator(0); }
+
+            iterator_entry *first, *last;
+        };
+
 
         iterator begin()
         {
             std::cout << "begin" << std::endl;
             if (my_size==0) {return iterator(0);}
             std::cout << "  not zero" << std::endl;
-            iterator_entry curr(0);
-            std::cout << "  setup curr" << std::endl;
-            iterator_entry next(data[my_size-1]);
-            std::cout << "  setup next" << std::endl;
-            // std::cout << next.next;
-            // std::cout << "  final: " << next.next << std::endl;
-            for (int i=my_size-2; i>=0; --i)
-            {
-                std::cout << i << std::endl;
-                std::cout << "  next=" << next.value;
-                std::cout << " (" << next.next << ")" << std::endl;
-                curr.value = data[i];
-                std::cout << "  curr=" << curr.value;
-                curr.next = &next;
-                std::cout << "  curr.next=" << curr.next->value;
-                std::cout << " (" << curr.next << ")" << std::endl;
-                iterator_entry next = curr;
-            }
-            std::cout << "begin done" << std::endl;
-            return iterator(&curr);
+            iterator_list list;
+            for (int i=0; i<my_size; ++i) {list.append(data[i]);}
+            return list.begin();
         }
 
         iterator end()
