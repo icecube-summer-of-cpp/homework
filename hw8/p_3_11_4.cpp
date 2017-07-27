@@ -109,11 +109,12 @@ class vector
         {
             // Attributes
             T value;
+            std::shared_ptr<iter_entry> prev;
             std::shared_ptr<iter_entry> next;
 
             // Constructor
-            iter_entry() : value(), next(nullptr) {}
-            iter_entry(const T& val) : value(val), next(nullptr) {}
+            iter_entry() : value(), prev(nullptr), next(nullptr) {}
+            iter_entry(const T& val) : value(val), prev(nullptr), next(nullptr) {}
             // Destructor
             ~iter_entry() = default;
             // Copy Constructor
@@ -126,7 +127,16 @@ class vector
             iter_entry& operator=(iter_entry&&) = default;
 
             // Link to next entry
-            void link(iter_entry nxt) {next = std::make_shared<iter_entry>(nxt);}
+            void link(iter_entry nxt)
+            {
+                next = std::make_shared<iter_entry>(nxt);
+                next->prev = std::make_shared<iter_entry>(*this);
+            }
+            void linkback(iter_entry prv)
+            {
+                prev = std::make_shared<iter_entry>(prv);
+                prev->next = std::make_shared<iter_entry>(*this);
+            }
         };
 
         struct iterator
@@ -162,6 +172,19 @@ class vector
             {
                 iterator tmp(*this);
                 curr = *curr.next;
+                return tmp;
+            }
+
+            // Decrementing
+            iterator& operator--()
+            {
+                curr = *curr.prev;
+                return *this;
+            }
+            iterator& operator--(int)
+            {
+                iterator tmp(*this);
+                curr = *curr.prev;
                 return tmp;
             }
 
@@ -233,7 +256,8 @@ std::ostream& operator<<(std::ostream& os, const vector<T>& v)
 // template <typename T>
 std::ostream& operator<<(std::ostream& os, const vector<int>::iterator& i)
 {
-    return os << i.curr.value << "->(" << i.curr.next.get() << ")";
+    return os << "(" << i.curr.prev.get() << ")->" << i.curr.value
+    << "->(" << i.curr.next.get() << ")";
 }
 
 
@@ -249,11 +273,11 @@ int main()
     std::cout << a << std::endl;
 
     std::cout << "\nbegin" << std::endl;
-    auto i = a.begin();
-    std::cout << "i = " << i << std::endl;
-    while (i.curr.next!=nullptr) {
-        ++i;
-        std::cout << "i = " << i << std::endl;
+    auto i0 = a.begin();
+    std::cout << "i0 = " << i0 << std::endl;
+    while (i0.curr.next!=nullptr) {
+        ++i0;
+        std::cout << "i0 = " << i0 << std::endl;
     }
 
     std::cout << a << std::endl;
@@ -261,7 +285,24 @@ int main()
     std::cout << "\nend" << std::endl;
     auto i2 = a.end();
     std::cout << "i2 = " << i2 << std::endl;
-    std::cout << "i2==i : 1=" << (i2==i) << std::endl;
+    std::cout << "i2==i0 : 1=" << (i2==i0) << std::endl;
+
+    std::cout << "\nincrementing" << std::endl;
+    int inc_amount = 2;
+    auto id = a.begin();
+    for (int i=0; i<inc_amount; ++i)
+    {
+        std::cout << "id[" << i << "] = " << id << std::endl;
+        ++id;
+    }
+    std::cout << "id[" << inc_amount << "] = " << id << std::endl;
+
+    std::cout << "\ndecrementing" << std::endl;
+    for (int i=inc_amount-1; i>=0; --i)
+    {
+        --id;
+        std::cout << "id[" << i << "] = " << id << std::endl;
+    }
 
     std::cout << "\ndereferencing" << std::endl;
     auto i3 = a.begin();
