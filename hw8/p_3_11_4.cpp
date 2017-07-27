@@ -112,7 +112,7 @@ class vector
             std::shared_ptr<iter_entry> next;
 
             // Constructor
-            iter_entry() : next(nullptr) {}
+            iter_entry() : value(), next(nullptr) {}
             iter_entry(const T& val) : value(val), next(nullptr) {}
             // Destructor
             ~iter_entry() = default;
@@ -168,7 +168,17 @@ class vector
             // Equality
             bool operator==(const iterator& rhs)
             {
-                return (rhs.curr.value==curr.value && rhs.curr.next==curr.next);
+                if (curr.value!=rhs.curr.value) {return false;}
+                iterator a = *this;
+                iterator b = rhs;
+                while (a.curr.next!=nullptr && b.curr.next!=nullptr)
+                {
+                    ++a;
+                    ++b;
+                    if (a.curr.value!=b.curr.value) {return false;}
+                }
+                if (a.curr.next!=nullptr || b.curr.next!=nullptr) {return false;}
+                else {return true;}
             }
             bool operator!=(const iterator& rhs) {return !(*this==rhs);}
         };
@@ -176,8 +186,8 @@ class vector
         iterator begin()
         {
             if (my_size==0) {return iterator();}
-            iter_entry curr(data[my_size-1]);
-            for (int i=my_size-2; i>=0; --i)
+            iter_entry curr;
+            for (int i=my_size-1; i>=0; --i)
             {
                 iter_entry prev(data[i]);
                 prev.link(curr);
@@ -251,6 +261,7 @@ int main()
     std::cout << "\nend" << std::endl;
     auto i2 = a.end();
     std::cout << "i2 = " << i2 << std::endl;
+    std::cout << "i2==i : 1=" << (i2==i) << std::endl;
 
     std::cout << "\ndereferencing" << std::endl;
     auto i3 = a.begin();
@@ -274,12 +285,25 @@ int main()
     std::cout << "\nequality" << std::endl;
     auto i4 = a.begin();
     auto j = a.begin();
-    std::cout << "i4 = " << i4 << std::endl;
-    std::cout << "j = " << j << std::endl;
-    std::cout << "1=" << (i4==j) << std::endl;
+    std::cout << "same val, same pos" << std::endl;
+    std::cout << "  i4 = " << i4 << std::endl;
+    std::cout << "  j = " << j << std::endl;
+    std::cout << "  1=" << (i4==j) << std::endl;
 
-    ++i4; ++j;// ++j; ++j;
-    std::cout << "i4 = " << i4 << std::endl;
-    std::cout << "j = " << j << std::endl;
-    std::cout << "0=" << (i4==j) << std::endl;
+    std::cout << "same val, same pos (increment in equality)" << std::endl;
+    std::cout << "  i4 next val = " << i4.curr.next->value << std::endl;
+    std::cout << "  j next val = " << j.curr.next->value << std::endl;
+    std::cout << "  1=" << (++i4==++j) << std::endl;
+
+    ++j;
+    std::cout << "different val, different pos" << std::endl;
+    std::cout << "  i4 = " << i4 << std::endl;
+    std::cout << "  j = " << j << std::endl;
+    std::cout << "  0=" << (i4==j) << std::endl;
+    
+    ++j;
+    std::cout << "same val, different pos" << std::endl;
+    std::cout << "  i4 = " << i4 << std::endl;
+    std::cout << "  j = " << j << std::endl;
+    std::cout << "  0=" << (i4==j) << std::endl;
 }
