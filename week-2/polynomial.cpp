@@ -19,11 +19,7 @@
  * initializer list. The degree of the polynomial should be the length of the
  * initializer list minus one afterward.
  */
-Polynomial::Polynomial(const int& degree) : degree(degree), coeffs(std::vector<double>(degree+1))
-{
-        for (int i=0; i<degree+1;i++) coeffs[i] = 0;
-}
-    
+Polynomial::Polynomial(const int& degree) : degree(degree), coeffs(std::vector<double>(degree+1, 0.)) {}
 
 std::ostream& operator<<(std::ostream& os, const Polynomial& p)
 {
