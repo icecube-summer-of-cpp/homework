@@ -169,21 +169,18 @@ class vector
         iterator begin()
         {
             if (my_size==0) {return iterator();}
-            iter_entry curr(data[0]);
-            std::cout << "  first: " << curr.value << std::endl;
-            std::cout << "  first.next: " << curr.next.get() << std::endl;
-            std::unique_ptr<iter_entry> start = std::make_unique<iter_entry>(curr);
-            for (int i=1; i<my_size; ++i)
+            iter_entry curr(data[my_size-1]);
+            for (int i=my_size-2; i>=0; --i)
             {
-                iter_entry next(data[i]);
-                curr.link(next);
+                iter_entry prev(data[i]);
+                prev.link(curr);
                 std::cout << "  curr: " << curr.value << std::endl;
                 std::cout << "  curr.next: " << curr.next.get() << std::endl;
-                curr = *curr.next;
+                curr = prev;
             }
-            std::cout << "  first: " << start->value << std::endl;
-            std::cout << "  first.next: " << start->next.get() << std::endl;
-            return iterator(*start);
+            std::cout << "  first: " << curr.value << std::endl;
+            std::cout << "  first.next: " << curr.next.get() << std::endl;
+            return iterator(curr);
         }
 
         iterator end()
@@ -223,10 +220,11 @@ int main()
     a[0] = 1;
     a[1] = 2;
     a[2] = 3;
-    a[3] = 4;
+    a[3] = 2;
     a[4] = 5;
     std::cout << a << std::endl;
 
+    std::cout << "begin" << std::endl;
     auto i = a.begin();
     std::cout << "value: " << i.curr.value << std::endl;
     std::cout << "next: " << i.curr.next.get() << std::endl;
@@ -235,4 +233,9 @@ int main()
         std::cout << "value: " << i.curr.value << std::endl;
         std::cout << "next: " << i.curr.next.get() << std::endl;
     }
+
+    std::cout << "end" << std::endl;
+    auto i2 = a.end();
+    std::cout << "value: " << i2.curr.value << std::endl;
+    std::cout << "next: " << i2.curr.next.get() << std::endl;
 }
