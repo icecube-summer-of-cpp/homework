@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <exception>
 #include <iostream>
+// #include <iterator>
 #include <memory>
 
 
@@ -101,9 +102,110 @@ class vector
                 sum[i] = data[i] + that[i];
             return sum;
         }
+
+
+        // Iteration
+        struct iter_entry
+        {
+            // Attributes
+            T value;
+            std::shared_ptr<iter_entry> next;
+
+            // Constructor
+            iter_entry() : next(nullptr) {}
+            iter_entry(const T& val) : value(val), next(nullptr) {}
+            // Destructor
+            ~iter_entry() = default;
+            // Copy Constructor
+            iter_entry(const iter_entry&) = default;
+            // Move Constructor
+            iter_entry(iter_entry&&) = default;
+            // Copy Assignment
+            iter_entry& operator=(const iter_entry&) = default;
+            // Move Assignment
+            iter_entry& operator=(iter_entry&&) = default;
+
+            // Link to next entry
+            void link(iter_entry nxt) {next = std::make_shared<iter_entry>(nxt);}
+        };
+
+        struct iterator
+        {
+            // Attributes
+            iter_entry curr;
+
+            // Constructors
+            iterator() = default;
+            iterator(const iter_entry entry) : curr(entry) {};
+            // Destructor
+            ~iterator() = default;
+            // Copy Constructor
+            iterator(const iterator&) = default;
+            // Move Constructor
+            iterator(iterator&&) = default;
+            // Copy Assignment
+            iterator& operator=(const iterator&) = default;
+            // Move Assignment
+            iterator& operator=(iterator&&) = default;
+
+            // Dereferencing
+            T& operator*() {return curr.value;}
+
+            // Incrementing
+            iterator& operator++()
+            {
+                curr = *curr.next;
+                return *this;
+            }
+            iterator& operator++(int)
+            {
+                iterator tmp(*this);
+                curr = *curr.next;
+                return tmp;
+            }
+        };
+
+
+        iterator begin()
+        {
+            if (my_size==0) {return iterator();}
+            iter_entry curr(data[0]);
+            std::cout << "  first: " << curr.value << std::endl;
+            std::cout << "  first.next: " << curr.next.get() << std::endl;
+            std::unique_ptr<iter_entry> start = std::make_unique<iter_entry>(curr);
+            for (int i=1; i<my_size; ++i)
+            {
+                iter_entry next(data[i]);
+                curr.link(next);
+                std::cout << "  curr: " << curr.value << std::endl;
+                std::cout << "  curr.next: " << curr.next.get() << std::endl;
+                curr = *curr.next;
+            }
+            std::cout << "  first: " << start->value << std::endl;
+            std::cout << "  first.next: " << start->next.get() << std::endl;
+            return iterator(*start);
+        }
+
+        iterator end()
+        {
+            return iterator();
+        }
 };
 
 
+// // Iterator traits
+// template<typename T>
+// struct std::iterator_traits<iterator>
+// {
+//     using difference_type = std::ptrdiff_t;
+//     using value_type = T;
+//     using pointer = T*;
+//     using reference = T&;
+//     using iterator_category = std::random_access_iterator_tag;
+// };
+
+
+// Vector print function
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const vector<T>& v)
 {
@@ -118,10 +220,19 @@ std::ostream& operator<<(std::ostream& os, const vector<T>& v)
 int main()
 {
     vector<int> a(5);
-    a[0] = 2;
-    a[1] = 1;
-    a[2] = 0;
-    a[3] = 2;
-    a[4] = 4;
+    a[0] = 1;
+    a[1] = 2;
+    a[2] = 3;
+    a[3] = 4;
+    a[4] = 5;
     std::cout << a << std::endl;
+
+    auto i = a.begin();
+    std::cout << "value: " << i.curr.value << std::endl;
+    std::cout << "next: " << i.curr.next.get() << std::endl;
+    while (i.curr.next!=nullptr) {
+        ++i;
+        std::cout << "value: " << i.curr.value << std::endl;
+        std::cout << "next: " << i.curr.next.get() << std::endl;
+    }
 }
