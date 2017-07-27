@@ -150,6 +150,7 @@ class vector
 
             // Dereferencing
             T& operator*() {return curr.value;}
+            T* operator->() {return &curr.value;}
 
             // Incrementing
             iterator& operator++()
@@ -163,8 +164,14 @@ class vector
                 curr = *curr.next;
                 return tmp;
             }
-        };
 
+            // Equality
+            bool operator==(const iterator& rhs)
+            {
+                return (rhs.curr.value==curr.value && rhs.curr.next==curr.next);
+            }
+            bool operator!=(const iterator& rhs) {return !(*this==rhs);}
+        };
 
         iterator begin()
         {
@@ -174,12 +181,12 @@ class vector
             {
                 iter_entry prev(data[i]);
                 prev.link(curr);
-                std::cout << "  curr: " << curr.value << std::endl;
-                std::cout << "  curr.next: " << curr.next.get() << std::endl;
+                // std::cout << "  curr: " << curr.value << std::endl;
+                // std::cout << "  curr.next: " << curr.next.get() << std::endl;
                 curr = prev;
             }
-            std::cout << "  first: " << curr.value << std::endl;
-            std::cout << "  first.next: " << curr.next.get() << std::endl;
+            // std::cout << "  first: " << curr.value << std::endl;
+            // std::cout << "  first.next: " << curr.next.get() << std::endl;
             return iterator(curr);
         }
 
@@ -213,6 +220,13 @@ std::ostream& operator<<(std::ostream& os, const vector<T>& v)
 };
 
 
+// template <typename T>
+std::ostream& operator<<(std::ostream& os, const vector<int>::iterator& i)
+{
+    return os << i.curr.value << "->(" << i.curr.next.get() << ")";
+}
+
+
 
 int main()
 {
@@ -224,18 +238,48 @@ int main()
     a[4] = 5;
     std::cout << a << std::endl;
 
-    std::cout << "begin" << std::endl;
+    std::cout << "\nbegin" << std::endl;
     auto i = a.begin();
-    std::cout << "value: " << i.curr.value << std::endl;
-    std::cout << "next: " << i.curr.next.get() << std::endl;
+    std::cout << "i = " << i << std::endl;
     while (i.curr.next!=nullptr) {
         ++i;
-        std::cout << "value: " << i.curr.value << std::endl;
-        std::cout << "next: " << i.curr.next.get() << std::endl;
+        std::cout << "i = " << i << std::endl;
     }
 
-    std::cout << "end" << std::endl;
+    std::cout << a << std::endl;
+
+    std::cout << "\nend" << std::endl;
     auto i2 = a.end();
-    std::cout << "value: " << i2.curr.value << std::endl;
-    std::cout << "next: " << i2.curr.next.get() << std::endl;
+    std::cout << "i2 = " << i2 << std::endl;
+
+    std::cout << "\ndereferencing" << std::endl;
+    auto i3 = a.begin();
+    std::cout << "*i3 = " << *i3 << std::endl;
+    ++i3;
+    std::cout << "*i3 = " << *i3 << std::endl;
+    std::cout << "*i3++ = " << *i3++ << std::endl;
+
+    struct val_container
+    {
+        int val;
+        val_container() = default;
+        val_container(const int v) : val(v) {}
+    };
+    vector<val_container> b(1);
+    b[0] = val_container(10);
+    auto ib = b.begin();
+    std::cout << "ib->val = " << ib->val << std::endl;
+
+
+    std::cout << "\nequality" << std::endl;
+    auto i4 = a.begin();
+    auto j = a.begin();
+    std::cout << "i4 = " << i4 << std::endl;
+    std::cout << "j = " << j << std::endl;
+    std::cout << "1=" << (i4==j) << std::endl;
+
+    ++i4; ++j;// ++j; ++j;
+    std::cout << "i4 = " << i4 << std::endl;
+    std::cout << "j = " << j << std::endl;
+    std::cout << "0=" << (i4==j) << std::endl;
 }
