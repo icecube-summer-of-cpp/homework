@@ -42,18 +42,27 @@ class vector
         }
 
     public:
+        // Constructors
         explicit vector(int size)
             : my_size(size), data( new T[my_size] ) {}
 
         vector()
             : my_size(0), data(0) {}
 
+        // Destructor
+        ~vector() = default;
+        
+        // Copy Constructor
         vector(const vector& that)
             : my_size(that.my_size), data(new T[my_size])
         {
             std::copy(&that.data[0], &that.data[that.my_size], &data[0]);
         }
 
+        // Move Constructor
+        vector(vector&&) = default;
+
+        // Copy Assignment
         vector& operator=(const vector& that) 
         {
             check_size(that.my_size);
@@ -61,8 +70,15 @@ class vector
             return *this;
         }
 
+        // Move Assignment
+        vector& operator=(vector&&) = default;
+
+
+        // Getters
         int size() const { return my_size; }
 
+
+        // Access operators
         const T& operator[](int i) const 
         {
             check_index(i);
@@ -75,6 +91,8 @@ class vector
             return data[i];
         }
 
+
+        // Addition
         vector operator+(const vector& that) const 
         {
             check_size(that.my_size);
@@ -82,114 +100,6 @@ class vector
             for (int i= 0; i < my_size; ++i) 
                 sum[i] = data[i] + that[i];
             return sum;
-        }
-
-
-
-        struct iterator_entry
-        {
-            iterator_entry(const T& value)
-                : value(value), next(0) {}
-            T value;
-            iterator_entry* next;
-        };
-
-        class iterator
-        {
-            public:
-                using value_type = T;
-
-                iterator(iterator_entry* entry) : entry(entry) {}
-
-                iterator operator++() {entry = entry->next; return *this;}
-                iterator operator++(int) 
-                {
-                    iterator tmp(*this);
-                    entry = entry->next;
-                    return tmp;
-                }
-
-                T& operator*() {return entry->value;}
-                T* operator->() {return entry->value;}
-
-                bool operator==(const iterator& rhs)
-                {return entry==rhs.entry;}
-
-                bool operator!=(const iterator& rhs)
-                {
-                    std::cout << "neq: ";
-                    std::cout << entry << "!=" << rhs.entry << std::endl;
-                    return entry!=rhs.entry;}
-
-            private:
-                iterator_entry* entry;
-        };
-
-        class const_iterator
-        {
-            public:
-                using value_type = T;
-
-                const_iterator(iterator_entry* entry) : entry(entry) {}
-
-                const_iterator operator++() {entry = entry->next; return *this;}
-                const_iterator operator++(int) 
-                {
-                    const_iterator tmp(*this);
-                    entry = entry->next;
-                    return tmp;
-                }
-
-                const T& operator*() {return entry->value;}
-                const T* operator->() {return entry->value;}
-
-                bool operator==(const const_iterator& rhs)
-                {return entry->value == rhs->value;}
-
-                bool operator!=(const const_iterator& rhs)
-                {return entry->value != rhs->value;}
-
-            private:
-                iterator_entry* entry;
-        };
-
-        struct iterator_list
-        {
-            iterator_list() : first(0), last(0) {}
-            ~iterator_list()
-            {
-                while (first)
-                {
-                    iterator_entry *tmp= first->next;
-                    delete first;
-                    first= tmp;
-                }
-            }
-            void append(const T& x)
-            {
-                last= (first ? last->next : first)= new iterator_entry(x);
-            }
-            iterator begin() { return iterator(first); }
-            iterator end() { return iterator(0); }
-
-            iterator_entry *first, *last;
-        };
-
-
-        iterator begin()
-        {
-            std::cout << "begin" << std::endl;
-            if (my_size==0) {return iterator(0);}
-            std::cout << "  not zero" << std::endl;
-            iterator_list list;
-            for (int i=0; i<my_size; ++i) {list.append(data[i]);}
-            return list.begin();
-        }
-
-        iterator end()
-        {
-            std::cout << "end" << std::endl;
-            return iterator(0);
         }
 };
 
@@ -214,11 +124,4 @@ int main()
     a[3] = 2;
     a[4] = 4;
     std::cout << a << std::endl;
-
-    std::cout << "start loop" << std::endl;
-    for (auto b=a.begin(); b!=a.end(); b++)
-    {
-        std::cout << "loop" << std::endl;
-        std::cout << *b << std::endl;
-    }
 }
