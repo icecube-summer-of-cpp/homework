@@ -45,6 +45,7 @@ public:
 
 
   int size() const { return size_;}
+  std::unique_ptr<T[]> data() const {return data_;}
   void check_size(int that_size) const { assert(size_ == that_size); }
   void check_index(int that_index) const {assert(size_ > that_index && that_index >= 0); }
 
@@ -61,10 +62,18 @@ public:
     return data_[i];
   }
 
-  //struct iterator{/* implement me */};
+  struct iterator
+  {
+    iterator(vector<T> v, unsigned int pos) : value(&v[pos]) {}
+    T& operator*() { return *value;}
+    iterator operator++(){iterator i= *this;value++;return i;}
 
-  //iterator begin(){ /* implement me */}
-  //iterator end(){ /* implement me */}
+    T* value;
+  };
+
+  iterator begin(){ return iterator(this,0) ;}
+  iterator end(){ return iterator(this,size_) ;}
+
 };
 
 template <typename T>
@@ -81,5 +90,8 @@ int main()
   vector<double> v(4) ;
   v[0]= 1.0; v[2]= 2.0; v[3] = -3.0;
   std::cout << v << std::endl;
+  float j = v[0];
+  std::cout << j << std::endl;
+  std::sort(v.begin(), v.end());
   return 0;
 }
