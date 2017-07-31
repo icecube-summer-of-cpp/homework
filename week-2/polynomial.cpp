@@ -102,8 +102,11 @@ int main()
     Polynomial p3{1., 2., 3}; // initializer_list constructor
     std::cout << p3 << std::endl;
     Polynomial p4(2);
-    std::cout<< "initializer_list assignment p4 = {4., 5., 6.};" << std::endl;
+    std::cout<< "initializer_list assignment without changing degree, p4 = {4., 5., 6.};" << std::endl;
     p4 = {4., 5., 6.}; // initializer_list assignment
+    std::cout << p4 << std::endl;
+    std::cout<< "initializer_list assignment while changing degree, p4 = {4., 5., 6., 7.};" << std::endl;
+    p4 = {4., 5., 6., 7.}; // initializer_list assignment
     std::cout << p4 << std::endl;
     
     
