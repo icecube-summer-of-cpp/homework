@@ -1,5 +1,10 @@
 #include "particle_properties.hpp"
 
+std::ostream& operator <<(std::ostream& os, const particle_properties& p){
+        return os << p.name() << "( " << p.mass() << ", " << p.spin() << ", " << p.charge() << " )";
+}
+
+/*
 float charge(particle_type p_type){
     switch(p_type) {
         case particle_type::undefined: return NAN;
@@ -29,3 +34,4 @@ std::string name(particle_type p_type){
         case particle_type::neutrino: return std::string("Neutrino");
     }
 };
+*/
