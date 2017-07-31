@@ -21,8 +21,19 @@
  * for an initializer list. The degree of the polynomial should be the length of the
  * initializer list minus one afterward.
  */
+ 
+ // degree constructor
 Polynomial::Polynomial(const int& degree) : degree(degree), coeffs(std::vector<double>(degree+1, 0.)) {}
 
+// initializer list constructor
+Polynomial::Polynomial(std::initializer_list<double> values)
+    : degree(values.size()-1), coeffs(std::vector<double>(values.size(),0.))
+{
+    std::copy(std::begin(values),std::end(values),
+              std::begin(coeffs));
+}
+
+// move assignment
 Polynomial& Polynomial::operator=(Polynomial&& p)
 {
     assert (degree == p.degree);
@@ -30,6 +41,19 @@ Polynomial& Polynomial::operator=(Polynomial&& p)
     std::cout << "I like to move it move it" << std::endl;
     return *this;
 }
+
+//  initializer_list assignment
+Polynomial& Polynomial::operator=(std::initializer_list<double> values)
+{
+    //assert (degree == values.size()); // not needed for the Polynomial concept
+    degree = values.size()-1;
+    coeffs = std::vector<double>(values.size(),0.);
+    std::copy(std::begin(values),std::end(values),
+              std::begin(coeffs));
+    return *this;
+}
+
+
 
 std::ostream& operator<<(std::ostream& os, const Polynomial& p)
 {
@@ -57,16 +81,30 @@ Polynomial parabola(double a0, double a1, double a2)
 
 int main()
 {
+    // degree constuctor
     Polynomial p1(2);
     Polynomial p2(2);
+    
+    // output of 0 parabola
     std::cout << p1 << std::endl;
     std::cout << p2 << std::endl;
+    
     std::cout<< "First assignment p2 = parabola(1.,2.0,0.5);" << std::endl;
-    p2 = parabola(1.,2.0,0.5);
+    p2 = parabola(1.,2.0,0.5); // triggers the move operator
     std::cout << p1 << std::endl;
     std::cout << p2 << std::endl;
     std::cout<< "Second assignment p1 = std::move(p2);" << std::endl;
-    p1 = std::move(p2);
+    p1 = std::move(p2); // moves explicitly
     std::cout << p1 << std::endl;
     std::cout << p2 << std::endl;
+    
+    std::cout<< "initializer_list constructor p3{1., 2., 3.};" << std::endl;
+    Polynomial p3{1., 2., 3}; // initializer_list constructor
+    std::cout << p3 << std::endl;
+    Polynomial p4(2);
+    std::cout<< "initializer_list assignment p4 = {4., 5., 6.};" << std::endl;
+    p4 = {4., 5., 6.}; // initializer_list assignment
+    std::cout << p4 << std::endl;
+    
+    
 }
