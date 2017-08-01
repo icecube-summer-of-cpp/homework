@@ -1,6 +1,6 @@
 BINDIR = build
 
-all: $(BINDIR)/p_3_11_10 #$(BINDIR)/p_3_11_11 $(BINDIR)/p_3_11_12
+all: $(BINDIR)/p_3_11_10 $(BINDIR)/p_3_11_11
 
 $(BINDIR)/p_% : p_%.cpp
 	clang++ -std=c++14 -stdlib=libc++ $^ -o $@
