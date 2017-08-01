@@ -18,28 +18,41 @@
 #include <iostream>
 
 
-template <typename T, typename F>
-class trapezoid
+// template <typename T, typename F>
+// class trapezoid
+// {
+//     public:
+//         trapezoid(const F& func, const int& n=1000)
+//         : f(func), n(n) {}
+
+//         T operator()(const T& a, const T& b) const
+//         {
+//             double h = (b-a)/n;
+//             T integral = (f(a) * h/2) + (f(b) * h/2);
+//             for (int j=1; j<n; j++)
+//             {
+//                 integral += h * f(a+j*h);
+//             }
+//             return integral;
+//         }
+
+//     private:
+//         const F& f;
+//         int n;
+// };
+
+
+template <typename T=double, typename F>
+T trapezoid(const F& f, const T& a, const T& b, const int& n=1000)
 {
-    public:
-        trapezoid(const F& func, const int& n=1000)
-        : f(func), n(n) {}
-
-        T operator()(const T& a, const T& b) const
-        {
-            double h = (b-a)/n;
-            T integral = (f(a) * h/2) + (f(b) * h/2);
-            for (int j=1; j<n; j++)
-            {
-                integral += h * f(a+j*h);
-            }
-            return integral;
-        }
-
-    private:
-        const F& f;
-        int n;
-};
+    double h = (b-a)/n;
+    T integral = (f(a) * h/2) + (f(b) * h/2);
+    for (int j=1; j<n; j++)
+    {
+        integral += h * f(a+j*h);
+    }
+    return integral;
+}
 
 
 
@@ -66,14 +79,18 @@ struct sinorcos {
 
 int main()
 {
-    trapezoid<double,decltype(exp3f)> func_int(exp3f);
-    std::cout << "Function integral: " << func_int(0,4) << " (54251)" << std::endl;
+    std::cout << "Function integral: " <<
+    trapezoid(exp3f,0.,4.) << " (54251)" << std::endl;
 
     exp3t func_obj;
-    trapezoid<double,exp3t> struct_int(func_obj,100);
-    std::cout << "Struct object integral: " << struct_int(0,4) << " (54251)" << std::endl;
+    std::cout << "Struct object integral: " <<
+    trapezoid(func_obj,0.,4.,100) << " (54251)" << std::endl;
 
     sinorcos trig_function;
-    trapezoid<double,sinorcos> trig_int(trig_function);
-    std::cout << "Trig integral: " << trig_int(0,4) << " (-1.13858)" << std::endl;
+    std::cout << "Trig integral: " <<
+    trapezoid(trig_function,0.,4.) << " (-1.13858)" << std::endl;
+
+    // std::sin is not unique and can't be resolved by the trapezoid template
+    // std::cout << "Sin integral: " <<
+    // trapezoid(std::sin,0.,2.) << " (1.4161)" << std::endl;
 }
