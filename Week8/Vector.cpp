@@ -7,11 +7,11 @@
 
 template <typename T>
 class vector{
-private:
-  int size_;
-  std::unique_ptr<T[]> data_;
+//private:
 
 public:
+  int size_;
+  std::unique_ptr<T[]> data_;
   //constructor
   explicit vector(int size): size_(size),data_(new T[size]) {}
   //default constructor
@@ -45,7 +45,6 @@ public:
 
 
   int size() const { return size_;}
-  std::unique_ptr<T[]> data() const {return data_;}
   void check_size(int that_size) const { assert(size_ == that_size); }
   void check_index(int that_index) const {assert(size_ > that_index && that_index >= 0); }
 
@@ -64,16 +63,18 @@ public:
 
   struct iterator
   {
-    iterator(vector<T> v, unsigned int pos) : value(&v[pos]) {}
+    iterator(T* x) : value(x) {}
     T& operator*() { return *value;}
     iterator operator++(){iterator i= *this;value++;return i;}
+    iterator operator--(){iterator i= *this;value--;return i;}
+    iterator operator-(iterator that){that= *this;value--;return that;}
+    bool operator!=(const iterator that) const { return value != that.value;}
 
     T* value;
   };
 
-  iterator begin(){ return iterator(this,0) ;}
-  iterator end(){ return iterator(this,size_) ;}
-
+  iterator begin(){ return iterator(&(this->data_[0])) ;}
+  iterator end(){ return iterator(&(this->data_[1])) ;}
 };
 
 template <typename T>
