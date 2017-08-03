@@ -43,6 +43,8 @@ SET( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 ##
 ## My part
 ##
+add_executable(excercise_3_11_10_generic_programming excercise_3_11_10_generic_programming.cpp)
+add_executable(excercise_3_11_10_inheritance excercise_3_11_10_inheritance.cpp)
 add_executable(excercise_3_11_11 excercise_3_11_11.cpp)
 add_executable(excercise_3_11_12 excercise_3_11_12.cpp)
 add_executable(excercise_3_11_13 excercise_3_11_13.cpp)
