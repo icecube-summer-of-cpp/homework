@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bootcamp/projects/summer_of_cpp/homework/quiz1/src/excercise_1_10_3.cpp
+excercise_1_10_3.hpp
+-
+
