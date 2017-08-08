@@ -9,7 +9,7 @@
  * @brief Particle properties
  *
  * Define the properties of new particle types; supports non-integer
- * charges for defining BSM particles.
+ * charges for defining non-Standard Model particles.
  */
 struct properties
 {
@@ -30,10 +30,10 @@ enum class particle_type {
 };
 
 /**
- * @brief Particle properties access
+ * @brief Particle properties read access
  *
- * This class gives access to the properties of a particle object of a
- * certain type.
+ * This class gives read access to the properties of a particle object
+ * of a certain type.
  */
 class particle_properties
 {
