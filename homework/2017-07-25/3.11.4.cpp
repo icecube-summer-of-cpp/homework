@@ -68,13 +68,28 @@ public:
         };
     };
     
+    class const_iterator{
+        vector<T>  &obj;
+        unsigned long pos;
+    public:
+        const_iterator(vector<T> &obj, unsigned long pos=0): pos(pos), obj(obj){};
+        const_iterator operator++(int){++pos;};
+        const T operator* (){return this->obj[pos];};
+        bool operator==(const_iterator rhs){
+          return this->pos == rhs.pos;
+        };
+        
+        bool operator!=(const_iterator rhs){
+          return this->pos != rhs.pos;
+        };
+    };
+    
     iterator begin(){
       return iterator(*this, 0);
     }
     iterator end(){
       return iterator(*this, this->size_);
     }
-  
 };
 
 
