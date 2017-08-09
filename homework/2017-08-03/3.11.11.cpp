@@ -1,11 +1,6 @@
 #include <cmath>
 #include <iostream>
 
-template <class F, typename T>
-T inline fin_diff(F f, const T& x, const T& h){
-  return (f(x+h) - f(x))/h;
-};
-
 
 template <class F, typename T>
 class derivative{

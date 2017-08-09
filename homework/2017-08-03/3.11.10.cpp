@@ -31,12 +31,46 @@ const T trapezoid(const F& f, const T& a, const T& b, const unsigned N=0){
   return res;
 };
 
+template <class F, typename T>
+class derivative{
+    const F& f;
+    T h;
+public:
+    derivative(const F& f, const T& h): f(f), h(h) {}
+    
+    T operator()(const T& x) const {
+      return (f(x+h) - f(x))/h;
+    }
+};
+
 
 int main(){
-  std::cout << trapezoid(exp3f, 0., 4., 1000) << std::endl;
-  std::cout << trapezoid(exp3t(), 0., 4., 1000) << std::endl;
-  std::cout << trapezoid(sin_cos, 0., 4., 1000) << std::endl;
-  //std::cout << trapezoid(std::sin, 0., 4.) << std::endl;
+  auto n = 10000000;
+  auto x = 1.4;
+  auto m = 1000.0;
+  auto h = 0.0001;
+  std::cout << trapezoid(exp3f, 0., 4., n) << std::endl;
+  std::cout << trapezoid(exp3t(), 0., 4., n) << std::endl;
+  std::cout << trapezoid(sin_cos, 0., 4., n) << std::endl;
+  std::cout << trapezoid<double (double), double >(std::sin, 0., 4., n) << std::endl;
+  std::cout << "------------------------------" << std::endl;
+  auto d0 = derivative<decltype(exp3f), double>(exp3f, h);
+  auto d1 = derivative<decltype(exp3t()), double>(exp3t(), h);
+  auto d2 = derivative<decltype(sin_cos), double>(sin_cos, h);
+  auto d3 = derivative<double (double), double>(std::sin, h);
+  
+  std::cout << exp3f(x) << std::endl;
+  std::cout << exp3t()(x) << std::endl;
+  std::cout << sin_cos(x) << std::endl;
+  std::cout << std::sin(x) << std::endl;
+  std::cout << "------------------------------" << std::endl;
+  
+  
+  std::cout << trapezoid(d0, x-m, x+m, n) << std::endl;
+  std::cout << trapezoid(d1, x-m, x+m, n) << std::endl;
+  std::cout << trapezoid(d2, x-m, x+m, n) << std::endl;
+  std::cout << trapezoid(d3, x-m, x+m, n) << std::endl;
+  
   return 0;
   
 }
