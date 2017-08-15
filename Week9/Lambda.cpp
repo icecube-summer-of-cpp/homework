@@ -46,5 +46,11 @@ int main()
 
   std::cout << "1st derivative is: " << d_func_o(1) << "\n" << "2nd derivative is: " << dd_func_o(1) << std::endl;
 
+  auto f1 = derivative<double (double), double>(*[](double x){return 2 * cos(x) + pow(x, 2);}, 0.00001);
+  auto f2 = derivative<decltype(f1), double>(f1, 0.00001);
+
+  std::cout << "1st derivative is: " << f1(1) << "\n" << "2nd derivative is: " << f2(1) << std::endl;
+
+
   return 0;
 }
