@@ -19,14 +19,14 @@ bool number_exists(unsigned long phone){
 }
 
 int main() {
-  for(auto a: {"Frederik", "Heinz"}){
+  for(auto &a: {"Frederik", "Heinz"}){
     if (name_exists(a)){
       std::cout << a << " does exist!" << std::endl;
     }else{
       std::cout << a << " does NOT exist!" << std::endl;
     }
   }
-  for(auto a: {1u, 23u}){
+  for(auto &a: {1u, 23u}){
     if (number_exists(a)){
       std::cout << a << " does exist!" << std::endl;
     }else{
