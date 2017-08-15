@@ -19,7 +19,7 @@ class polynomial
 
     polynomial(const polynomial& x): my_degree(x.my_degree),v(x.v) {}
 
-    polynomial() : my_degree(1),v(vector<double>{0.}) {}
+    polynomial() : my_degree(0),v(vector<double>{0.}) {}
     
     //move constructor
     polynomial(polynomial&& p);
@@ -34,7 +34,7 @@ class polynomial
     void set(int i,double value){v[i] = value;}
 
     const double& operator[](int i) const {
-      assert((i>=0) && (i<my_degree) && (v.size()==my_degree));
+      assert((i>=0) && (i<=my_degree) && (v.size()-1==my_degree));
       return v[i];
     }
  

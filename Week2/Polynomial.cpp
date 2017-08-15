@@ -1,11 +1,11 @@
 #include "Polynomial.h"
 
-polynomial::polynomial(vector<double> that) : my_degree(that.size()), v(that.size())
+polynomial::polynomial(vector<double> that) : my_degree(that.size()-1), v(that.size())
 {
   for (int i=0;i<my_degree;i++){v[i] = that[i];}
 }
 
-polynomial::polynomial(initializer_list<double> values) : my_degree(values.size()),v(values.size())
+polynomial::polynomial(initializer_list<double> values) : my_degree(values.size()-1),v(values.size())
 {
   copy(begin(values),end(values),begin(v));
 }
@@ -20,7 +20,7 @@ polynomial::polynomial(polynomial&& p): my_degree(p.my_degree),v(p.v)
 polynomial& polynomial::operator=(polynomial&& p)
 {
   cout << "Using the move assignment" << endl;
-  assert(my_degree == 1 || my_degree == p.my_degree);
+  assert(my_degree == 0 || my_degree == p.my_degree);
   swap(my_degree,p.my_degree);
   swap(v,p.v);
   return *this;

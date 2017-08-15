@@ -13,6 +13,7 @@ int main(){
   polynomial p2({5.,0,-9.});
   cout << "Now using initializer list" << endl;
   cout << "p2:" << p2 << endl;
+  cout << "p2 degree is: " << p2.degree() << endl << endl;
 
   polynomial p3 = p1+p2;
   cout << "Let's see if we can sum p1 and p2" << endl;
