@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.7)
+project(cppsummer)
+
+set(CMAKE_CXX_STANDARD 14)
+add_subdirectory(./homework/2017-06-05)
+add_subdirectory(./homework/2017-06-12)
+add_subdirectory(./homework/2017-07-03)
+add_subdirectory(./homework/2017-07-17)
+add_subdirectory(./homework/2017-07-25)
+add_subdirectory(./homework/2017-08-03)
+add_subdirectory(./homework/2017-08-10)
+add_subdirectory(./quizes/1)
+add_subdirectory(./quizes/2)
+add_subdirectory(./quizes/3)
+add_subdirectory(./quizes/4)
+add_executable(foo test.cpp)
+add_executable(6.7.2 6.7.2.cpp)
+
