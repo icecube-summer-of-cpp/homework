@@ -7,7 +7,6 @@
 
 template <typename T>
 class vector{
-//private:
 
 public:
   int size_;
@@ -93,6 +92,7 @@ int main()
   std::cout << v << std::endl;
   float j = v[0];
   std::cout << j << std::endl;
-  std::sort(v.begin(), v.end());
+  std::cout << v.begin() << std::endl;
+  //std::sort(v.begin(), v.end());
   return 0;
 }
