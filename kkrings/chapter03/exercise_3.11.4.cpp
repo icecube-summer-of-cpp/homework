@@ -1,7 +1,6 @@
 /**
  * Solution to exercise 3.11.4
  */
-
 #include <algorithm>
 #include <cassert>
 #include <initializer_list>
@@ -22,7 +21,7 @@ namespace details
                 std::random_access_iterator_tag, T>::difference_type;
 
             /**
-             * Create an iterator at a certain vector position.
+             * Create an iterator at the vector position @p element.
              * @param element Vector position
              */
             iterator(T* element = nullptr) : element_(element) {}
@@ -218,8 +217,8 @@ class vector
 {
     public:
         /**
-         * Create an empty vector of a certain size.
-         * @param Vector size
+         * Create an empty vector of size @p size.
+         * @param size Vector size
          */
         explicit vector(unsigned int size = 0)
             : size_(size), data_(new T[size_])
@@ -265,7 +264,7 @@ class vector
         vector& operator=(vector&&) = default;
 
         /**
-         * Access vector element at index.
+         * Access vector element at index @p i.
          * @param i Index
          * @return Vector element
          */

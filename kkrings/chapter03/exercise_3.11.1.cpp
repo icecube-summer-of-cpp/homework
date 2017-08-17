@@ -1,7 +1,6 @@
 /**
  * Solution to exercise 3.11.1
  */
-
 #include <iostream>
 #include <string>
 #include <sstream>

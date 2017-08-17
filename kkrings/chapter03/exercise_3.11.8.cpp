@@ -1,7 +1,6 @@
 /**
  * Solutions to exercise 3.11.3, 3.11.7, and 3.11.8
  */
-
 #include <algorithm>
 #include <cassert>
 #include <iostream>
