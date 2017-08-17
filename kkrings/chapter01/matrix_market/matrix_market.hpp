@@ -1,7 +1,6 @@
 /**
  * Solution to first week's quiz
  */
-
 #ifndef MATRIX_MARKET_MATRIX_MARKET_HPP
 #define MATRIX_MARKET_MATRIX_MARKET_HPP
 

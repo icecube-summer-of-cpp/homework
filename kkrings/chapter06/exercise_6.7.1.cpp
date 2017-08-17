@@ -1,7 +1,6 @@
 /**
  * Solution to exercise 6.7.1
  */
-
 #include <iostream>
 #include <string>
 
@@ -117,7 +116,6 @@ class math_student : public student, public mathematician
             mathematician::my_infos();
         }
 };
-
 
 int main()
 {

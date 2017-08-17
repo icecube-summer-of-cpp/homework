@@ -1,3 +1,6 @@
+/**
+ * Solution to exercise 2.8
+ */
 #include <cassert>
 #include <cmath>
 #include <initializer_list>

@@ -1,7 +1,6 @@
 /**
  * Solution to first week's quiz
  */
-
 #include <iostream>
 #include "matrix_market.hpp"
 

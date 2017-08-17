@@ -1,7 +1,6 @@
 /**
  * Solution to first week's quiz
  */
-
 #include <fstream>
 #include <iostream>
 #include <sstream>
