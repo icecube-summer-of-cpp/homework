@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ward/IceCube/CppTutorial/homework/Week6/direction.cpp
+direction.h
+/home/ward/IceCube/CppTutorial/homework/Week6/direction.h
+
+/home/ward/IceCube/CppTutorial/homework/Week6/direction.h
+cmath
+-
+iostream
+-
+

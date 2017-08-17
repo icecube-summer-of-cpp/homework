@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ward/IceCube/CppTutorial/homework/Quiz/solution.cpp
+solution.h
+/home/ward/IceCube/CppTutorial/homework/Quiz/solution.h
+
+/home/ward/IceCube/CppTutorial/homework/Quiz/solution.h
+iostream
+-
+cassert
+-
+fstream
+-
+iostream
+-
+string
+-
+sstream
+-
+cstdlib
+-
+
