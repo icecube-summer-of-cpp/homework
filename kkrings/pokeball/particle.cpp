@@ -6,7 +6,7 @@
 
 namespace
 {
-    std::map<particle_type, properties> properties_map = {
+    std::map<particle_type, details::properties> properties_map = {
         {particle_type::unknown, {0., 0., 0}},
         {particle_type::photon, {0., 0., 2}},
         {particle_type::electron, {511e3, -1., 1}},

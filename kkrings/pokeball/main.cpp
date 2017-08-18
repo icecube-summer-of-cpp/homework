@@ -24,16 +24,16 @@ int main()
     particle p3(particle_type::photon);
     std::cout << "Particle p3: id = " << p3.id() << std::endl;
 
-    sim_particle p4(particle_type::photon);
-    p4.set_shape(sim_particle::shape::dark);
+    sim_particle p4(particle_type::electron);
+    p4.set_shape(sim_particle::particle_shape::cascade_segment);
 
     std::string shape;
     switch(p4.get_shape())
     {
-        case sim_particle::shape::dark:
+        case sim_particle::particle_shape::dark:
             shape = "dark";
             break;
-        case sim_particle::shape::cascade_segment:
+        case sim_particle::particle_shape::cascade_segment:
             shape = "cascade_segment";
             break;
         default:
@@ -43,16 +43,16 @@ int main()
 
     std::cout << "Particle p4: shape = " << shape << std::endl;
 
-    reco_particle p5(particle_type::photon);
-    p5.set_status(reco_particle::status::ok);
+    reco_particle p5;
+    p5.set_status(reco_particle::fit_status::ok);
 
     std::string status;
     switch(p5.get_status())
     {
-        case reco_particle::status::ok:
+        case reco_particle::fit_status::ok:
             status = "ok";
             break;
-        case reco_particle::status::failure:
+        case reco_particle::fit_status::failure:
             status = "failure";
             break;
         default:
