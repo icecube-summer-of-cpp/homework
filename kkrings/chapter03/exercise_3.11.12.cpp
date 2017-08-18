@@ -6,6 +6,7 @@
 
 /**
  * @brief Trapezoid rule
+ *
  * Use the trapezoid rule to approximate the integral of the
  * function @p f.
  * @param f Function
@@ -29,6 +30,7 @@ T trapezoid(const F& f, const T& a, const T& b, unsigned int n = 1000)
 
 /**
  * @brief First derivative
+ *
  * Use the finite difference to approximate the first derivative of the
  * function @p f.
  */
@@ -62,6 +64,7 @@ class derivative
 
 /**
  * @brief Higher derivatives
+ *
  * Recursively calculate the finite difference to approximate the n-th
  * derivative of a function @p f.
  * @tparam N Order of derivative

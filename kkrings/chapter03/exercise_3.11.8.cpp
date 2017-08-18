@@ -9,6 +9,7 @@
 
 /**
  * @brief Stack implementation for a generic value type
+ *
  * The stack implementation supports a custom size, where the default
  * size is 4096, and is based on a non-dynamic array approach.
  */
@@ -116,6 +117,7 @@ class stack
 
 /**
  * @brief Specialized stack implementation for booleans
+ *
  * Save 8 booleans into one byte based on char.
  */
 template<unsigned int max_size>
