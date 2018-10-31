@@ -15,5 +15,5 @@ std::string to_string(const T& p)
 
 int main()
 {
-    std::cout << "to_string<int>(1): " << to_string<int>(1) << std::endl;
+    std::cout << "to_string(1): " << to_string(1) << std::endl;
 }

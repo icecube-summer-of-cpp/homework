@@ -111,8 +111,8 @@ class stack
         }
 
     private:
-        std::unique_ptr<T[]> data_;
         unsigned int size_;
+        std::unique_ptr<T[]> data_;
 };
 
 /**
@@ -212,13 +212,13 @@ class stack<bool, max_size>
         /**
          * @return Actual size of underlying data array
          */
-        unsigned int real_max_size() const
+        static unsigned int real_max_size()
         {
             return (max_size + 7) / 8;
         }
 
-        std::unique_ptr<unsigned char[]> data_;
         unsigned int size_;
+        std::unique_ptr<unsigned char[]> data_;
 };
 
 int main()
